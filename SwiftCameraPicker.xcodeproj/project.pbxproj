@@ -1,0 +1,689 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		31523B6619D97ABF71591AD0 /* Pods_SwiftCameraPickerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */; };
+		6583E6B11D42542B00A6DB93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6B01D42542B00A6DB93 /* AppDelegate.swift */; };
+		6583E6B31D42542B00A6DB93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6B21D42542B00A6DB93 /* ViewController.swift */; };
+		6583E6B61D42542B00A6DB93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B41D42542B00A6DB93 /* Main.storyboard */; };
+		6583E6B81D42542B00A6DB93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B71D42542B00A6DB93 /* Assets.xcassets */; };
+		6583E6BB1D42542B00A6DB93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */; };
+		6583E6C61D42542B00A6DB93 /* SwiftCameraPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */; };
+		6583E6D11D42542B00A6DB93 /* SwiftCameraPickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */; };
+		C229B9B744E336DA1952CDF8 /* Pods_SwiftCameraPickerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */; };
+		C7BABB2CEC34D5EC898F40F9 /* Pods_SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6583E6C21D42542B00A6DB93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6583E6A51D42542B00A6DB93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6583E6AC1D42542B00A6DB93;
+			remoteInfo = SwiftCameraPicker;
+		};
+		6583E6CD1D42542B00A6DB93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6583E6A51D42542B00A6DB93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6583E6AC1D42542B00A6DB93;
+			remoteInfo = SwiftCameraPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.release.xcconfig"; sourceTree = "<group>"; };
+		168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.debug.xcconfig"; sourceTree = "<group>"; };
+		27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.release.xcconfig"; sourceTree = "<group>"; };
+		3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCameraPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6583E6B01D42542B00A6DB93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6583E6B21D42542B00A6DB93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6583E6B51D42542B00A6DB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6583E6B71D42542B00A6DB93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6583E6BA1D42542B00A6DB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6583E6BC1D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCameraPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraPickerTests.swift; sourceTree = "<group>"; };
+		6583E6C71D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCameraPickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraPickerUITests.swift; sourceTree = "<group>"; };
+		6583E6D21D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6583E6AA1D42542B00A6DB93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7BABB2CEC34D5EC898F40F9 /* Pods_SwiftCameraPicker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6BE1D42542B00A6DB93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C229B9B744E336DA1952CDF8 /* Pods_SwiftCameraPickerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6C91D42542B00A6DB93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31523B6619D97ABF71591AD0 /* Pods_SwiftCameraPickerUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		187AB315B0A502C363515859 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */,
+				3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */,
+				719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6583E6A41D42542B00A6DB93 = {
+			isa = PBXGroup;
+			children = (
+				6583E6AF1D42542B00A6DB93 /* SwiftCameraPicker */,
+				6583E6C41D42542B00A6DB93 /* SwiftCameraPickerTests */,
+				6583E6CF1D42542B00A6DB93 /* SwiftCameraPickerUITests */,
+				6583E6AE1D42542B00A6DB93 /* Products */,
+				BAAC52F741125BB0E3B74505 /* Pods */,
+				187AB315B0A502C363515859 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6583E6AE1D42542B00A6DB93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */,
+				6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */,
+				6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6583E6AF1D42542B00A6DB93 /* SwiftCameraPicker */ = {
+			isa = PBXGroup;
+			children = (
+				6583E6B01D42542B00A6DB93 /* AppDelegate.swift */,
+				6583E6B21D42542B00A6DB93 /* ViewController.swift */,
+				6583E6B41D42542B00A6DB93 /* Main.storyboard */,
+				6583E6B71D42542B00A6DB93 /* Assets.xcassets */,
+				6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */,
+				6583E6BC1D42542B00A6DB93 /* Info.plist */,
+			);
+			path = SwiftCameraPicker;
+			sourceTree = "<group>";
+		};
+		6583E6C41D42542B00A6DB93 /* SwiftCameraPickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */,
+				6583E6C71D42542B00A6DB93 /* Info.plist */,
+			);
+			path = SwiftCameraPickerTests;
+			sourceTree = "<group>";
+		};
+		6583E6CF1D42542B00A6DB93 /* SwiftCameraPickerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */,
+				6583E6D21D42542B00A6DB93 /* Info.plist */,
+			);
+			path = SwiftCameraPickerUITests;
+			sourceTree = "<group>";
+		};
+		BAAC52F741125BB0E3B74505 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */,
+				1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */,
+				F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */,
+				38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */,
+				72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */,
+				C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6583E6D51D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */;
+			buildPhases = (
+				158A9DA71DF8FCF48107B511 /* 📦 Check Pods Manifest.lock */,
+				6583E6A91D42542B00A6DB93 /* Sources */,
+				6583E6AA1D42542B00A6DB93 /* Frameworks */,
+				6583E6AB1D42542B00A6DB93 /* Resources */,
+				2E1EB5C4C2D3DBAEC2FA8059 /* 📦 Embed Pods Frameworks */,
+				C642D37268F5F75DA179507A /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCameraPicker;
+			productName = SwiftCameraPicker;
+			productReference = 6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6583E6C01D42542B00A6DB93 /* SwiftCameraPickerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6583E6D81D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */;
+			buildPhases = (
+				D58F14EB77D281C6DCA6229C /* 📦 Check Pods Manifest.lock */,
+				6583E6BD1D42542B00A6DB93 /* Sources */,
+				6583E6BE1D42542B00A6DB93 /* Frameworks */,
+				6583E6BF1D42542B00A6DB93 /* Resources */,
+				2E27592095204531F643B3C2 /* 📦 Embed Pods Frameworks */,
+				32F3ADAF645CD3C2592A1D3E /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6583E6C31D42542B00A6DB93 /* PBXTargetDependency */,
+			);
+			name = SwiftCameraPickerTests;
+			productName = SwiftCameraPickerTests;
+			productReference = 6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6583E6CB1D42542B00A6DB93 /* SwiftCameraPickerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6583E6DB1D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerUITests" */;
+			buildPhases = (
+				198126C24C7FFA0B3FB9D540 /* 📦 Check Pods Manifest.lock */,
+				6583E6C81D42542B00A6DB93 /* Sources */,
+				6583E6C91D42542B00A6DB93 /* Frameworks */,
+				6583E6CA1D42542B00A6DB93 /* Resources */,
+				38602F29979FA4398EA148DD /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6583E6CE1D42542B00A6DB93 /* PBXTargetDependency */,
+			);
+			name = SwiftCameraPickerUITests;
+			productName = SwiftCameraPickerUITests;
+			productReference = 6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6583E6A51D42542B00A6DB93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = codenapse;
+				TargetAttributes = {
+					6583E6AC1D42542B00A6DB93 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					6583E6C01D42542B00A6DB93 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6583E6AC1D42542B00A6DB93;
+					};
+					6583E6CB1D42542B00A6DB93 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6583E6AC1D42542B00A6DB93;
+					};
+				};
+			};
+			buildConfigurationList = 6583E6A81D42542B00A6DB93 /* Build configuration list for PBXProject "SwiftCameraPicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6583E6A41D42542B00A6DB93;
+			productRefGroup = 6583E6AE1D42542B00A6DB93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */,
+				6583E6C01D42542B00A6DB93 /* SwiftCameraPickerTests */,
+				6583E6CB1D42542B00A6DB93 /* SwiftCameraPickerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6583E6AB1D42542B00A6DB93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6583E6BB1D42542B00A6DB93 /* LaunchScreen.storyboard in Resources */,
+				6583E6B81D42542B00A6DB93 /* Assets.xcassets in Resources */,
+				6583E6B61D42542B00A6DB93 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6BF1D42542B00A6DB93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6CA1D42542B00A6DB93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		158A9DA71DF8FCF48107B511 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		198126C24C7FFA0B3FB9D540 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2E1EB5C4C2D3DBAEC2FA8059 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E27592095204531F643B3C2 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32F3ADAF645CD3C2592A1D3E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38602F29979FA4398EA148DD /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C642D37268F5F75DA179507A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D58F14EB77D281C6DCA6229C /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6583E6A91D42542B00A6DB93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6583E6B31D42542B00A6DB93 /* ViewController.swift in Sources */,
+				6583E6B11D42542B00A6DB93 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6BD1D42542B00A6DB93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6583E6C61D42542B00A6DB93 /* SwiftCameraPickerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6583E6C81D42542B00A6DB93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6583E6D11D42542B00A6DB93 /* SwiftCameraPickerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6583E6C31D42542B00A6DB93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */;
+			targetProxy = 6583E6C21D42542B00A6DB93 /* PBXContainerItemProxy */;
+		};
+		6583E6CE1D42542B00A6DB93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */;
+			targetProxy = 6583E6CD1D42542B00A6DB93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6583E6B41D42542B00A6DB93 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6583E6B51D42542B00A6DB93 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6583E6BA1D42542B00A6DB93 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6583E6D31D42542B00A6DB93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6583E6D41D42542B00A6DB93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6583E6D61D42542B00A6DB93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftCameraPicker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6583E6D71D42542B00A6DB93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftCameraPicker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6583E6D91D42542B00A6DB93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftCameraPickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCameraPicker.app/SwiftCameraPicker";
+			};
+			name = Debug;
+		};
+		6583E6DA1D42542B00A6DB93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftCameraPickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCameraPicker.app/SwiftCameraPicker";
+			};
+			name = Release;
+		};
+		6583E6DC1D42542B00A6DB93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftCameraPickerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftCameraPicker;
+			};
+			name = Debug;
+		};
+		6583E6DD1D42542B00A6DB93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftCameraPickerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftCameraPicker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6583E6A81D42542B00A6DB93 /* Build configuration list for PBXProject "SwiftCameraPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6583E6D31D42542B00A6DB93 /* Debug */,
+				6583E6D41D42542B00A6DB93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6583E6D51D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6583E6D61D42542B00A6DB93 /* Debug */,
+				6583E6D71D42542B00A6DB93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6583E6D81D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6583E6D91D42542B00A6DB93 /* Debug */,
+				6583E6DA1D42542B00A6DB93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6583E6DB1D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6583E6DC1D42542B00A6DB93 /* Debug */,
+				6583E6DD1D42542B00A6DB93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6583E6A51D42542B00A6DB93 /* Project object */;
+}
