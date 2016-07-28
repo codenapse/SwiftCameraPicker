@@ -1,4 +1,5 @@
 PODS:
+  - CameraManager (2.2.3)
   - CocoaLumberjack/Core (2.3.0)
   - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
@@ -8,11 +9,13 @@ PODS:
     - CocoaLumberjack/Extensions
 
 DEPENDENCIES:
+  - CameraManager (~> 2.2)
   - CocoaLumberjack/Swift
 
 SPEC CHECKSUMS:
+  CameraManager: aca6ae93237ca5f10d0f234d4cadda28caee22ca
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
 
-PODFILE CHECKSUM: 86db6f01a126dcb7736f9b7e73ba92667b348c4c
+PODFILE CHECKSUM: 87c5e042ac4cb3ac587f8e6ccbb6c1926db5b225
 
 COCOAPODS: 1.0.0

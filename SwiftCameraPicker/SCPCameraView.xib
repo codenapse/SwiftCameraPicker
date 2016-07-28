@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SCPCameraView" customModule="SwiftCameraPicker">
+            <rect key="frame" x="0.0" y="0.0" width="507" height="507"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="adK-Gt-8Pf" userLabel="CamarePreviewView">
+                    <rect key="frame" x="0.0" y="0.0" width="507" height="507"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="adK-Gt-8Pf" secondAttribute="height" multiplier="1:1" id="e8H-9l-rCH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPh-sW-nzl">
+                    <rect key="frame" x="0.0" y="407" width="507" height="100"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygF-C8-vhn">
+                            <rect key="frame" x="221" y="1" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="UQM-gh-BOb"/>
+                                <constraint firstAttribute="height" constant="64" id="djC-f2-MUK"/>
+                            </constraints>
+                            <state key="normal" title="take_picture_btn" image="take_picture_btn"/>
+                            <connections>
+                                <action selector="takePhotoBtnPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="BOh-SR-C07"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ygF-C8-vhn" secondAttribute="bottom" constant="35" id="NiT-qf-kQS"/>
+                        <constraint firstAttribute="height" constant="100" id="PAH-eE-n1W"/>
+                        <constraint firstItem="ygF-C8-vhn" firstAttribute="centerX" secondItem="sPh-sW-nzl" secondAttribute="centerX" id="QXZ-Oa-sea"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="adK-Gt-8Pf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2eh-Gq-rG0"/>
+                <constraint firstItem="sPh-sW-nzl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Fx-3s-hcM"/>
+                <constraint firstAttribute="bottom" secondItem="adK-Gt-8Pf" secondAttribute="bottom" id="Nmw-yU-Ff3"/>
+                <constraint firstAttribute="trailing" secondItem="sPh-sW-nzl" secondAttribute="trailing" id="aIW-BP-XhR"/>
+                <constraint firstItem="adK-Gt-8Pf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lhf-AR-yZp"/>
+                <constraint firstAttribute="trailing" secondItem="adK-Gt-8Pf" secondAttribute="trailing" id="o2e-5b-PUi"/>
+                <constraint firstAttribute="bottom" secondItem="sPh-sW-nzl" secondAttribute="bottom" id="yhv-8A-J81"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cameraPreview" destination="adK-Gt-8Pf" id="ZB9-4B-xFC"/>
+            </connections>
+            <point key="canvasLocation" x="443.5" y="325.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="take_picture_btn" width="128" height="128"/>
+    </resources>
+</document>

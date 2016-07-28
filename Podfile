@@ -10,6 +10,7 @@ target 'SwiftCameraPicker' do
   # Pods for SwiftCameraPicker
   
   pod 'CocoaLumberjack/Swift'
+  pod 'CameraManager', '~> 2.2'
 
   
   
