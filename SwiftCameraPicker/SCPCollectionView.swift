@@ -35,8 +35,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     //
     func initMediaFiles() {
         // MARK:- Mook initMediaFiles()
-        // self.mediaFiles.append(MediaFile(image: MediaFile.imageWithColor(UIColor.cyanColor())))
-        // self.mediaFiles.append(MediaFile(image: MediaFile.imageWithColor(UIColor.blueColor())))
+//        self.mediaFiles.append(SCPMediaFile(image: SCPMediaFile.imageWithColor(UIColor.cyanColor())))
+//        self.mediaFiles.append(SCPMediaFile(image: SCPMediaFile.imageWithColor(UIColor.blueColor())))
     }
     //
     //

@@ -19,7 +19,9 @@ class ViewController: UIViewController, SCPViewControllerCaptureDelegate {
     override func viewDidAppear(animated: Bool) {
         let cameraPicker = SCPViewController()
         cameraPicker.delegate = self
-        self.presentViewController(cameraPicker, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.presentViewController(cameraPicker, animated: true, completion: nil)
+        })
     }
     
     override func didReceiveMemoryWarning() {

@@ -37,7 +37,9 @@ class SCPCameraView: UIView {
     
     func capturePictureCompletion(image: UIImage?, error: NSError?) {
 //        print("SCPCameraView -> capturePictureCompletion(image: UIImage?, error: NSError?)")
-        self.cameraViewDelegate?.cameraShotFinished(image!)
+        if image != nil {
+            self.cameraViewDelegate?.cameraShotFinished(image!)
+        }
     }
 }
 

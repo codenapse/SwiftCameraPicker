@@ -12,8 +12,6 @@ class SCPCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var visualEffect: UIVisualEffectView!
     @IBOutlet var imageView: UIImageView!
-    
-    private var deletedToggle: Bool = false
     private var mediaFile: SCPMediaFile!
     
     
@@ -26,27 +24,39 @@ class SCPCollectionViewCell: UICollectionViewCell {
     
     func toggle() {
 //        print("SCPCollectionViewCell -> toggle()")
-        if self.deletedToggle == false {
-            self.deletedToggle = true
-            self.selected = true
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if self.mediaFile.deleteToggle == true {
+                self.mediaFile.deleteToggle = false
+            } else {
+                self.mediaFile.deleteToggle = true
+            }
+            self.setCellStateLayout(self.mediaFile.deleteToggle)
+            self.layoutSubviews()
+        })
+    }
+    
+    func setCellStateLayout(selected: Bool) {
+        if selected == true {
             self.visualEffect.hidden = false
-            self.mediaFile.deletedToggle = true
+            self.selected = true
+            super.selected = true
         } else {
-            self.deletedToggle = false
-            self.selected = false
             self.visualEffect.hidden = true
-            self.mediaFile.deletedToggle = false
+            self.selected = false
+            super.selected = false
         }
-        self.layoutSubviews()
     }
     
     func setup(media: SCPMediaFile) {
-        self.layer.cornerRadius = 8.0
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor(red:0.27, green:0.27, blue:0.27, alpha:1.0).CGColor
-        self.mediaFile = media
-        self.visualEffect.hidden = true
-        self.image = media.image
+//        print("cell -> setup()")
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.setCellStateLayout(media.deleteToggle)
+            self.layer.cornerRadius = 8.0
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor.fromHex("#dddddd").CGColor
+            self.mediaFile = media
+            self.image = media.image
+        })
     }
     
     

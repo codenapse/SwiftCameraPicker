@@ -11,7 +11,7 @@ import UIKit
 
 class SCPMediaFile {
     var image: UIImage
-    var deletedToggle: Bool = false
+    var deleteToggle: Bool = false
     
     init(image: UIImage) {
         self.image = image
