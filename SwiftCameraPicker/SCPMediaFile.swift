@@ -8,13 +8,53 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class SCPMediaFile {
-    var image: UIImage
+    var manager = PHImageManager.defaultManager()
+    var image: UIImage?
     var deleteToggle: Bool = false
+    var phAsset: PHAsset!
+    
     
     init(image: UIImage) {
+//        print("[SCPMediaFile] init")
         self.image = image
+    }
+    
+    init(image: UIImage, phAsset: PHAsset!) {
+//        print("[SCPMediaFile] init")
+        self.image = image
+        self.phAsset = phAsset
+    }
+    
+    deinit {
+        print("[SCPMediaFile] deinit")
+//        self.image = nil
+//        self.phAsset = nil
+    }
+    
+    func cleanup() {
+        self.image = nil
+        self.phAsset = nil
+    }
+    
+    func getImageFromPHAsset() -> UIImage {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        let options = PHImageRequestOptions()
+        options.synchronous = true
+        var img: UIImage!
+        self.manager.requestImageForAsset(self.phAsset,
+                                          targetSize: PHImageManagerMaximumSize,
+                                          contentMode: .AspectFit,
+                                          options: options) { (result, _) in
+                                            if result != nil {
+//                                                self.image = result!
+                                                img = result!
+                                            }
+        }
+        return img!
+//        })
     }
     
     static func imageWithColor(color: UIColor) -> UIImage {

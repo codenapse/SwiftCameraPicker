@@ -12,7 +12,7 @@ import Photos
 import CocoaLumberjack
 
 
-public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
+public final class SCPViewController: UIViewController, SCPCollectionDelegate , SCPMediaSelectedLabelUpdateDelegate {
     
     enum CameraPickerModes {
         case Camera
@@ -20,7 +20,7 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
     }
     
     public var mediaFilesFromSession: [UIImage] = []
-    lazy var delegate: SCPViewControllerCaptureDelegate! = nil
+    lazy var delegate: SCPViewControllerCaptureDelegate? = nil
     //
     // header ui part
     @IBOutlet var headerView: UIView!
@@ -38,6 +38,8 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
     lazy var galleryView = SCPGalleryView.instance()
     //
     // collection ui part
+    @IBOutlet var mediaSelectedCounterView: UIView!
+    @IBOutlet var mediaSelectedCounterLabel: UILabel!
     var collectionViewContainer: UIView!
     lazy var collectionView = SCPCollectionView.instance()
     //
@@ -67,13 +69,26 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
     @IBAction func headerDoneButtonPressed(sender: AnyObject) {
         let mediaFiles = self.collectionView.getMediaFilesFromSession()
         for media in mediaFiles {
-            if media.deleteToggle == false {
-                self.mediaFilesFromSession.append(media.image)
+            if media!.deleteToggle == false {
+                if media!.phAsset != nil {
+//                    DDLogDebug("headerDoneButtonPressed() -> phasset != nil")
+                    self.mediaFilesFromSession.append(media!.getImageFromPHAsset())
+                } else {
+//                    DDLogDebug("headerDoneButtonPressed() -> phasset == nil")
+                    self.mediaFilesFromSession.append(media!.image!)
+                }
             }
         }
-        self.delegate.capturedMediaFilesFromSession(self.mediaFilesFromSession)
+        self.delegate!.capturedMediaFilesFromSession(self.mediaFilesFromSession)
         self.dismissViewControllerAnimated(false, completion: nil)
+        if self.collectionView.mediaFiles != nil {
+            for file in self.collectionView.mediaFiles {
+                file?.cleanup()
+            }
+        }
+        self.collectionView.mediaFiles = []
         self.mediaFilesFromSession = []
+        self.delegate = nil
     }
     //
     // MARK:- Private methods
@@ -136,6 +151,10 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
             self.collectionView.backgroundColor = UIColor.fromHex("#ffffff")
             self.cameraModeButton.backgroundColor = UIColor.fromHex("#34AB6E")
             self.cameraModeButton.setTitleColor(UIColor.fromHex("#ffffff"), forState: .Normal)
+            self.mediaSelectedCounterView.backgroundColor = UIColor.fromHex("#dddddd")
+            self.mediaSelectedCounterView.layer.cornerRadius = 8
+            self.mediaSelectedCounterView.layer.borderColor = UIColor.fromHex("#eeeeee").CGColor
+            self.mediaSelectedCounterView.layer.borderWidth = 1
         })
     }
     //
@@ -149,10 +168,12 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureTheme()
+        self.collectionView.mediaSelectedLabelUpdateDelegate = self
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.cameraModeButton = self.view.viewWithTag(2) as! UIButton
             self.cameraModeButton.layer.cornerRadius = 8
             self.galleryModeButton.layer.cornerRadius = 8
+            
             self.cameraView.initialize()
             self.cameraView.cameraViewDelegate = self
             self.galleryView.delegate = self
@@ -164,7 +185,7 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
             self.collectionView.initialize()
             self.collectionViewContainer.addSubview(self.collectionView)
             self.collectionView.bindSubViewToSuperview()
-            
+            self.updateMediaSelectedLabel()
             self.view.layoutIfNeeded()
         })
     }
@@ -188,9 +209,28 @@ public final class SCPViewController: UIViewController, SCPCameraViewDelegate {
     //
     // MARK: - SCPCameraViewDelegate
     //
-    func cameraShotFinished(image: UIImage) {
-        DDLogDebug("[SCPViewController] -> cameraShotFinished()")
+    func mediaFilePicked(image: UIImage) {
+        DDLogDebug("[SCPViewController] -> mediaFilePicked()")
         self.collectionView.addMediaFileToCollection(image)
+        self.updateMediaSelectedLabel()
+    }
+    
+    func mediaFileSelected(image: UIImage, phAsset: PHAsset) {
+        DDLogDebug("[SCPViewController] -> mediaFileSelected()")
+        self.collectionView.addMediaFileToCollection(image, phAsset: phAsset)
+        self.updateMediaSelectedLabel()
+    }
+    
+    func mediaSelectedLimitReached() -> Bool {
+        if self.collectionView.getMediaSelectedCount() < self.collectionView.mediaSelectedLimit {
+            return false
+        }
+        return true
+    }
+    //
+    //
+    func updateMediaSelectedLabel() {
+        self.mediaSelectedCounterLabel.text = String(self.collectionView.getMediaSelectedCount()).stringByAppendingString(" / \(self.collectionView.mediaSelectedLimit)")
     }
 }
 

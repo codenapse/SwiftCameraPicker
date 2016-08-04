@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CocoaLumberjack
+import Photos
+
 
 class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPCollectionViewCell"
-    private var mediaFiles: [SCPMediaFile] = []
+    var mediaSelectedLabelUpdateDelegate: SCPMediaSelectedLabelUpdateDelegate?
+    var mediaFiles: [SCPMediaFile?]!
+    var mediaSelectedLimit = 15 // default
     
     static func instance() -> SCPCollectionView {
         return UINib(nibName: "SCPCollectionView", bundle: NSBundle(forClass: self.classForCoder())).instantiateWithOwner(self, options: nil)[0] as! SCPCollectionView
@@ -21,14 +26,13 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     //
     //
     func initialize() {
-//        print("SCPCollectionView -> initialize()")
-        
+        self.mediaFiles = nil
         if let collectionView = self.viewWithTag(100) as? UICollectionView {
             self.collectionView = collectionView
         }
         self.collectionView.registerNib(UINib(nibName: "SCPCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: self.cellReuseIdentifier)
         self.initMediaFiles()
-        self.layoutIfNeeded()
+//        self.layoutIfNeeded()
     }
     //
     //
@@ -41,24 +45,52 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     //
     //
     //
-    func addMediaFileToCollection(image: UIImage) {
-        let media = SCPMediaFile(image: image)
-        let index = 0 //count > 0 ? count - 1 : count
-        self.mediaFiles.insert(media, atIndex: index)
-        let indexPath = NSIndexPath(forItem: index, inSection: 0)
-        self.collectionView.insertItemsAtIndexPaths([indexPath])
+    func addMediaFileToCollection(image: UIImage, phAsset: PHAsset! = nil) {
+        if self.getMediaSelectedCount() < self.mediaSelectedLimit {
+            let media = SCPMediaFile(image: image, phAsset: phAsset)
+            let index = 0 //count > 0 ? count - 1 : count
+            if self.mediaFiles == nil {
+                self.mediaFiles = []
+            }
+            self.mediaFiles.insert(media, atIndex: index)
+            let indexPath = NSIndexPath(forItem: index, inSection: 0)
+            self.collectionView.insertItemsAtIndexPaths([indexPath])
+            return
+        }
+        DDLogDebug("[SCPCollectionView] -> addMediaFileToCollection() -> selected media files limit reached: \(self.mediaSelectedLimit)")
+        
     }
     //
     //
     //
-    func getMediaFilesFromSession() -> [SCPMediaFile] {
-        return self.mediaFiles
+    func getMediaFilesFromSession() -> [SCPMediaFile?] {
+        if self.mediaFiles != nil {
+            return self.mediaFiles
+        }
+        return []
+    }
+    //
+    //
+    //
+    func getMediaSelectedCount() -> Int {
+        var counter = 0
+        if self.mediaFiles != nil {
+            for item in self.mediaFiles {
+                if item!.deleteToggle == false {
+                    counter += 1
+                }
+            }
+        }
+        return counter
     }
     //
     // MARK: - UICollectionViewDataSource
     //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.mediaFiles.count
+        if self.mediaFiles != nil {
+            return self.mediaFiles.count
+        }
+        return 0
     }
     //
     //
@@ -67,7 +99,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPCollectionViewCell", forIndexPath: indexPath) as! SCPCollectionViewCell
 
-        cell.setup(self.mediaFiles[indexPath.row])
+        cell.setup(self.mediaFiles[indexPath.row]!)
         return cell
         
     }
@@ -87,7 +119,13 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let cell : SCPCollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! SCPCollectionViewCell
-        cell.toggle()
+
+        if self.getMediaSelectedCount() < self.mediaSelectedLimit {
+            cell.toggle()
+        } else if self.mediaFiles[indexPath.row]!.deleteToggle == false {
+            cell.toggle()
+        }
+        self.mediaSelectedLabelUpdateDelegate!.updateMediaSelectedLabel()
     }
     //
     // MARK: -
@@ -102,4 +140,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
 //        let leftRightInset = self.frame.size.width / 14.0
 //        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
 //    }
+}
+
+protocol SCPMediaSelectedLabelUpdateDelegate {
+    func updateMediaSelectedLabel()
 }

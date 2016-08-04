@@ -7,21 +7,16 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 
 class ViewController: UIViewController, SCPViewControllerCaptureDelegate {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func viewDidAppear(animated: Bool) {
-        let cameraPicker = SCPViewController()
-        cameraPicker.delegate = self
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.presentViewController(cameraPicker, animated: true, completion: nil)
-        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,10 +24,18 @@ class ViewController: UIViewController, SCPViewControllerCaptureDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func showBtnPressed(sender: UIButton) {
+        let cameraPicker = SCPViewController()
+        cameraPicker.delegate = self
+        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+            self?.presentViewController(cameraPicker, animated: true, completion: nil)
+        })
+    }
     func capturedMediaFilesFromSession(mediaFiles: [UIImage]) {
         for media in mediaFiles {
             print(media)
         }
+        DDLogDebug("capturedMediaFilesFromSession() -> \(mediaFiles.count)")
     }
 }
 

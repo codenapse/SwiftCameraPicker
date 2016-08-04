@@ -14,12 +14,11 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
-    private var mediaFiles: [SCPMediaFile] = []
-    var delegate: SCPCameraViewDelegate!
+    //private var mediaFiles: [SCPMediaFile] = []
+    var delegate: SCPCollectionDelegate!
     var cachingImageManager: PHCachingImageManager = PHCachingImageManager()
     let manager = PHImageManager.defaultManager()
     var assets: [PHAsset] = []
-    
     
     
     static func instance() -> SCPGalleryView {
@@ -28,13 +27,15 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     func initialize() {
         self.collectionView.registerNib(UINib(nibName: "SCPGalleryViewCell", bundle: nil), forCellWithReuseIdentifier: self.cellReuseIdentifier)
-        self.initMediaFiles()
+        if self.assets.count == 0 {
+            self.initMediaFiles()
+        }
         self.layoutIfNeeded()
 
     }
     func initMediaFiles() {
         self.checkPhotoAuth()
-        
+        DDLogDebug("[SCPGalleryView] -> initMediaFiles()")
         let options = PHFetchOptions()
         // options.predicate = NSPredicate(format: "favorite == YES")
         options.sortDescriptors = [
@@ -49,7 +50,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
         
         self.cachingImageManager.startCachingImagesForAssets(assets,
-                                                        targetSize: CGSize(width: 85.0, height: 100.0),
+                                                        targetSize: CGSize(width: 110.0, height: 147.0),
                                                         contentMode: .AspectFill,
                                                         options: nil
         )
@@ -64,29 +65,33 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         DDLogDebug("assets.count = \(self.assets.count)")
         return self.assets.count
-//        return self.mediaFiles.count
     }
     //
     //
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPGalleryViewCell", forIndexPath: indexPath) as! SCPGalleryViewCell
-        
-        let manager = PHImageManager.defaultManager()
-        let options = PHImageRequestOptions()
-        options.resizeMode = PHImageRequestOptionsResizeMode.Exact
-        options.deliveryMode = PHImageRequestOptionsDeliveryMode.Opportunistic
-        
-        if cell.tag != 0 {
-            manager.cancelImageRequest(PHImageRequestID(cell.tag))
-        }
-        let asset = assets[indexPath.row]
-        cell.tag = Int(manager.requestImageForAsset(asset,
-            targetSize: CGSize(width: 110.0, height: 147.0),
-            contentMode: .AspectFill,
-            options: options) { (result, _) in
-                cell.imageView?.image = result
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            let manager = PHImageManager.defaultManager()
+            let options = PHImageRequestOptions()
+            options.resizeMode = PHImageRequestOptionsResizeMode.Exact
+            options.deliveryMode = PHImageRequestOptionsDeliveryMode.Opportunistic
+            
+            if cell.tag != 0 {
+                manager.cancelImageRequest(PHImageRequestID(cell.tag))
             }
-        )
+            let asset = self.assets[indexPath.row]
+            cell.tag = Int(manager.requestImageForAsset(asset,
+                targetSize: CGSize(width: 110.0, height: 147.0),
+                contentMode: .AspectFill,
+            options: options) { (result, _) in
+                dispatch_async(dispatch_get_main_queue(), {
+                        cell.imageView?.image = result
+                    })
+                }
+            )
+        })
+        
+        
         return cell
     }
     //
@@ -104,18 +109,25 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let cell : SCPGalleryViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! SCPGalleryViewCell
-        
+        if self.delegate.mediaSelectedLimitReached() == true {
+            return
+        }
+        if cell.selectedFlag == true {
+            return
+        }
         if cell.tag != 0 {
             manager.cancelImageRequest(PHImageRequestID(cell.tag))
         }
         let asset = assets[indexPath.row]
-        
-        manager.requestImageForAsset(asset,
-                                     targetSize: PHImageManagerMaximumSize,
-                                     contentMode: .AspectFit,
-                                     options: nil) { (result, _) in
-                                        self.delegate.cameraShotFinished(result!)
-                                     }
+//        manager.requestImageForAsset(asset,
+//                                     targetSize: PHImageManagerMaximumSize,
+//                                     contentMode: .AspectFit,
+//                                     options: nil) { (result, _) in
+//                                        if result != nil {
+//                                            self.delegate.mediaFilePicked(result!)
+//                                        }
+//                                     }
+        self.delegate.mediaFileSelected(cell.imageView.image!, phAsset: asset)
         cell.toggle()
     }
     

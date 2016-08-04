@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Photos
 
 class SCPCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var visualEffect: UIVisualEffectView!
     @IBOutlet var imageView: UIImageView!
     private var mediaFile: SCPMediaFile!
-    
     
     var image: UIImage! {
         didSet {
@@ -23,15 +23,13 @@ class SCPCollectionViewCell: UICollectionViewCell {
     
     
     func toggle() {
-//        print("SCPCollectionViewCell -> toggle()")
+        if self.mediaFile.deleteToggle == true {
+            self.mediaFile.deleteToggle = false
+        } else {
+            self.mediaFile.deleteToggle = true
+        }
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            if self.mediaFile.deleteToggle == true {
-                self.mediaFile.deleteToggle = false
-            } else {
-                self.mediaFile.deleteToggle = true
-            }
             self.setCellStateLayout(self.mediaFile.deleteToggle)
-            self.layoutSubviews()
         })
     }
     

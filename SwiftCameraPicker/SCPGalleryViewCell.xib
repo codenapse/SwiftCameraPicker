@@ -15,18 +15,31 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m6p-QK-UOp">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="130"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-xK-PvH">
+                        <rect key="frame" x="63" y="5" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="bAq-KY-dnQ"/>
+                            <constraint firstAttribute="height" constant="32" id="pQN-Dv-oMT"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="tDQ-xK-PvH" firstAttribute="trailing" secondItem="m6p-QK-UOp" secondAttribute="trailing" constant="-5" id="4s4-Bg-PPF"/>
                 <constraint firstAttribute="bottom" secondItem="m6p-QK-UOp" secondAttribute="bottom" id="IT8-oP-xxm"/>
+                <constraint firstItem="tDQ-xK-PvH" firstAttribute="top" secondItem="m6p-QK-UOp" secondAttribute="top" constant="5" id="TIh-Ms-qaG"/>
                 <constraint firstItem="m6p-QK-UOp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="X1Z-iH-3zl"/>
                 <constraint firstAttribute="trailing" secondItem="m6p-QK-UOp" secondAttribute="trailing" id="Zgd-bD-ksO"/>
                 <constraint firstItem="m6p-QK-UOp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bra-PZ-tg2"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="m6p-QK-UOp" id="yXg-1G-Md6"/>
+                <outlet property="selectedFlagView" destination="tDQ-xK-PvH" id="oAd-D4-1as"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="checked" width="64" height="64"/>
+    </resources>
 </document>
