@@ -20,7 +20,10 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     }
     
     public var mediaFilesFromSession: [UIImage] = []
-    lazy var delegate: SCPViewControllerCaptureDelegate? = nil
+    public var mediaFilesFromSessionz: [Dictionary<String, UIImage?>] = []
+    public lazy var delegate: SCPViewControllerCaptureDelegate? = nil
+    typealias WriteMediaToPathClosure = (fileName: String, fileType: Int) -> String
+    var writeMediaToPath: WriteMediaToPathClosure?
     //
     // header ui part
     @IBOutlet var headerView: UIView!
@@ -68,18 +71,44 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     //
     @IBAction func headerDoneButtonPressed(sender: AnyObject) {
         let mediaFiles = self.collectionView.getMediaFilesFromSession()
+        var videoFiles: [String] = []
         for media in mediaFiles {
             if media!.deleteToggle == false {
-                if media!.phAsset != nil {
-//                    DDLogDebug("headerDoneButtonPressed() -> phasset != nil")
-                    self.mediaFilesFromSession.append(media!.getImageFromPHAsset())
+                if media!.mediaType == SCPMediaFile.MediaTypes["video"] {
+                    
+                    DDLogDebug("[headerDoneButtonPressed] -> video file found")
+                    videoFiles.append(media!.mediaPath!)
                 } else {
-//                    DDLogDebug("headerDoneButtonPressed() -> phasset == nil")
-                    self.mediaFilesFromSession.append(media!.image!)
+                    if media!.phAsset != nil {
+//                        DDLogDebug("headerDoneButtonPressed() -> phasset != nil")
+                        self.mediaFilesFromSession.append(media!.getImageFromPHAsset())
+                    } else if media!.mediaPath != nil {
+                        self.mediaFilesFromSession.append(UIImage(contentsOfFile: media!.mediaPath)!)
+                    } else {
+//                        DDLogDebug("headerDoneButtonPressed() -> phasset == nil")
+                        self.mediaFilesFromSession.append(media!.image!)
+                    }
+                }
+            } else {
+                if media!.mediaPath != nil {
+                    DDLogDebug("removeItemAtPath: \(media!.mediaPath!)")
+                    let fileManager = NSFileManager.defaultManager()
+                    do {
+                        try fileManager.removeItemAtPath(media!.mediaPath)
+                    }
+                    catch _ as NSError {
+                        
+                    }
                 }
             }
         }
+        if self.delegate == nil {
+            print("self.delegate == nil")
+            return
+        }
         self.delegate!.capturedMediaFilesFromSession(self.mediaFilesFromSession)
+        self.delegate!.capturedVideoFilesFromSession(videoFiles)
+        
         self.dismissViewControllerAnimated(false, completion: nil)
         if self.collectionView.mediaFiles != nil {
             for file in self.collectionView.mediaFiles {
@@ -90,6 +119,14 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         self.mediaFilesFromSession = []
         self.delegate = nil
     }
+    //
+    // MARK:- Public methods
+    //
+    
+    public func configWriteMediaToPath(closure: (fileName: String, fileType: Int ) -> String) {
+        self.writeMediaToPath = closure as! WriteMediaToPathClosure
+    }
+    
     //
     // MARK:- Private methods
     //
@@ -211,7 +248,11 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     //
     func mediaFilePicked(image: UIImage) {
         DDLogDebug("[SCPViewController] -> mediaFilePicked()")
-        self.collectionView.addMediaFileToCollection(image)
+        let imageName = NSUUID().UUIDString
+        let path = self.writeMediaToPath!(fileName: imageName, fileType: 1).stringByAppendingString(imageName).stringByAppendingString(".jpg")
+        let imageData:NSData = UIImageJPEGRepresentation(image, 0.85)!
+        imageData.writeToFile(path, atomically: true)
+        self.collectionView.addMediaFileToCollection(nil, phAsset: nil, path: path)
         self.updateMediaSelectedLabel()
     }
     
@@ -219,6 +260,18 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         DDLogDebug("[SCPViewController] -> mediaFileSelected()")
         self.collectionView.addMediaFileToCollection(image, phAsset: phAsset)
         self.updateMediaSelectedLabel()
+    }
+    
+    func mediaFileRecorded(videoUrl: NSURL?, avAsset: AVAsset? = nil) {
+//        DDLogDebug("[SCPViewController] -> mediaFileRecorded() -> \(videoUrl)")
+        self.collectionView.addMediaFileToCollection(nil, phAsset: nil, videoUrl: videoUrl)
+        self.updateMediaSelectedLabel()
+    }
+    
+    func getVideoFilePath() -> String {
+        let fileName = NSUUID().UUIDString
+        let path = self.writeMediaToPath!(fileName: fileName, fileType: 2).stringByAppendingString(fileName).stringByAppendingString(".mp4")
+        return path
     }
     
     func mediaSelectedLimitReached() -> Bool {
@@ -234,8 +287,9 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     }
 }
 
-protocol SCPViewControllerCaptureDelegate: class {
+public protocol SCPViewControllerCaptureDelegate: class {
     func capturedMediaFilesFromSession(mediaFiles: [UIImage])
+    func capturedVideoFilesFromSession(videoFiles: [String])
 }
 
 extension UIView {

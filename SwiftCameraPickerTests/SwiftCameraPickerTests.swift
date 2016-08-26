@@ -2,8 +2,8 @@
 //  SwiftCameraPickerTests.swift
 //  SwiftCameraPickerTests
 //
-//  Created by Radu Cugut on 22/Jul/16.
-//  Copyright © 2016 codenapse. All rights reserved.
+//  Created by Alin Paulesc on 19/08/16.
+//  Copyright © 2016 Alin Paulesc. All rights reserved.
 //
 
 import XCTest

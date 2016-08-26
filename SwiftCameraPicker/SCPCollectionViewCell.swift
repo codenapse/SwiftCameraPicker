@@ -13,6 +13,7 @@ class SCPCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var visualEffect: UIVisualEffectView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var videoFileIcon: UIImageView!
     private var mediaFile: SCPMediaFile!
     
     var image: UIImage! {
@@ -54,6 +55,11 @@ class SCPCollectionViewCell: UICollectionViewCell {
             self.layer.borderColor = UIColor.fromHex("#dddddd").CGColor
             self.mediaFile = media
             self.image = media.image
+            if self.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
+                self.videoFileIcon.hidden = false
+            } else {
+                self.videoFileIcon.hidden = true
+            }
         })
     }
     

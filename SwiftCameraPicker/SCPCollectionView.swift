@@ -17,10 +17,11 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     private var cellReuseIdentifier = "SCPCollectionViewCell"
     var mediaSelectedLabelUpdateDelegate: SCPMediaSelectedLabelUpdateDelegate?
     var mediaFiles: [SCPMediaFile?]!
-    var mediaSelectedLimit = 15 // default
+    var mediaSelectedLimit = 10 // default
     
     static func instance() -> SCPCollectionView {
-        return UINib(nibName: "SCPCollectionView", bundle: NSBundle(forClass: self.classForCoder())).instantiateWithOwner(self, options: nil)[0] as! SCPCollectionView
+        let bundle = NSBundle(forClass: self.classForCoder())
+        return UINib(nibName: "SCPCollectionView", bundle: bundle).instantiateWithOwner(self, options: nil)[0] as! SCPCollectionView
     }
     //
     //
@@ -30,7 +31,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         if let collectionView = self.viewWithTag(100) as? UICollectionView {
             self.collectionView = collectionView
         }
-        self.collectionView.registerNib(UINib(nibName: "SCPCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: self.cellReuseIdentifier)
+        let bundle = NSBundle(forClass: self.dynamicType)
+        self.collectionView.registerNib(UINib(nibName: "SCPCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: self.cellReuseIdentifier)
         self.initMediaFiles()
 //        self.layoutIfNeeded()
     }
@@ -45,9 +47,25 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     //
     //
     //
-    func addMediaFileToCollection(image: UIImage, phAsset: PHAsset! = nil) {
+    func addMediaFileToCollection(image: UIImage?, phAsset: PHAsset?, path: String? = nil, videoUrl: NSURL? = nil, avAsset: AVAsset? = nil) {
         if self.getMediaSelectedCount() < self.mediaSelectedLimit {
-            let media = SCPMediaFile(image: image, phAsset: phAsset)
+            var media: SCPMediaFile
+            if path != nil {
+                media = SCPMediaFile(mediaPath: path!)
+            } else if phAsset != nil {
+                media = SCPMediaFile(phAsset: phAsset!)
+            } else {
+                let asset: AVAsset
+                if videoUrl != nil {
+                    asset = AVAsset(URL: videoUrl!)
+                } else {
+                    asset = avAsset!
+                }
+                media = SCPMediaFile(avAsset: asset)
+                media.mediaPath = videoUrl!.absoluteString
+                media.mediaType = SCPMediaFile.MediaTypes["video"]!
+            }
+            
             let index = 0 //count > 0 ? count - 1 : count
             if self.mediaFiles == nil {
                 self.mediaFiles = []

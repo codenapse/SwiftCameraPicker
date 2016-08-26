@@ -7,232 +7,231 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31523B6619D97ABF71591AD0 /* Pods_SwiftCameraPickerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */; };
-		6583E6B11D42542B00A6DB93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6B01D42542B00A6DB93 /* AppDelegate.swift */; };
-		6583E6B31D42542B00A6DB93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6B21D42542B00A6DB93 /* ViewController.swift */; };
-		6583E6B61D42542B00A6DB93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B41D42542B00A6DB93 /* Main.storyboard */; };
-		6583E6B81D42542B00A6DB93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B71D42542B00A6DB93 /* Assets.xcassets */; };
-		6583E6BB1D42542B00A6DB93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */; };
-		6583E6C61D42542B00A6DB93 /* SwiftCameraPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */; };
-		6583E6D11D42542B00A6DB93 /* SwiftCameraPickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */; };
-		75262CAB1D4F974500DF4174 /* SCPGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75262CAA1D4F974500DF4174 /* SCPGalleryView.swift */; };
-		75262CAD1D4F97D200DF4174 /* SCPGalleryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75262CAC1D4F97D200DF4174 /* SCPGalleryView.xib */; };
-		753088771D50DCBD0041CD60 /* SCPGalleryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753088751D50DCBD0041CD60 /* SCPGalleryViewCell.swift */; };
-		753088781D50DCBD0041CD60 /* SCPGalleryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753088761D50DCBD0041CD60 /* SCPGalleryViewCell.xib */; };
-		75CB65BF1D4BAA8100AD8EC4 /* SCPMediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB65BE1D4BAA8100AD8EC4 /* SCPMediaFile.swift */; };
-		75CB65CF1D4F8D7D00AD8EC4 /* SCPCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB65C71D4F8D7D00AD8EC4 /* SCPCameraView.swift */; };
-		75CB65D01D4F8D7D00AD8EC4 /* SCPCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CB65C81D4F8D7D00AD8EC4 /* SCPCameraView.xib */; };
-		75CB65D11D4F8D7D00AD8EC4 /* SCPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB65C91D4F8D7D00AD8EC4 /* SCPViewController.swift */; };
-		75CB65D21D4F8D7D00AD8EC4 /* SCPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CB65CA1D4F8D7D00AD8EC4 /* SCPViewController.xib */; };
-		75CB65D31D4F8D7D00AD8EC4 /* SCPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB65CB1D4F8D7D00AD8EC4 /* SCPCollectionView.swift */; };
-		75CB65D41D4F8D7D00AD8EC4 /* SCPCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CB65CC1D4F8D7D00AD8EC4 /* SCPCollectionView.xib */; };
-		75CB65D51D4F8D7D00AD8EC4 /* SCPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB65CD1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.swift */; };
-		75CB65D61D4F8D7D00AD8EC4 /* SCPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CB65CE1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.xib */; };
-		C229B9B744E336DA1952CDF8 /* Pods_SwiftCameraPickerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */; };
-		C7BABB2CEC34D5EC898F40F9 /* Pods_SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */; };
+		759EB5621D672C030097647C /* SwiftCameraPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 759EB5611D672C030097647C /* SwiftCameraPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		759EB5691D672C030097647C /* SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759EB55E1D672C020097647C /* SwiftCameraPicker.framework */; };
+		759EB56E1D672C030097647C /* SwiftCameraPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB56D1D672C030097647C /* SwiftCameraPickerTests.swift */; };
+		759EB5851D672CD40097647C /* SCPCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5791D672CD40097647C /* SCPCameraView.swift */; };
+		759EB5861D672CD40097647C /* SCPCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB57A1D672CD40097647C /* SCPCameraView.xib */; };
+		759EB5871D672CD40097647C /* SCPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB57B1D672CD40097647C /* SCPViewController.swift */; };
+		759EB5881D672CD40097647C /* SCPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB57C1D672CD40097647C /* SCPViewController.xib */; };
+		759EB5891D672CD40097647C /* SCPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB57D1D672CD40097647C /* SCPCollectionView.swift */; };
+		759EB58A1D672CD40097647C /* SCPCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB57E1D672CD40097647C /* SCPCollectionView.xib */; };
+		759EB58B1D672CD40097647C /* SCPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB57F1D672CD40097647C /* SCPCollectionViewCell.swift */; };
+		759EB58C1D672CD40097647C /* SCPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB5801D672CD40097647C /* SCPCollectionViewCell.xib */; };
+		759EB58D1D672CD40097647C /* SCPGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5811D672CD40097647C /* SCPGalleryView.swift */; };
+		759EB58E1D672CD40097647C /* SCPGalleryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB5821D672CD40097647C /* SCPGalleryView.xib */; };
+		759EB58F1D672CD40097647C /* SCPGalleryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5831D672CD40097647C /* SCPGalleryViewCell.swift */; };
+		759EB5901D672CD40097647C /* SCPGalleryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB5841D672CD40097647C /* SCPGalleryViewCell.xib */; };
+		759EB5931D672CF00097647C /* SCPMediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5921D672CF00097647C /* SCPMediaFile.swift */; };
+		759EB59C1D672F470097647C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 759EB59B1D672F470097647C /* Images.xcassets */; };
+		7EBB1FA21FD414E79B0D9482 /* Pods_SwiftCameraPickerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E151378DFD33BEA767CBC1E /* Pods_SwiftCameraPickerTests.framework */; };
+		FE330A005F5F23817603490A /* Pods_SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53180C2CD59D0F6EC6247094 /* Pods_SwiftCameraPicker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6583E6C21D42542B00A6DB93 /* PBXContainerItemProxy */ = {
+		759EB56A1D672C030097647C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6583E6A51D42542B00A6DB93 /* Project object */;
+			containerPortal = 759EB5551D672C020097647C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6583E6AC1D42542B00A6DB93;
-			remoteInfo = SwiftCameraPicker;
-		};
-		6583E6CD1D42542B00A6DB93 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6583E6A51D42542B00A6DB93 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6583E6AC1D42542B00A6DB93;
+			remoteGlobalIDString = 759EB55D1D672C020097647C;
 			remoteInfo = SwiftCameraPicker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.release.xcconfig"; sourceTree = "<group>"; };
-		168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.debug.xcconfig"; sourceTree = "<group>"; };
-		27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.release.xcconfig"; sourceTree = "<group>"; };
-		3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCameraPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6583E6B01D42542B00A6DB93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6583E6B21D42542B00A6DB93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6583E6B51D42542B00A6DB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6583E6B71D42542B00A6DB93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6583E6BA1D42542B00A6DB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6583E6BC1D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCameraPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraPickerTests.swift; sourceTree = "<group>"; };
-		6583E6C71D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCameraPickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraPickerUITests.swift; sourceTree = "<group>"; };
-		6583E6D21D42542B00A6DB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		75262CAA1D4F974500DF4174 /* SCPGalleryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPGalleryView.swift; sourceTree = "<group>"; };
-		75262CAC1D4F97D200DF4174 /* SCPGalleryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryView.xib; sourceTree = "<group>"; };
-		753088751D50DCBD0041CD60 /* SCPGalleryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPGalleryViewCell.swift; sourceTree = "<group>"; };
-		753088761D50DCBD0041CD60 /* SCPGalleryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryViewCell.xib; sourceTree = "<group>"; };
-		75CB65BE1D4BAA8100AD8EC4 /* SCPMediaFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPMediaFile.swift; sourceTree = "<group>"; };
-		75CB65C71D4F8D7D00AD8EC4 /* SCPCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCameraView.swift; sourceTree = "<group>"; };
-		75CB65C81D4F8D7D00AD8EC4 /* SCPCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCameraView.xib; sourceTree = "<group>"; };
-		75CB65C91D4F8D7D00AD8EC4 /* SCPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPViewController.swift; sourceTree = "<group>"; };
-		75CB65CA1D4F8D7D00AD8EC4 /* SCPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPViewController.xib; sourceTree = "<group>"; };
-		75CB65CB1D4F8D7D00AD8EC4 /* SCPCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCollectionView.swift; sourceTree = "<group>"; };
-		75CB65CC1D4F8D7D00AD8EC4 /* SCPCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCollectionView.xib; sourceTree = "<group>"; };
-		75CB65CD1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCollectionViewCell.swift; sourceTree = "<group>"; };
-		75CB65CE1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCollectionViewCell.xib; sourceTree = "<group>"; };
-		C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		133107EC3E4076488AE8425B /* Pods-SwiftCameraPickerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.release.xcconfig"; sourceTree = "<group>"; };
+		45B08CEFC609879BB306D617 /* Pods-SwiftCameraPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.release.xcconfig"; sourceTree = "<group>"; };
+		53180C2CD59D0F6EC6247094 /* Pods_SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59DB4E150FC53197B61E1CE3 /* Pods-SwiftCameraPickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		759EB55E1D672C020097647C /* SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		759EB5611D672C030097647C /* SwiftCameraPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftCameraPicker.h; sourceTree = "<group>"; };
+		759EB5631D672C030097647C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		759EB5681D672C030097647C /* SwiftCameraPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCameraPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		759EB56D1D672C030097647C /* SwiftCameraPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraPickerTests.swift; sourceTree = "<group>"; };
+		759EB56F1D672C030097647C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		759EB5791D672CD40097647C /* SCPCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCameraView.swift; sourceTree = "<group>"; };
+		759EB57A1D672CD40097647C /* SCPCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCameraView.xib; sourceTree = "<group>"; };
+		759EB57B1D672CD40097647C /* SCPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPViewController.swift; sourceTree = "<group>"; };
+		759EB57C1D672CD40097647C /* SCPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPViewController.xib; sourceTree = "<group>"; };
+		759EB57D1D672CD40097647C /* SCPCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCollectionView.swift; sourceTree = "<group>"; };
+		759EB57E1D672CD40097647C /* SCPCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCollectionView.xib; sourceTree = "<group>"; };
+		759EB57F1D672CD40097647C /* SCPCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPCollectionViewCell.swift; sourceTree = "<group>"; };
+		759EB5801D672CD40097647C /* SCPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPCollectionViewCell.xib; sourceTree = "<group>"; };
+		759EB5811D672CD40097647C /* SCPGalleryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPGalleryView.swift; sourceTree = "<group>"; };
+		759EB5821D672CD40097647C /* SCPGalleryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryView.xib; sourceTree = "<group>"; };
+		759EB5831D672CD40097647C /* SCPGalleryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPGalleryViewCell.swift; sourceTree = "<group>"; };
+		759EB5841D672CD40097647C /* SCPGalleryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryViewCell.xib; sourceTree = "<group>"; };
+		759EB5921D672CF00097647C /* SCPMediaFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPMediaFile.swift; sourceTree = "<group>"; };
+		759EB59B1D672F470097647C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7A4AA369F08435480102BB52 /* Pods-SwiftCameraPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.debug.xcconfig"; sourceTree = "<group>"; };
+		8E151378DFD33BEA767CBC1E /* Pods_SwiftCameraPickerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6583E6AA1D42542B00A6DB93 /* Frameworks */ = {
+		759EB55A1D672C020097647C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BABB2CEC34D5EC898F40F9 /* Pods_SwiftCameraPicker.framework in Frameworks */,
+				FE330A005F5F23817603490A /* Pods_SwiftCameraPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6583E6BE1D42542B00A6DB93 /* Frameworks */ = {
+		759EB5651D672C030097647C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C229B9B744E336DA1952CDF8 /* Pods_SwiftCameraPickerTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6583E6C91D42542B00A6DB93 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				31523B6619D97ABF71591AD0 /* Pods_SwiftCameraPickerUITests.framework in Frameworks */,
+				759EB5691D672C030097647C /* SwiftCameraPicker.framework in Frameworks */,
+				7EBB1FA21FD414E79B0D9482 /* Pods_SwiftCameraPickerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		187AB315B0A502C363515859 /* Frameworks */ = {
+		759EB5541D672C020097647C = {
 			isa = PBXGroup;
 			children = (
-				27AF34E4EF2E35DAF1C70E42 /* Pods_SwiftCameraPicker.framework */,
-				3F4773714C45F459DE8D2B29 /* Pods_SwiftCameraPickerTests.framework */,
-				719638CFD7A19BB90162228B /* Pods_SwiftCameraPickerUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6583E6A41D42542B00A6DB93 = {
-			isa = PBXGroup;
-			children = (
-				6583E6AF1D42542B00A6DB93 /* SwiftCameraPicker */,
-				6583E6C41D42542B00A6DB93 /* SwiftCameraPickerTests */,
-				6583E6CF1D42542B00A6DB93 /* SwiftCameraPickerUITests */,
-				6583E6AE1D42542B00A6DB93 /* Products */,
-				BAAC52F741125BB0E3B74505 /* Pods */,
-				187AB315B0A502C363515859 /* Frameworks */,
+				759EB5601D672C030097647C /* SwiftCameraPicker */,
+				759EB56C1D672C030097647C /* SwiftCameraPickerTests */,
+				759EB55F1D672C020097647C /* Products */,
+				FE991F035F45AB5D06EC2565 /* Pods */,
+				F9E992422E03F6C334622A9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		6583E6AE1D42542B00A6DB93 /* Products */ = {
+		759EB55F1D672C020097647C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */,
-				6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */,
-				6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */,
+				759EB55E1D672C020097647C /* SwiftCameraPicker.framework */,
+				759EB5681D672C030097647C /* SwiftCameraPickerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6583E6AF1D42542B00A6DB93 /* SwiftCameraPicker */ = {
+		759EB5601D672C030097647C /* SwiftCameraPicker */ = {
 			isa = PBXGroup;
 			children = (
-				75B9094C1D4628ED00F3EC13 /* Sources */,
-				6583E6B01D42542B00A6DB93 /* AppDelegate.swift */,
-				6583E6B21D42542B00A6DB93 /* ViewController.swift */,
-				6583E6B41D42542B00A6DB93 /* Main.storyboard */,
-				6583E6B71D42542B00A6DB93 /* Assets.xcassets */,
-				6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */,
-				6583E6BC1D42542B00A6DB93 /* Info.plist */,
+				759EB5781D672CC30097647C /* Sources */,
+				759EB5611D672C030097647C /* SwiftCameraPicker.h */,
+				759EB5631D672C030097647C /* Info.plist */,
 			);
 			path = SwiftCameraPicker;
 			sourceTree = "<group>";
 		};
-		6583E6C41D42542B00A6DB93 /* SwiftCameraPickerTests */ = {
+		759EB56C1D672C030097647C /* SwiftCameraPickerTests */ = {
 			isa = PBXGroup;
 			children = (
-				6583E6C51D42542B00A6DB93 /* SwiftCameraPickerTests.swift */,
-				6583E6C71D42542B00A6DB93 /* Info.plist */,
+				759EB56D1D672C030097647C /* SwiftCameraPickerTests.swift */,
+				759EB56F1D672C030097647C /* Info.plist */,
 			);
 			path = SwiftCameraPickerTests;
 			sourceTree = "<group>";
 		};
-		6583E6CF1D42542B00A6DB93 /* SwiftCameraPickerUITests */ = {
+		759EB5781D672CC30097647C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6583E6D01D42542B00A6DB93 /* SwiftCameraPickerUITests.swift */,
-				6583E6D21D42542B00A6DB93 /* Info.plist */,
-			);
-			path = SwiftCameraPickerUITests;
-			sourceTree = "<group>";
-		};
-		75A29D5C1D48CB9900CD4A97 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				75CB65BE1D4BAA8100AD8EC4 /* SCPMediaFile.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		75B9094C1D4628ED00F3EC13 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				75A29D5C1D48CB9900CD4A97 /* Models */,
-				75CB65C71D4F8D7D00AD8EC4 /* SCPCameraView.swift */,
-				75CB65C81D4F8D7D00AD8EC4 /* SCPCameraView.xib */,
-				75CB65C91D4F8D7D00AD8EC4 /* SCPViewController.swift */,
-				75CB65CA1D4F8D7D00AD8EC4 /* SCPViewController.xib */,
-				75CB65CB1D4F8D7D00AD8EC4 /* SCPCollectionView.swift */,
-				75CB65CC1D4F8D7D00AD8EC4 /* SCPCollectionView.xib */,
-				75CB65CD1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.swift */,
-				75CB65CE1D4F8D7D00AD8EC4 /* SCPCollectionViewCell.xib */,
-				75262CAA1D4F974500DF4174 /* SCPGalleryView.swift */,
-				75262CAC1D4F97D200DF4174 /* SCPGalleryView.xib */,
-				753088751D50DCBD0041CD60 /* SCPGalleryViewCell.swift */,
-				753088761D50DCBD0041CD60 /* SCPGalleryViewCell.xib */,
+				759EB59A1D672F350097647C /* Resources */,
+				759EB5911D672CE00097647C /* Models */,
+				759EB5941D672D010097647C /* Views */,
+				759EB5951D672D210097647C /* Controllers */,
+				759EB5961D672D3E0097647C /* Interfaces */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		BAAC52F741125BB0E3B74505 /* Pods */ = {
+		759EB5911D672CE00097647C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */,
-				1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */,
-				F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */,
-				38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */,
-				72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */,
-				C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */,
+				759EB5921D672CF00097647C /* SCPMediaFile.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		759EB5941D672D010097647C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				759EB5791D672CD40097647C /* SCPCameraView.swift */,
+				759EB57D1D672CD40097647C /* SCPCollectionView.swift */,
+				759EB57F1D672CD40097647C /* SCPCollectionViewCell.swift */,
+				759EB5811D672CD40097647C /* SCPGalleryView.swift */,
+				759EB5831D672CD40097647C /* SCPGalleryViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		759EB5951D672D210097647C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				759EB57B1D672CD40097647C /* SCPViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		759EB5961D672D3E0097647C /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				759EB57A1D672CD40097647C /* SCPCameraView.xib */,
+				759EB57C1D672CD40097647C /* SCPViewController.xib */,
+				759EB57E1D672CD40097647C /* SCPCollectionView.xib */,
+				759EB5801D672CD40097647C /* SCPCollectionViewCell.xib */,
+				759EB5821D672CD40097647C /* SCPGalleryView.xib */,
+				759EB5841D672CD40097647C /* SCPGalleryViewCell.xib */,
+			);
+			name = Interfaces;
+			sourceTree = "<group>";
+		};
+		759EB59A1D672F350097647C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				759EB59B1D672F470097647C /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F9E992422E03F6C334622A9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53180C2CD59D0F6EC6247094 /* Pods_SwiftCameraPicker.framework */,
+				8E151378DFD33BEA767CBC1E /* Pods_SwiftCameraPickerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE991F035F45AB5D06EC2565 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7A4AA369F08435480102BB52 /* Pods-SwiftCameraPicker.debug.xcconfig */,
+				45B08CEFC609879BB306D617 /* Pods-SwiftCameraPicker.release.xcconfig */,
+				59DB4E150FC53197B61E1CE3 /* Pods-SwiftCameraPickerTests.debug.xcconfig */,
+				133107EC3E4076488AE8425B /* Pods-SwiftCameraPickerTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		759EB55B1D672C020097647C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				759EB5621D672C030097647C /* SwiftCameraPicker.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */ = {
+		759EB55D1D672C020097647C /* SwiftCameraPicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6583E6D51D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */;
+			buildConfigurationList = 759EB5721D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */;
 			buildPhases = (
-				158A9DA71DF8FCF48107B511 /* 📦 Check Pods Manifest.lock */,
-				6583E6A91D42542B00A6DB93 /* Sources */,
-				6583E6AA1D42542B00A6DB93 /* Frameworks */,
-				6583E6AB1D42542B00A6DB93 /* Resources */,
-				2E1EB5C4C2D3DBAEC2FA8059 /* 📦 Embed Pods Frameworks */,
-				C642D37268F5F75DA179507A /* 📦 Copy Pods Resources */,
+				0F1A279532748AA23F611B4A /* 📦 Check Pods Manifest.lock */,
+				759EB5591D672C020097647C /* Sources */,
+				759EB55A1D672C020097647C /* Frameworks */,
+				759EB55B1D672C020097647C /* Headers */,
+				759EB55C1D672C020097647C /* Resources */,
+				48895209AAF893D9FAB2C08D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,118 +239,82 @@
 			);
 			name = SwiftCameraPicker;
 			productName = SwiftCameraPicker;
-			productReference = 6583E6AD1D42542B00A6DB93 /* SwiftCameraPicker.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 759EB55E1D672C020097647C /* SwiftCameraPicker.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		6583E6C01D42542B00A6DB93 /* SwiftCameraPickerTests */ = {
+		759EB5671D672C030097647C /* SwiftCameraPickerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6583E6D81D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */;
+			buildConfigurationList = 759EB5751D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */;
 			buildPhases = (
-				D58F14EB77D281C6DCA6229C /* 📦 Check Pods Manifest.lock */,
-				6583E6BD1D42542B00A6DB93 /* Sources */,
-				6583E6BE1D42542B00A6DB93 /* Frameworks */,
-				6583E6BF1D42542B00A6DB93 /* Resources */,
-				2E27592095204531F643B3C2 /* 📦 Embed Pods Frameworks */,
-				32F3ADAF645CD3C2592A1D3E /* 📦 Copy Pods Resources */,
+				AEF83FAE8714D1E84CDEC03C /* 📦 Check Pods Manifest.lock */,
+				759EB5641D672C030097647C /* Sources */,
+				759EB5651D672C030097647C /* Frameworks */,
+				759EB5661D672C030097647C /* Resources */,
+				08B2A1A9FC4E527AECEFE4D3 /* 📦 Embed Pods Frameworks */,
+				07A03413B173BA906B663738 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6583E6C31D42542B00A6DB93 /* PBXTargetDependency */,
+				759EB56B1D672C030097647C /* PBXTargetDependency */,
 			);
 			name = SwiftCameraPickerTests;
 			productName = SwiftCameraPickerTests;
-			productReference = 6583E6C11D42542B00A6DB93 /* SwiftCameraPickerTests.xctest */;
+			productReference = 759EB5681D672C030097647C /* SwiftCameraPickerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6583E6CB1D42542B00A6DB93 /* SwiftCameraPickerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6583E6DB1D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerUITests" */;
-			buildPhases = (
-				198126C24C7FFA0B3FB9D540 /* 📦 Check Pods Manifest.lock */,
-				6583E6C81D42542B00A6DB93 /* Sources */,
-				6583E6C91D42542B00A6DB93 /* Frameworks */,
-				6583E6CA1D42542B00A6DB93 /* Resources */,
-				38602F29979FA4398EA148DD /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6583E6CE1D42542B00A6DB93 /* PBXTargetDependency */,
-			);
-			name = SwiftCameraPickerUITests;
-			productName = SwiftCameraPickerUITests;
-			productReference = 6583E6CC1D42542B00A6DB93 /* SwiftCameraPickerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6583E6A51D42542B00A6DB93 /* Project object */ = {
+		759EB5551D672C020097647C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = codenapse;
+				ORGANIZATIONNAME = "Alin Paulesc";
 				TargetAttributes = {
-					6583E6AC1D42542B00A6DB93 = {
+					759EB55D1D672C020097647C = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					6583E6C01D42542B00A6DB93 = {
+					759EB5671D672C030097647C = {
 						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 6583E6AC1D42542B00A6DB93;
-					};
-					6583E6CB1D42542B00A6DB93 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 6583E6AC1D42542B00A6DB93;
 					};
 				};
 			};
-			buildConfigurationList = 6583E6A81D42542B00A6DB93 /* Build configuration list for PBXProject "SwiftCameraPicker" */;
+			buildConfigurationList = 759EB5581D672C020097647C /* Build configuration list for PBXProject "SwiftCameraPicker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 6583E6A41D42542B00A6DB93;
-			productRefGroup = 6583E6AE1D42542B00A6DB93 /* Products */;
+			mainGroup = 759EB5541D672C020097647C;
+			productRefGroup = 759EB55F1D672C020097647C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */,
-				6583E6C01D42542B00A6DB93 /* SwiftCameraPickerTests */,
-				6583E6CB1D42542B00A6DB93 /* SwiftCameraPickerUITests */,
+				759EB55D1D672C020097647C /* SwiftCameraPicker */,
+				759EB5671D672C030097647C /* SwiftCameraPickerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6583E6AB1D42542B00A6DB93 /* Resources */ = {
+		759EB55C1D672C020097647C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75CB65D01D4F8D7D00AD8EC4 /* SCPCameraView.xib in Resources */,
-				75CB65D21D4F8D7D00AD8EC4 /* SCPViewController.xib in Resources */,
-				753088781D50DCBD0041CD60 /* SCPGalleryViewCell.xib in Resources */,
-				6583E6BB1D42542B00A6DB93 /* LaunchScreen.storyboard in Resources */,
-				75CB65D41D4F8D7D00AD8EC4 /* SCPCollectionView.xib in Resources */,
-				75262CAD1D4F97D200DF4174 /* SCPGalleryView.xib in Resources */,
-				6583E6B81D42542B00A6DB93 /* Assets.xcassets in Resources */,
-				75CB65D61D4F8D7D00AD8EC4 /* SCPCollectionViewCell.xib in Resources */,
-				6583E6B61D42542B00A6DB93 /* Main.storyboard in Resources */,
+				759EB58A1D672CD40097647C /* SCPCollectionView.xib in Resources */,
+				759EB5861D672CD40097647C /* SCPCameraView.xib in Resources */,
+				759EB59C1D672F470097647C /* Images.xcassets in Resources */,
+				759EB5901D672CD40097647C /* SCPGalleryViewCell.xib in Resources */,
+				759EB58E1D672CD40097647C /* SCPGalleryView.xib in Resources */,
+				759EB5881D672CD40097647C /* SCPViewController.xib in Resources */,
+				759EB58C1D672CD40097647C /* SCPCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6583E6BF1D42542B00A6DB93 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6583E6CA1D42542B00A6DB93 /* Resources */ = {
+		759EB5661D672C030097647C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,67 +324,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		158A9DA71DF8FCF48107B511 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		198126C24C7FFA0B3FB9D540 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2E1EB5C4C2D3DBAEC2FA8059 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E27592095204531F643B3C2 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		32F3ADAF645CD3C2592A1D3E /* 📦 Copy Pods Resources */ = {
+		07A03413B173BA906B663738 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -436,22 +339,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		38602F29979FA4398EA148DD /* 📦 Copy Pods Resources */ = {
+		08B2A1A9FC4E527AECEFE4D3 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerUITests/Pods-SwiftCameraPickerUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C642D37268F5F75DA179507A /* 📦 Copy Pods Resources */ = {
+		0F1A279532748AA23F611B4A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		48895209AAF893D9FAB2C08D /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,7 +384,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D58F14EB77D281C6DCA6229C /* 📦 Check Pods Manifest.lock */ = {
+		AEF83FAE8714D1E84CDEC03C /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -484,74 +402,40 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6583E6A91D42542B00A6DB93 /* Sources */ = {
+		759EB5591D672C020097647C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				753088771D50DCBD0041CD60 /* SCPGalleryViewCell.swift in Sources */,
-				75262CAB1D4F974500DF4174 /* SCPGalleryView.swift in Sources */,
-				75CB65CF1D4F8D7D00AD8EC4 /* SCPCameraView.swift in Sources */,
-				75CB65D31D4F8D7D00AD8EC4 /* SCPCollectionView.swift in Sources */,
-				6583E6B31D42542B00A6DB93 /* ViewController.swift in Sources */,
-				75CB65D11D4F8D7D00AD8EC4 /* SCPViewController.swift in Sources */,
-				6583E6B11D42542B00A6DB93 /* AppDelegate.swift in Sources */,
-				75CB65D51D4F8D7D00AD8EC4 /* SCPCollectionViewCell.swift in Sources */,
-				75CB65BF1D4BAA8100AD8EC4 /* SCPMediaFile.swift in Sources */,
+				759EB58F1D672CD40097647C /* SCPGalleryViewCell.swift in Sources */,
+				759EB5851D672CD40097647C /* SCPCameraView.swift in Sources */,
+				759EB58D1D672CD40097647C /* SCPGalleryView.swift in Sources */,
+				759EB5891D672CD40097647C /* SCPCollectionView.swift in Sources */,
+				759EB5871D672CD40097647C /* SCPViewController.swift in Sources */,
+				759EB58B1D672CD40097647C /* SCPCollectionViewCell.swift in Sources */,
+				759EB5931D672CF00097647C /* SCPMediaFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6583E6BD1D42542B00A6DB93 /* Sources */ = {
+		759EB5641D672C030097647C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6583E6C61D42542B00A6DB93 /* SwiftCameraPickerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6583E6C81D42542B00A6DB93 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6583E6D11D42542B00A6DB93 /* SwiftCameraPickerUITests.swift in Sources */,
+				759EB56E1D672C030097647C /* SwiftCameraPickerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6583E6C31D42542B00A6DB93 /* PBXTargetDependency */ = {
+		759EB56B1D672C030097647C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */;
-			targetProxy = 6583E6C21D42542B00A6DB93 /* PBXContainerItemProxy */;
-		};
-		6583E6CE1D42542B00A6DB93 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6583E6AC1D42542B00A6DB93 /* SwiftCameraPicker */;
-			targetProxy = 6583E6CD1D42542B00A6DB93 /* PBXContainerItemProxy */;
+			target = 759EB55D1D672C020097647C /* SwiftCameraPicker */;
+			targetProxy = 759EB56A1D672C030097647C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		6583E6B41D42542B00A6DB93 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6583E6B51D42542B00A6DB93 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6583E6B91D42542B00A6DB93 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6583E6BA1D42542B00A6DB93 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		6583E6D31D42542B00A6DB93 /* Debug */ = {
+		759EB5701D672C030097647C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -571,6 +455,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -594,10 +479,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		6583E6D41D42542B00A6DB93 /* Release */ = {
+		759EB5711D672C030097647C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -617,6 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -633,125 +521,101 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		6583E6D61D42542B00A6DB93 /* Debug */ = {
+		759EB5731D672C030097647C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 168E21A7C600BB07D35546BD /* Pods-SwiftCameraPicker.debug.xcconfig */;
+			baseConfigurationReference = 7A4AA369F08435480102BB52 /* Pods-SwiftCameraPicker.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftCameraPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		6583E6D71D42542B00A6DB93 /* Release */ = {
+		759EB5741D672C030097647C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1155E4431F4EE6799884A9B3 /* Pods-SwiftCameraPicker.release.xcconfig */;
+			baseConfigurationReference = 45B08CEFC609879BB306D617 /* Pods-SwiftCameraPicker.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftCameraPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		6583E6D91D42542B00A6DB93 /* Debug */ = {
+		759EB5761D672C030097647C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8A9A745CBF6592B33779271 /* Pods-SwiftCameraPickerTests.debug.xcconfig */;
+			baseConfigurationReference = 59DB4E150FC53197B61E1CE3 /* Pods-SwiftCameraPickerTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SwiftCameraPickerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCameraPicker.app/SwiftCameraPicker";
 			};
 			name = Debug;
 		};
-		6583E6DA1D42542B00A6DB93 /* Release */ = {
+		759EB5771D672C030097647C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38DB1BC5AB389292254FE483 /* Pods-SwiftCameraPickerTests.release.xcconfig */;
+			baseConfigurationReference = 133107EC3E4076488AE8425B /* Pods-SwiftCameraPickerTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SwiftCameraPickerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCameraPicker.app/SwiftCameraPicker";
-			};
-			name = Release;
-		};
-		6583E6DC1D42542B00A6DB93 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72C81AB3E541914FE3C2B4F4 /* Pods-SwiftCameraPickerUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = SwiftCameraPickerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SwiftCameraPicker;
-			};
-			name = Debug;
-		};
-		6583E6DD1D42542B00A6DB93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7B7F9E3C1DAF9D829A4569A /* Pods-SwiftCameraPickerUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = SwiftCameraPickerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SwiftCameraPicker;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6583E6A81D42542B00A6DB93 /* Build configuration list for PBXProject "SwiftCameraPicker" */ = {
+		759EB5581D672C020097647C /* Build configuration list for PBXProject "SwiftCameraPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6583E6D31D42542B00A6DB93 /* Debug */,
-				6583E6D41D42542B00A6DB93 /* Release */,
+				759EB5701D672C030097647C /* Debug */,
+				759EB5711D672C030097647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6583E6D51D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */ = {
+		759EB5721D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6583E6D61D42542B00A6DB93 /* Debug */,
-				6583E6D71D42542B00A6DB93 /* Release */,
+				759EB5731D672C030097647C /* Debug */,
+				759EB5741D672C030097647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6583E6D81D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */ = {
+		759EB5751D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6583E6D91D42542B00A6DB93 /* Debug */,
-				6583E6DA1D42542B00A6DB93 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6583E6DB1D42542B00A6DB93 /* Build configuration list for PBXNativeTarget "SwiftCameraPickerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6583E6DC1D42542B00A6DB93 /* Debug */,
-				6583E6DD1D42542B00A6DB93 /* Release */,
+				759EB5761D672C030097647C /* Debug */,
+				759EB5771D672C030097647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6583E6A51D42542B00A6DB93 /* Project object */;
+	rootObject = 759EB5551D672C020097647C /* Project object */;
 }

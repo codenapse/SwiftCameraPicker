@@ -14,11 +14,9 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
-    //private var mediaFiles: [SCPMediaFile] = []
+    private var mediaFiles: [SCPMediaFile] = []
     var delegate: SCPCollectionDelegate!
-    var cachingImageManager: PHCachingImageManager = PHCachingImageManager()
-    let manager = PHImageManager.defaultManager()
-    var assets: [PHAsset] = []
+//    var assets: [PHAsset] = []
     
     
     static func instance() -> SCPGalleryView {
@@ -26,72 +24,70 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func initialize() {
-        self.collectionView.registerNib(UINib(nibName: "SCPGalleryViewCell", bundle: nil), forCellWithReuseIdentifier: self.cellReuseIdentifier)
-        if self.assets.count == 0 {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        self.collectionView.registerNib(UINib(nibName: "SCPGalleryViewCell", bundle: bundle), forCellWithReuseIdentifier: self.cellReuseIdentifier)
+        if self.mediaFiles.count == 0 {
             self.initMediaFiles()
         }
-        self.layoutIfNeeded()
-
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            
+//        })
     }
     func initMediaFiles() {
         self.checkPhotoAuth()
         DDLogDebug("[SCPGalleryView] -> initMediaFiles()")
+        var assets: [PHAsset] = []
         let options = PHFetchOptions()
-        // options.predicate = NSPredicate(format: "favorite == YES")
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: true)
         ]
-        
-        let results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
+        var results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         results.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
-                self.assets.append(asset)
+                assets.append(asset)
+                
             }
         }
-        
-        self.cachingImageManager.startCachingImagesForAssets(assets,
-                                                        targetSize: CGSize(width: 110.0, height: 147.0),
-                                                        contentMode: .AspectFill,
-                                                        options: nil
+        SCPMediaFile.imageManager.startCachingImagesForAssets(assets,
+                                                              targetSize: CGSize(width: 110.0, height: 147.0),
+                                                              contentMode: .AspectFill,
+                                                              options: nil
         )
+        for asset in assets {
+            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
+        }
+
+//        results = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
+//        results.enumerateObjectsUsingBlock { (object, _, _) in
+//            if let asset = object as? PHAsset {
+//                DDLogDebug("\(asset.duration)")
+//                let mediaFile = SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0))
+//                SCPMediaFile.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
+//                    mediaFile.avAsset = avAsset!
+//                    mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
+//                    self.mediaFiles.append(mediaFile)
+//                })
+//                
+//            }
+//        }
     }
-    
-    
-    
-    
     //
     // MARK: - UICollectionViewDataSource
     //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        DDLogDebug("assets.count = \(self.assets.count)")
-        return self.assets.count
+        DDLogDebug("Media files count = \(self.mediaFiles.count)")
+        return self.mediaFiles.count
     }
     //
     //
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPGalleryViewCell", forIndexPath: indexPath) as! SCPGalleryViewCell
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let manager = PHImageManager.defaultManager()
-            let options = PHImageRequestOptions()
-            options.resizeMode = PHImageRequestOptionsResizeMode.Exact
-            options.deliveryMode = PHImageRequestOptionsDeliveryMode.Opportunistic
-            
-            if cell.tag != 0 {
-                manager.cancelImageRequest(PHImageRequestID(cell.tag))
-            }
-            let asset = self.assets[indexPath.row]
-            cell.tag = Int(manager.requestImageForAsset(asset,
-                targetSize: CGSize(width: 110.0, height: 147.0),
-                contentMode: .AspectFill,
-            options: options) { (result, _) in
-                dispatch_async(dispatch_get_main_queue(), {
-                        cell.imageView?.image = result
-                    })
-                }
-            )
-        })
-        
-        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            let mediaFile = self.mediaFiles[indexPath.row]
+            cell.imageView?.image = mediaFile.image
+            cell.mediaFile = mediaFile
+            cell.setup()
+//        })
         return cell
     }
     //
@@ -107,27 +103,21 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     // MARK: - UICollectionViewDelegate
     //
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        DDLogDebug("[SCPGalleryView] -> collectionView() -> media file tapped")
         let cell : SCPGalleryViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! SCPGalleryViewCell
         if self.delegate.mediaSelectedLimitReached() == true {
             return
         }
-        if cell.selectedFlag == true {
+        let asset = self.mediaFiles[indexPath.row]
+        if asset.selected == true {
             return
         }
-        if cell.tag != 0 {
-            manager.cancelImageRequest(PHImageRequestID(cell.tag))
+        if cell.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
+            self.delegate.mediaFileRecorded(nil, avAsset: cell.mediaFile.avAsset!)
+        } else {
+            self.delegate.mediaFileSelected(cell.imageView.image!, phAsset: asset.phAsset)
         }
-        let asset = assets[indexPath.row]
-//        manager.requestImageForAsset(asset,
-//                                     targetSize: PHImageManagerMaximumSize,
-//                                     contentMode: .AspectFit,
-//                                     options: nil) { (result, _) in
-//                                        if result != nil {
-//                                            self.delegate.mediaFilePicked(result!)
-//                                        }
-//                                     }
-        self.delegate.mediaFileSelected(cell.imageView.image!, phAsset: asset)
+        
         cell.toggle()
     }
     
