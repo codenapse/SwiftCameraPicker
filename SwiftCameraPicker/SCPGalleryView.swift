@@ -54,7 +54,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                                                               options: nil
         )
         for asset in assets {
-//            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
+            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
         }
 
         results = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
