@@ -85,7 +85,7 @@ class SCPMediaFile {
         return img!
     }
     
-    func getThumbnailFromVideo() -> UIImage? {
+    func getThumbnailFromVideo(size: Int = 110) -> UIImage? {
         
         if self.avAsset == nil {
             return nil
@@ -99,8 +99,8 @@ class SCPMediaFile {
         
         do {
             let imageRef = try imageGenerator.copyCGImageAtTime(time, actualTime: nil)
-            var image = SCPMediaFile.resizeImage(UIImage(CGImage: imageRef), size: 110)
-            DDLogDebug("getThumbnailFromVideo() -> \(image)")
+            var img = UIImage(CGImage: imageRef)
+            var image = SCPMediaFile.resizeImage(img, size: CGFloat(size))
             return image
         }
         catch let error as NSError
@@ -111,9 +111,20 @@ class SCPMediaFile {
     }
     
     static func resizeImage(image: UIImage, size: CGFloat) -> UIImage {
-        let newWidth = size
-        let scale = newWidth / image.size.width
-        let newHeight = image.size.height * scale
+        
+        let newWidth: CGFloat
+        let scale: CGFloat
+        let newHeight: CGFloat
+        if image.size.width > image.size.height {
+            newWidth = size
+            scale = newWidth / image.size.width
+            newHeight = image.size.height * scale
+        } else {
+            newHeight = size
+            scale = newHeight / image.size.height
+            newWidth = image.size.width * scale
+        }
+        
         UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
         image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

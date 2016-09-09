@@ -15,6 +15,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
     private var mediaFiles: [SCPMediaFile] = []
+    public lazy var inspectionId: String? = nil
     var delegate: SCPCollectionDelegate!
 //    var assets: [PHAsset] = []
     
@@ -114,17 +115,16 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             return
         }
         if cell.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
-            let path = self.delegate.getVideoFilePath()
+            let path = self.delegate.getVideoFilePath(self.inspectionId!)
             let exportUrl: NSURL = NSURL.fileURLWithPath(path)
             var exporter = AVAssetExportSession(asset: cell.mediaFile.avAsset!, presetName: AVAssetExportPresetHighestQuality)
             exporter?.outputURL = exportUrl
             exporter?.outputFileType = AVFileTypeMPEG4
             exporter?.exportAsynchronouslyWithCompletionHandler({
-                var thumb = cell.mediaFile.getThumbnailFromVideo()
-                var thumbPath = path.stringByReplacingOccurrencesOfString(".mp4", withString: ".jpg")
+                var thumb = cell.mediaFile.getThumbnailFromVideo(110)
+                var thumbPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
                 var imgData: NSData = UIImageJPEGRepresentation(thumb!, 0.85)!
                 imgData.writeToFile(thumbPath, atomically: true)
-                DDLogDebug("[SCPGalleryView] -> collectionView() -> video thumb: \(thumbPath)")
             })
             self.delegate.mediaFileRecorded(exportUrl, avAsset: cell.mediaFile.avAsset!)
         } else {

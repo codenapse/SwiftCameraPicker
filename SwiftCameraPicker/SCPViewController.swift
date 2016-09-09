@@ -21,8 +21,9 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     
     public var mediaFilesFromSession: [UIImage] = []
     public var mediaFilesFromSessionz: [Dictionary<String, UIImage?>] = []
+    public lazy var inspectionId: String? = nil
     public lazy var delegate: SCPViewControllerCaptureDelegate? = nil
-    typealias WriteMediaToPathClosure = (fileName: String, fileType: Int) -> String
+    typealias WriteMediaToPathClosure = (fileName: String, fileType: Int, inspectionId: String) -> String
     var writeMediaToPath: WriteMediaToPathClosure?
     //
     // header ui part
@@ -122,8 +123,12 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     // MARK:- Public methods
     //
     
-    public func configWriteMediaToPath(closure: (fileName: String, fileType: Int ) -> String) {
+    public func configWriteMediaToPath(closure: (fileName: String, fileType: Int, inspectionId: String) -> String) {
         self.writeMediaToPath = closure as! WriteMediaToPathClosure
+    }
+    
+    public func setInspectionUuid(inspectionId: String) {
+        self.inspectionId = inspectionId
     }
     
     //
@@ -211,8 +216,10 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
             self.galleryModeButton.layer.cornerRadius = 8
             
             self.cameraView.initialize()
+            self.cameraView.inspectionId = self.inspectionId
             self.cameraView.cameraViewDelegate = self
             self.galleryView.delegate = self
+            self.galleryView.inspectionId = self.inspectionId
             
             
             self.previewContainerView.addSubview(self.cameraView)
@@ -248,7 +255,7 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     func mediaFilePicked(image: UIImage) {
         DDLogDebug("[SCPViewController] -> mediaFilePicked()")
         let imageName = NSUUID().UUIDString
-        let path = self.writeMediaToPath!(fileName: imageName, fileType: 1).stringByAppendingString(imageName).stringByAppendingString(".jpg")
+        let path = self.writeMediaToPath!(fileName: imageName, fileType: 1, inspectionId: "").stringByAppendingString(imageName).stringByAppendingString(".jpg")
         let imageData:NSData = UIImageJPEGRepresentation(image, 0.85)!
         imageData.writeToFile(path, atomically: true)
         self.collectionView.addMediaFileToCollection(nil, phAsset: nil, path: path)
@@ -267,9 +274,9 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         self.updateMediaSelectedLabel()
     }
     
-    func getVideoFilePath() -> String {
+    func getVideoFilePath(inspectionId: String) -> String {
         let fileName = NSUUID().UUIDString
-        let path = self.writeMediaToPath!(fileName: fileName, fileType: 2).stringByAppendingString(fileName).stringByAppendingString(".mp4")
+        let path = self.writeMediaToPath!(fileName: fileName, fileType: 2, inspectionId: inspectionId).stringByAppendingString(fileName).stringByAppendingString("_original.mp4")
         return path
     }
     

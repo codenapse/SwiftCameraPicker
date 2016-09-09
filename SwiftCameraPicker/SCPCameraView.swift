@@ -17,7 +17,7 @@ protocol SCPCollectionDelegate: class {
     func mediaFileSelected(image: UIImage, phAsset: PHAsset)
     func mediaFileRecorded(videoUrl: NSURL?, avAsset: AVAsset?)
     func mediaSelectedLimitReached() -> Bool
-    func getVideoFilePath() -> String
+    func getVideoFilePath(inspectionId: String) -> String
 }
 
 class SCPCameraView: UIView {
@@ -32,6 +32,7 @@ class SCPCameraView: UIView {
     var cameraManagerVideoOnly: CameraManager?
     var busy: Bool = false
     var videoLength = 10
+    public var inspectionId: String? = nil
     let cameraModes: Dictionary<String, CameraOutputMode> = [
         "Photo": .StillImage,
         "Video": .VideoOnly
@@ -122,7 +123,7 @@ class SCPCameraView: UIView {
                     self.busy = false
                     self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
                         if error == nil {
-                            let path = NSURL(fileURLWithPath: (self.cameraViewDelegate?.getVideoFilePath())!)
+                            let path = NSURL(fileURLWithPath: (self.cameraViewDelegate?.getVideoFilePath(self.inspectionId!))!)
                             do {
                                 try NSFileManager.defaultManager().copyItemAtURL(videoURL!, toURL: path)
                                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video file saved at: \(path)")

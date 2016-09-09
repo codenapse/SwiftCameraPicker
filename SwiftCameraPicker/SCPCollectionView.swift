@@ -66,12 +66,23 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                     media!.mediaPath = videoUrl!.absoluteString
                     media!.mediaType = SCPMediaFile.MediaTypes["video"]!
                     do {
-                        var thumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString(".mp4", withString: ".jpg")
-                        DDLogDebug("video: \(videoUrl!.path)")
-                        DDLogDebug("thumb: \(thumbPath)")
-                        var img = media!.getThumbnailFromVideo()
-                        var imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
-                        let result = try Bool(imgData.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic))
+                        let thumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
+//                        DDLogDebug("video: \(videoUrl!.path)")
+//                        DDLogDebug("thumb: \(thumbPath)")
+                        let img = media!.getThumbnailFromVideo()
+                        let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
+                        _ = try Bool(imgData.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic))
+                    } catch let err as NSError {
+                        DDLogDebug(err.description)
+                    }
+                    
+                    do {
+                        let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_original.jpg")
+                        //                        DDLogDebug("video: \(videoUrl!.path)")
+                        //                        DDLogDebug("thumb: \(thumbPath)")
+                        let img = media!.getThumbnailFromVideo(800)
+                        let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
+                        _ = try Bool(imgData.writeToFile(bigThumbPath, options: NSDataWritingOptions.DataWritingAtomic))
                     } catch let err as NSError {
                         DDLogDebug(err.description)
                     }
