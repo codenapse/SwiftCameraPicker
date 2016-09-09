@@ -54,22 +54,22 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                                                               options: nil
         )
         for asset in assets {
-            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
+//            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
         }
 
-//        results = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
-//        results.enumerateObjectsUsingBlock { (object, _, _) in
-//            if let asset = object as? PHAsset {
-//                DDLogDebug("\(asset.duration)")
-//                let mediaFile = SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0))
-//                SCPMediaFile.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
-//                    mediaFile.avAsset = avAsset!
-//                    mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
-//                    self.mediaFiles.append(mediaFile)
-//                })
-//                
-//            }
-//        }
+        results = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
+        results.enumerateObjectsUsingBlock { (object, _, _) in
+            if let asset = object as? PHAsset {
+                DDLogDebug("\(asset.duration)")
+                let mediaFile = SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0))
+                SCPMediaFile.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
+                    mediaFile.avAsset = avAsset!
+                    mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
+                    self.mediaFiles.append(mediaFile)
+                })
+                
+            }
+        }
     }
     //
     // MARK: - UICollectionViewDataSource
@@ -113,7 +113,19 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             return
         }
         if cell.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
-            self.delegate.mediaFileRecorded(nil, avAsset: cell.mediaFile.avAsset!)
+            let path = self.delegate.getVideoFilePath()
+            let exportUrl: NSURL = NSURL.fileURLWithPath(path)
+            var exporter = AVAssetExportSession(asset: cell.mediaFile.avAsset!, presetName: AVAssetExportPresetHighestQuality)
+            exporter?.outputURL = exportUrl
+            exporter?.outputFileType = AVFileTypeMPEG4
+            exporter?.exportAsynchronouslyWithCompletionHandler({
+                var thumb = cell.mediaFile.getThumbnailFromVideo()
+                var thumbPath = path.stringByReplacingOccurrencesOfString(".mp4", withString: ".jpg")
+                var imgData: NSData = UIImageJPEGRepresentation(thumb!, 0.85)!
+                imgData.writeToFile(thumbPath, atomically: true)
+                DDLogDebug("[SCPGalleryView] -> collectionView() -> video thumb: \(thumbPath)")
+            })
+            self.delegate.mediaFileRecorded(exportUrl, avAsset: cell.mediaFile.avAsset!)
         } else {
             self.delegate.mediaFileSelected(cell.imageView.image!, phAsset: asset.phAsset)
         }

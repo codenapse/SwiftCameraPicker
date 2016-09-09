@@ -25,15 +25,18 @@ class SCPCameraView: UIView {
     @IBOutlet var videoLengthCountDownLabel: UILabel!
     @IBOutlet var recordingMode: UIView!
     @IBOutlet var cameraPreview: UIView!
+    @IBOutlet var takePictureBtn: UIButton!
+    @IBOutlet var videoToggleSwitch: UISwitch!
     weak var cameraViewDelegate: SCPCollectionDelegate? = nil
-    var cameraManager: CameraManager?
+    var cameraManagerStillImage: CameraManager?
+    var cameraManagerVideoOnly: CameraManager?
     var busy: Bool = false
-    var videoLength = 5
+    var videoLength = 10
     let cameraModes: Dictionary<String, CameraOutputMode> = [
         "Photo": .StillImage,
         "Video": .VideoOnly
     ]
-    var cameraMode: CameraOutputMode = .StillImage
+    var cameraMode: CameraOutputMode? = nil//.StillImage
     
     
     static func instance() -> SCPCameraView {
@@ -43,20 +46,49 @@ class SCPCameraView: UIView {
     }
     
     func initialize(mode: String = "Photo") {
-        self.cameraManager = nil
-        self.cameraManager = CameraManager()
+//        DDLogDebug("init with mode \(mode)")
+        self.takePictureBtn.enabled = false
+        self.videoToggleSwitch.enabled = false
+        self.busy = true
         if self.cameraModes[mode] != nil {
-            self.cameraMode = self.cameraModes[mode]!
-        }
-        if self.cameraMode == self.cameraModes["Video"] {
-            self.recordingMode.hidden = false
+            if mode == "Photo" {
+                self.cameraManagerStillImage = nil
+                self.cameraMode = self.cameraModes["Photo"]!
+                var manager = CameraManager()
+                manager.cameraOutputMode = self.cameraModes["Photo"]!
+                manager.writeFilesToPhoneLibrary = false
+                self.cameraManagerStillImage = manager
+                self.cameraManagerStillImage!.addPreviewLayerToView(cameraPreview)
+            } else {
+                self.cameraManagerVideoOnly = nil
+                self.cameraMode = self.cameraModes["Video"]!
+                var manager = CameraManager()
+                manager.cameraOutputMode = self.cameraModes["Video"]!
+                manager.writeFilesToPhoneLibrary = false
+                self.cameraManagerVideoOnly = manager
+                self.cameraManagerVideoOnly!.addPreviewLayerToView(cameraPreview)
+            }
+            if self.cameraMode == self.cameraModes["Video"]! {
+                self.recordingMode.hidden = false
+                self.videoLengthCountDownLabel.text = String(self.videoLength)
+            } else {
+                self.recordingMode.hidden = true
+            }
+            
         } else {
-            self.recordingMode.hidden = true
+            self.cameraMode = self.cameraModes["Photo"]!
+            var manager = CameraManager()
+            manager.cameraOutputMode = self.cameraModes["Photo"]!
+            manager.writeFilesToPhoneLibrary = false
+            self.cameraManagerStillImage = manager
+            self.cameraManagerStillImage!.addPreviewLayerToView(cameraPreview)
         }
-        self.videoLengthCountDownLabel.text = String(self.videoLength)
-        self.cameraManager!.cameraOutputMode = self.cameraMode
-        self.cameraManager!.writeFilesToPhoneLibrary = false
-        self.cameraManager!.addPreviewLayerToView(cameraPreview)
+        self.busy = false
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.7 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.takePictureBtn.enabled = true
+            self.videoToggleSwitch.enabled = true
+        }
     }
     @IBAction func takePhotoBtnPressed(sender: AnyObject) {
         if self.busy == false {
@@ -64,7 +96,7 @@ class SCPCameraView: UIView {
             
             if self.cameraMode == self.cameraModes["Photo"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                self.cameraManager!.capturePictureWithCompletition({ (image, error) -> Void in
+                self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
                     if image != nil {
                         let squared = image//MediaFile.cropToSquare(image!)
                         self.capturePictureCompletion(squared, error: error)
@@ -73,8 +105,8 @@ class SCPCameraView: UIView {
                 })
             } else if self.cameraMode == self.cameraModes["Video"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
-                self.cameraManager!.startRecordingVideo()
-    
+                self.cameraManagerVideoOnly!.startRecordingVideo()
+                self.videoToggleSwitch.enabled = false
                 // update ui labels
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
                 for second in 1...self.videoLength {
@@ -88,13 +120,15 @@ class SCPCameraView: UIView {
                 SCPMediaFile.delay(self.videoLength) {
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> stop recording video")
                     self.busy = false
-                    self.cameraManager!.stopRecordingVideo({ (videoURL, error) -> Void in
+                    self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
                         if error == nil {
                             let path = NSURL(fileURLWithPath: (self.cameraViewDelegate?.getVideoFilePath())!)
                             do {
                                 try NSFileManager.defaultManager().copyItemAtURL(videoURL!, toURL: path)
                                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video file saved at: \(path)")
                                 self.captureVideoCompletion(path, error: error)
+                                self.videoToggleSwitch.enabled = true
+                                
                             } catch let err as NSError {
                                 DDLogError("[SwiftCameraPicker][SCPCameraView] -> failed to move video file to path: \(path) - err: \(err)")
                             }

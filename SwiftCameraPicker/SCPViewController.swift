@@ -75,9 +75,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         for media in mediaFiles {
             if media!.deleteToggle == false {
                 if media!.mediaType == SCPMediaFile.MediaTypes["video"] {
-                    
                     DDLogDebug("[headerDoneButtonPressed] -> video file found")
-                    videoFiles.append(media!.mediaPath!)
+                    videoFiles.append(media!.mediaPath)
                 } else {
                     if media!.phAsset != nil {
 //                        DDLogDebug("headerDoneButtonPressed() -> phasset != nil")
@@ -106,8 +105,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
             print("self.delegate == nil")
             return
         }
-        self.delegate!.capturedMediaFilesFromSession(self.mediaFilesFromSession)
         self.delegate!.capturedVideoFilesFromSession(videoFiles)
+        self.delegate!.capturedMediaFilesFromSession(self.mediaFilesFromSession)
         
         self.dismissViewControllerAnimated(false, completion: nil)
         if self.collectionView.mediaFiles != nil {
@@ -264,7 +263,7 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     
     func mediaFileRecorded(videoUrl: NSURL?, avAsset: AVAsset? = nil) {
 //        DDLogDebug("[SCPViewController] -> mediaFileRecorded() -> \(videoUrl)")
-        self.collectionView.addMediaFileToCollection(nil, phAsset: nil, videoUrl: videoUrl)
+        self.collectionView.addMediaFileToCollection(nil, phAsset: nil, videoUrl: videoUrl, avAsset: avAsset)
         self.updateMediaSelectedLabel()
     }
     

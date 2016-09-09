@@ -69,11 +69,6 @@
                         <constraint firstItem="xAk-8W-lCQ" firstAttribute="centerY" secondItem="ygF-C8-vhn" secondAttribute="centerY" id="o2B-5l-pQ1"/>
                         <constraint firstItem="C8B-6d-EQG" firstAttribute="top" secondItem="ygF-C8-vhn" secondAttribute="top" constant="21" id="quc-JS-uIV"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="subviews">
-                            <exclude reference="xAk-8W-lCQ"/>
-                        </mask>
-                    </variation>
                 </view>
             </subviews>
             <constraints>
@@ -90,7 +85,9 @@
             <connections>
                 <outlet property="cameraPreview" destination="adK-Gt-8Pf" id="ZB9-4B-xFC"/>
                 <outlet property="recordingMode" destination="C8B-6d-EQG" id="4We-Vj-dEb"/>
+                <outlet property="takePictureBtn" destination="ygF-C8-vhn" id="raX-0g-HZ0"/>
                 <outlet property="videoLengthCountDownLabel" destination="WS6-q3-rA5" id="iPt-En-PPa"/>
+                <outlet property="videoToggleSwitch" destination="xAk-8W-lCQ" id="yDB-bI-HsI"/>
             </connections>
             <point key="canvasLocation" x="443.5" y="325.5"/>
         </view>

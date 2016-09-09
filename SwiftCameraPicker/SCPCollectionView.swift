@@ -49,30 +49,44 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     //
     func addMediaFileToCollection(image: UIImage?, phAsset: PHAsset?, path: String? = nil, videoUrl: NSURL? = nil, avAsset: AVAsset? = nil) {
         if self.getMediaSelectedCount() < self.mediaSelectedLimit {
-            var media: SCPMediaFile
+            var media: SCPMediaFile?
             if path != nil {
                 media = SCPMediaFile(mediaPath: path!)
             } else if phAsset != nil {
                 media = SCPMediaFile(phAsset: phAsset!)
+            } else if avAsset != nil {
+                media = SCPMediaFile(avAsset: avAsset!)
+                media!.mediaPath = videoUrl!.absoluteString
+                media!.mediaType = SCPMediaFile.MediaTypes["video"]!
             } else {
                 let asset: AVAsset
                 if videoUrl != nil {
                     asset = AVAsset(URL: videoUrl!)
-                } else {
-                    asset = avAsset!
+                    media = SCPMediaFile(avAsset: asset)
+                    media!.mediaPath = videoUrl!.absoluteString
+                    media!.mediaType = SCPMediaFile.MediaTypes["video"]!
+                    do {
+                        var thumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString(".mp4", withString: ".jpg")
+                        DDLogDebug("video: \(videoUrl!.path)")
+                        DDLogDebug("thumb: \(thumbPath)")
+                        var img = media!.getThumbnailFromVideo()
+                        var imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
+                        let result = try Bool(imgData.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic))
+                    } catch let err as NSError {
+                        DDLogDebug(err.description)
+                    }
                 }
-                media = SCPMediaFile(avAsset: asset)
-                media.mediaPath = videoUrl!.absoluteString
-                media.mediaType = SCPMediaFile.MediaTypes["video"]!
             }
             
             let index = 0 //count > 0 ? count - 1 : count
             if self.mediaFiles == nil {
                 self.mediaFiles = []
             }
-            self.mediaFiles.insert(media, atIndex: index)
-            let indexPath = NSIndexPath(forItem: index, inSection: 0)
-            self.collectionView.insertItemsAtIndexPaths([indexPath])
+            if media != nil {
+                self.mediaFiles.insert(media, atIndex: index)
+                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+                self.collectionView.insertItemsAtIndexPaths([indexPath])
+            }
             return
         }
         DDLogDebug("[SCPCollectionView] -> addMediaFileToCollection() -> selected media files limit reached: \(self.mediaSelectedLimit)")
