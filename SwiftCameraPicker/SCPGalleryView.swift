@@ -41,6 +41,13 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: true)
         ]
+        var tempVideos: [PHAsset] = []
+        let videos = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
+        videos.enumerateObjectsUsingBlock { (object, _, _) in
+            if let asset = object as? PHAsset {
+                tempVideos.append(asset)
+            }
+        }
         var results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         results.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
@@ -56,19 +63,13 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         for asset in assets {
             self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
         }
-
-        results = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
-        results.enumerateObjectsUsingBlock { (object, _, _) in
-            if let asset = object as? PHAsset {
-                DDLogDebug("\(asset.duration)")
-                let mediaFile = SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0))
-                SCPMediaFile.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
-                    mediaFile.avAsset = avAsset!
-                    mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
-                    self.mediaFiles.append(mediaFile)
-                })
-                
-            }
+        for video in tempVideos {
+            let mediaFile = SCPMediaFile(phAsset: video, cellSize: CGSize(width: 110.0, height: 147.0))
+            SCPMediaFile.imageManager.requestAVAssetForVideo(video, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
+                mediaFile.avAsset = avAsset!
+                mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
+                self.mediaFiles.append(mediaFile)
+            })
         }
     }
     //

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftCameraPicker"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "SwiftCameraPicker is a out of the box simple to use camera app"
 
   # This description is used to generate tags and improve search results.
