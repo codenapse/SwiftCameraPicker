@@ -58,6 +58,14 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                 media = SCPMediaFile(avAsset: avAsset!)
                 media!.mediaPath = videoUrl!.absoluteString
                 media!.mediaType = SCPMediaFile.MediaTypes["video"]!
+                do {
+                    let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
+                    let img = media!.getThumbnailFromVideo(800)
+                    let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
+                    _ = try Bool(imgData.writeToFile(bigThumbPath, options: NSDataWritingOptions.DataWritingAtomic))
+                } catch let err as NSError {
+                    DDLogDebug(err.description)
+                }
             } else {
                 let asset: AVAsset
                 if videoUrl != nil {
@@ -77,7 +85,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                     }
                     
                     do {
-                        let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_original.jpg")
+                        let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
                         //                        DDLogDebug("video: \(videoUrl!.path)")
                         //                        DDLogDebug("thumb: \(thumbPath)")
                         let img = media!.getThumbnailFromVideo(800)

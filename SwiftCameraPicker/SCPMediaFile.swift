@@ -145,13 +145,17 @@ class SCPMediaFile {
         return image
     }
     
-    static func delay(delay:Int, closure:()->()) {
+    static func delay(delay:Int, closure:()->()) -> dispatch_block_t {
+        var block: dispatch_block_t = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS) {
+            closure()
+        }
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,
                 Int64(Double(delay) * Double(NSEC_PER_SEC))
             ),
-            dispatch_get_main_queue(), closure)
+            dispatch_get_main_queue(), block)
+        return block
     }
     
 }
