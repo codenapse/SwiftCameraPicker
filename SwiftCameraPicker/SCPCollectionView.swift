@@ -23,9 +23,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         let bundle = NSBundle(forClass: self.classForCoder())
         return UINib(nibName: "SCPCollectionView", bundle: bundle).instantiateWithOwner(self, options: nil)[0] as! SCPCollectionView
     }
-    //
-    //
-    //
+    
+    
     func initialize() {
         self.mediaFiles = nil
         if let collectionView = self.viewWithTag(100) as? UICollectionView {
@@ -33,20 +32,9 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         }
         let bundle = NSBundle(forClass: self.dynamicType)
         self.collectionView.registerNib(UINib(nibName: "SCPCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: self.cellReuseIdentifier)
-        self.initMediaFiles()
-//        self.layoutIfNeeded()
     }
-    //
-    //
-    //
-    func initMediaFiles() {
-        // MARK:- Mook initMediaFiles()
-//        self.mediaFiles.append(SCPMediaFile(image: SCPMediaFile.imageWithColor(UIColor.cyanColor())))
-//        self.mediaFiles.append(SCPMediaFile(image: SCPMediaFile.imageWithColor(UIColor.blueColor())))
-    }
-    //
-    //
-    //
+    
+    
     func addMediaFileToCollection(image: UIImage?, phAsset: PHAsset?, path: String? = nil, videoUrl: NSURL? = nil, avAsset: AVAsset? = nil) {
         if self.getMediaSelectedCount() < self.mediaSelectedLimit {
             var media: SCPMediaFile?
@@ -75,19 +63,14 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                     media!.mediaType = SCPMediaFile.MediaTypes["video"]!
                     do {
                         let thumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
-//                        DDLogDebug("video: \(videoUrl!.path)")
-//                        DDLogDebug("thumb: \(thumbPath)")
                         let img = media!.getThumbnailFromVideo()
                         let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
                         _ = try Bool(imgData.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic))
                     } catch let err as NSError {
                         DDLogDebug(err.description)
                     }
-                    
                     do {
                         let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
-                        //                        DDLogDebug("video: \(videoUrl!.path)")
-                        //                        DDLogDebug("thumb: \(thumbPath)")
                         let img = media!.getThumbnailFromVideo(800)
                         let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
                         _ = try Bool(imgData.writeToFile(bigThumbPath, options: NSDataWritingOptions.DataWritingAtomic))
@@ -97,7 +80,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                 }
             }
             
-            let index = 0 //count > 0 ? count - 1 : count
+            let index = 0
             if self.mediaFiles == nil {
                 self.mediaFiles = []
             }
@@ -111,18 +94,16 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         DDLogDebug("[SCPCollectionView] -> addMediaFileToCollection() -> selected media files limit reached: \(self.mediaSelectedLimit)")
         
     }
-    //
-    //
-    //
+    
+    
     func getMediaFilesFromSession() -> [SCPMediaFile?] {
         if self.mediaFiles != nil {
             return self.mediaFiles
         }
         return []
     }
-    //
-    //
-    //
+    
+    
     func getMediaSelectedCount() -> Int {
         var counter = 0
         if self.mediaFiles != nil {
@@ -143,9 +124,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         }
         return 0
     }
-    //
-    //
-    //
+    
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPCollectionViewCell", forIndexPath: indexPath) as! SCPCollectionViewCell
@@ -154,16 +134,11 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         return cell
         
     }
-    //
-    //
-    //
+    
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-    //
-    //    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    //
-    //    }
     //
     // MARK: - UICollectionViewDelegate
     //
@@ -178,19 +153,6 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         }
         self.mediaSelectedLabelUpdateDelegate!.updateMediaSelectedLabel()
     }
-    //
-    // MARK: -
-    // MARK: - UICollectionViewFlowLayout
-    //
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        let picDimension = self.frame.size.width / 4.0
-//        return CGSizeMake(picDimension, picDimension)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        let leftRightInset = self.frame.size.width / 14.0
-//        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
-//    }
 }
 
 protocol SCPMediaSelectedLabelUpdateDelegate {

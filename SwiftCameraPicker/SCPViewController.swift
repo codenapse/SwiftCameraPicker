@@ -56,20 +56,29 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         DDLogDebug("[SCPViewController] -> galleryModeBtnPressed()")
         self.changeCameraPickerMode(CameraPickerModes.Gallery)
     }
-    //
-    //
+    
+    
     @IBAction func cameraModeBtnPressed(sender: UIButton) {
         DDLogDebug("[SCPViewController] -> cameraModeBtnPressed()")
         self.changeCameraPickerMode(CameraPickerModes.Camera)
     }
-    //
-    //
+    
+    
     @IBAction func headerCancelButtonPressed(sender: UIButton) {
         DDLogDebug("[SCPViewController] -> headerCancelButtonPressed()")
+        let mediaFiles = self.collectionView.getMediaFilesFromSession()
+        for media in mediaFiles {
+            if media!.mediaPath != nil {
+                if media!.mediaType == SCPMediaFile.MediaTypes["video"] {
+                    media!.mediaPath = media!.mediaPath.stringByReplacingOccurrencesOfString("file:///", withString: "/")
+                }
+                self.removeMediaFile(media!)
+            }
+        }
         self.dismissViewControllerAnimated(false, completion: nil)
     }
-    //
-    //
+    
+    
     @IBAction func headerDoneButtonPressed(sender: AnyObject) {
         let mediaFiles = self.collectionView.getMediaFilesFromSession()
         var videoFiles: [String] = []
@@ -80,30 +89,24 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
                     videoFiles.append(media!.mediaPath)
                 } else {
                     if media!.phAsset != nil {
-//                        DDLogDebug("headerDoneButtonPressed() -> phasset != nil")
                         self.mediaFilesFromSession.append(media!.getImageFromPHAsset())
                     } else if media!.mediaPath != nil {
                         self.mediaFilesFromSession.append(UIImage(contentsOfFile: media!.mediaPath)!)
+                        self.removeMediaFile(media!)
                     } else {
-//                        DDLogDebug("headerDoneButtonPressed() -> phasset == nil")
                         self.mediaFilesFromSession.append(media!.image!)
                     }
                 }
             } else {
                 if media!.mediaPath != nil {
-                    DDLogDebug("removeItemAtPath: \(media!.mediaPath!)")
-                    let fileManager = NSFileManager.defaultManager()
-                    do {
-                        try fileManager.removeItemAtPath(media!.mediaPath)
+                    if media!.mediaType == SCPMediaFile.MediaTypes["video"] {
+                        media!.mediaPath = media!.mediaPath.stringByReplacingOccurrencesOfString("file:///", withString: "/")
                     }
-                    catch _ as NSError {
-                        
-                    }
+                    self.removeMediaFile(media!)
                 }
             }
         }
         if self.delegate == nil {
-            print("self.delegate == nil")
             return
         }
         self.delegate!.capturedVideoFilesFromSession(videoFiles)
@@ -150,8 +153,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         }
         self.currentCameraPickerMode = mode
     }
-    //
-    //
+    
+    
     private func changeToCameraMode() {
         if let subview = self.previewContainerView.subviews.first {
             subview.removeFromSuperview()
@@ -165,8 +168,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         self.cameraModeButton.backgroundColor = UIColor.fromHex("#34AB6E")
         self.cameraModeButton.setTitleColor(UIColor.fromHex("#ffffff"), forState: .Normal)
     }
-    //
-    //
+    
+    
     private func changeToGalleryMode() {
         if let subview = self.previewContainerView.subviews.first {
             subview.removeFromSuperview()
@@ -182,8 +185,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         self.galleryModeButton.backgroundColor = UIColor.fromHex("#34AB6E")
         self.galleryModeButton.setTitleColor(UIColor.fromHex("#ffffff"), forState: .Normal)
     }
-    //
-    //
+    
+    
     private func configureTheme() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.headerView.backgroundColor = UIColor.fromHex("#dddddd")
@@ -203,9 +206,21 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     //
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+//        let value = UIInterfaceOrientation.Portrait.rawValue
+//        UIDevice.currentDevice().setValue(value, forKey: "orientation")
     }
-    //
-    //
+    
+
+//    override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.Portrait
+//    }
+//    
+//    
+//    override public func shouldAutorotate() -> Bool {
+//        return true
+//    }
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureTheme()
@@ -232,19 +247,14 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
             self.view.layoutIfNeeded()
         })
     }
-    //
-    //
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    //
-    //
+    
     override public func loadView() {
         // set log output to TTY = Xcode console
         DDLog.addLogger(DDTTYLogger.sharedInstance())
-        
-        DDLogDebug("[SCPViewController] -> loadView()")
         if let view = UINib(nibName: "SCPViewController",
             bundle: NSBundle(forClass: self.classForCoder))
             .instantiateWithOwner(self, options: nil).first as? UIView { self.view = view }
@@ -255,7 +265,7 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     func mediaFilePicked(image: UIImage) {
         DDLogDebug("[SCPViewController] -> mediaFilePicked()")
         let imageName = NSUUID().UUIDString
-        let path = self.writeMediaToPath!(fileName: imageName, fileType: 1, inspectionId: "").stringByAppendingString(imageName).stringByAppendingString(".jpg")
+        let path = self.writeMediaToPath!(fileName: imageName, fileType: 1, inspectionId: self.inspectionId!).stringByAppendingString(imageName).stringByAppendingString("_original.jpg")
         let imageData:NSData = UIImageJPEGRepresentation(image, 0.85)!
         imageData.writeToFile(path, atomically: true)
         self.collectionView.addMediaFileToCollection(nil, phAsset: nil, path: path)
@@ -269,7 +279,6 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     }
     
     func mediaFileRecorded(videoUrl: NSURL?, avAsset: AVAsset? = nil) {
-//        DDLogDebug("[SCPViewController] -> mediaFileRecorded() -> \(videoUrl)")
         self.collectionView.addMediaFileToCollection(nil, phAsset: nil, videoUrl: videoUrl, avAsset: avAsset)
         self.updateMediaSelectedLabel()
     }
@@ -286,10 +295,50 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         }
         return true
     }
-    //
-    //
+    
+    func toggleHeaderButtons() {
+        if self.headerDoneButton.enabled == true {
+            self.headerDoneButton.enabled = false
+            self.headerCancelButton.enabled = false
+        } else {
+            self.headerDoneButton.enabled = true
+            self.headerCancelButton.enabled = true
+        }
+    }
+    
     func updateMediaSelectedLabel() {
         self.mediaSelectedCounterLabel.text = String(self.collectionView.getMediaSelectedCount()).stringByAppendingString(" / \(self.collectionView.mediaSelectedLimit)")
+    }
+    
+    func removeMediaFile(mediaFile: SCPMediaFile) {
+        if mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
+            // delete original
+            self.deleteMediaFileAt(mediaFile.mediaPath!)
+            let path = mediaFile.pathNoExtension!
+            // delete preview
+            self.deleteMediaFileAt(path.stringByAppendingString("_preview.jpg"))
+            // delete thumb
+            self.deleteMediaFileAt(path.stringByAppendingString("_thumb.jpg"))
+        } else {
+            // delete original
+            self.deleteMediaFileAt(mediaFile.mediaPath!)
+            let path = mediaFile.pathNoExtension!
+            // delete thumb
+            self.deleteMediaFileAt(path.stringByAppendingString("_thumb.jpg"))
+        }
+    }
+    
+    private func deleteMediaFileAt(path: String) {
+        var block = SCPMediaFile.delay(2) {
+            let fileManager = NSFileManager.defaultManager()
+            do {
+                try fileManager.removeItemAtPath(path)
+//                DDLogDebug("[SCPViewController][deleteMediaFileAt] media file deleted: \(path)")
+            }
+            catch let err as NSError {
+//                DDLogWarn("[SCPViewController][deleteMediaFileAt] failed to delete media file: \(err.debugDescription)")
+            }
+        }
     }
 }
 

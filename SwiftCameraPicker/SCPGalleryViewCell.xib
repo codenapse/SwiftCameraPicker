@@ -15,13 +15,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m6p-QK-UOp">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="130"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-xK-PvH">
-                        <rect key="frame" x="63" y="5" width="32" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="bAq-KY-dnQ"/>
-                            <constraint firstAttribute="height" constant="32" id="pQN-Dv-oMT"/>
-                        </constraints>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_file_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sj8-FW-U7Z">
                         <rect key="frame" x="72" y="106" width="20" height="20"/>
                         <constraints>
@@ -29,11 +22,18 @@
                             <constraint firstAttribute="width" constant="20" id="jVm-1j-t6b"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-xK-PvH">
+                        <rect key="frame" x="6" y="5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="bAq-KY-dnQ"/>
+                            <constraint firstAttribute="height" constant="25" id="pQN-Dv-oMT"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="tDQ-xK-PvH" firstAttribute="trailing" secondItem="m6p-QK-UOp" secondAttribute="trailing" constant="-5" id="4s4-Bg-PPF"/>
+                <constraint firstItem="tDQ-xK-PvH" firstAttribute="leading" secondItem="m6p-QK-UOp" secondAttribute="leading" constant="6" id="4s4-Bg-PPF"/>
                 <constraint firstAttribute="bottom" secondItem="m6p-QK-UOp" secondAttribute="bottom" id="IT8-oP-xxm"/>
                 <constraint firstItem="tDQ-xK-PvH" firstAttribute="top" secondItem="m6p-QK-UOp" secondAttribute="top" constant="5" id="TIh-Ms-qaG"/>
                 <constraint firstItem="m6p-QK-UOp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="X1Z-iH-3zl"/>

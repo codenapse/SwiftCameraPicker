@@ -24,21 +24,6 @@
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1nD-ba-9o8">
                             <rect key="frame" x="0.0" y="0.0" width="85" height="110"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove_picture" translatesAutoresizingMaskIntoConstraints="NO" id="8I8-jh-Dyw">
-                                    <rect key="frame" x="22" y="35" width="40" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="YjG-YQ-qmC"/>
-                                        <constraint firstAttribute="height" constant="40" id="jJl-JB-Y90"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="8I8-jh-Dyw" secondAttribute="bottom" constant="35" id="Ayd-Pb-TnV"/>
-                                <constraint firstAttribute="trailing" secondItem="8I8-jh-Dyw" secondAttribute="trailing" constant="23" id="TEl-5G-vrS"/>
-                                <constraint firstItem="8I8-jh-Dyw" firstAttribute="leading" secondItem="1nD-ba-9o8" secondAttribute="leading" constant="22" id="g55-XJ-RGW"/>
-                                <constraint firstItem="8I8-jh-Dyw" firstAttribute="top" secondItem="1nD-ba-9o8" secondAttribute="top" constant="35" id="q9n-f6-x1D"/>
-                            </constraints>
                         </view>
                         <constraints>
                             <constraint firstAttribute="width" constant="85" id="BFe-2N-Lar"/>
@@ -46,6 +31,13 @@
                         </constraints>
                         <blurEffect style="light"/>
                     </visualEffectView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="8I8-jh-Dyw">
+                        <rect key="frame" x="6" y="6" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Pm7-yn-gmt"/>
+                            <constraint firstAttribute="width" constant="25" id="jgi-AQ-d4p"/>
+                        </constraints>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_file_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8HS-1B-RjM">
                         <rect key="frame" x="59" y="86" width="20" height="20"/>
                         <constraints>
@@ -61,11 +53,14 @@
                 <constraint firstItem="XPd-04-5G4" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="8Jw-xf-2br"/>
                 <constraint firstItem="1AL-DR-vBa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8jF-aV-8Bi"/>
                 <constraint firstAttribute="bottom" secondItem="1AL-DR-vBa" secondAttribute="bottom" id="94A-ia-pf4"/>
+                <constraint firstItem="8I8-jh-Dyw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="JmE-rl-JEr"/>
                 <constraint firstItem="8HS-1B-RjM" firstAttribute="trailing" secondItem="1nD-ba-9o8" secondAttribute="trailing" constant="-6" id="SjS-Za-x0c"/>
+                <constraint firstItem="8I8-jh-Dyw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="UeQ-en-JiG"/>
                 <constraint firstItem="8HS-1B-RjM" firstAttribute="bottom" secondItem="1nD-ba-9o8" secondAttribute="bottom" constant="-4" id="bqN-Qo-34b"/>
                 <constraint firstItem="1AL-DR-vBa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ugb-Sv-VI1"/>
             </constraints>
             <connections>
+                <outlet property="checkedState" destination="8I8-jh-Dyw" id="NFJ-V7-mLZ"/>
                 <outlet property="imageView" destination="XPd-04-5G4" id="Szg-If-NIa"/>
                 <outlet property="videoFileIcon" destination="8HS-1B-RjM" id="Uhw-dA-gAI"/>
                 <outlet property="visualEffect" destination="1AL-DR-vBa" id="wBs-99-uuZ"/>
@@ -74,7 +69,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="remove_picture" width="64" height="64"/>
+        <image name="checked" width="64" height="64"/>
         <image name="video_file_icon" width="64" height="64"/>
     </resources>
 </document>

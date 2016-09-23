@@ -17,7 +17,6 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     private var mediaFiles: [SCPMediaFile] = []
     public lazy var inspectionId: String? = nil
     var delegate: SCPCollectionDelegate!
-//    var assets: [PHAsset] = []
     
     
     static func instance() -> SCPGalleryView {
@@ -30,13 +29,9 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         if self.mediaFiles.count == 0 {
             self.initMediaFiles()
         }
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            
-//        })
     }
     func initMediaFiles() {
         self.checkPhotoAuth()
-        DDLogDebug("[SCPGalleryView] -> initMediaFiles()")
         var assets: [PHAsset] = []
         let options = PHFetchOptions()
         options.sortDescriptors = [
@@ -80,27 +75,21 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         DDLogDebug("Media files count = \(self.mediaFiles.count)")
         return self.mediaFiles.count
     }
-    //
-    //
+    
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPGalleryViewCell", forIndexPath: indexPath) as! SCPGalleryViewCell
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let mediaFile = self.mediaFiles[indexPath.row]
-            cell.imageView?.image = mediaFile.image
-            cell.mediaFile = mediaFile
-            cell.setup()
-//        })
+        let mediaFile = self.mediaFiles[indexPath.row]
+        cell.imageView?.image = mediaFile.image
+        cell.mediaFile = mediaFile
+        cell.setup()
         return cell
     }
-    //
-    //
+    
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-    //
-    //    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    //
-    //    }
     //
     // MARK: - UICollectionViewDelegate
     //
@@ -140,10 +129,6 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             switch status {
             case .Authorized:
                 DDLogDebug("[SCPGalleryView] -> checkPhotoAuth() - user Authorized access to PhotoLibrary")
-//                if self.images != nil && self.images.count > 0 {
-//
-//                }
-                
             case .Restricted, .Denied:
                 DDLogError("[SCPGalleryView] -> checkPhotoAuth() - user Denied access to PhotoLibrary")
             default:

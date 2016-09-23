@@ -24,16 +24,37 @@ class SCPMediaFile {
         "photo": 1,
         "video": 2
     ]
+    var fileExtension: String {
+        get {
+            if self.mediaPath != nil {
+                if mediaType == SCPMediaFile.MediaTypes["video"] {
+                    return ".mp4"
+                } else {
+                    return ".jpg"
+                }
+            }
+            return ""
+        }
+    }
     var mediaType: Int = SCPMediaFile.MediaTypes["photo"]!
-    
+    var pathNoExtension: String? {
+        get {
+            if self.mediaPath != nil {
+                
+                var chars = self.mediaPath!.stringByReplacingOccurrencesOfString("_original".stringByAppendingString(self.fileExtension), withString: "")
+                return chars
+            } else {
+                return nil
+            }
+        }
+    }
     
     init(image: UIImage) {
-        //        print("[SCPMediaFile] init")
         self.image = image
     }
     
+    
     init(image: UIImage, phAsset: PHAsset!) {
-        //        print("[SCPMediaFile] init")
         self.image = image
         self.phAsset = phAsset
     }
@@ -44,7 +65,6 @@ class SCPMediaFile {
     }
     
     init(mediaPath: String) {
-        //        DDLogDebug("[SCPMediaFile] init(mediaPath: String)")
         var img = UIImage(contentsOfFile: mediaPath)
         img = SCPMediaFile.resizeImage(img!, size: 110.0)
         self.image = img
@@ -52,19 +72,19 @@ class SCPMediaFile {
     }
     
     init(avAsset: AVAsset) {
-        DDLogDebug("[SCPMediaFile] init(avAsset: AVAsset) ")
         self.avAsset = avAsset
         self.mediaType = SCPMediaFile.MediaTypes["video"]!
         self.image = self.getThumbnailFromVideo()
     }
     
     deinit {
-        
+        self.cleanup()
     }
     
     func cleanup() {
         self.image = nil
         self.phAsset = nil
+        self.avAsset = nil
     }
     
     func getImageFromPHAsset(targetSize: CGSize = PHImageManagerMaximumSize) -> UIImage {
@@ -95,7 +115,7 @@ class SCPMediaFile {
         
         var time = self.avAsset!.duration
         //If possible - take not the first frame (it could be completely black or white on camara's videos)
-        time.value = min(time.value, 2)
+        time.value = min(time.value, 3)
         
         do {
             let imageRef = try imageGenerator.copyCGImageAtTime(time, actualTime: nil)

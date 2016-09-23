@@ -51,8 +51,9 @@ class SCPGalleryViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        selectedFlagView.hidden = true
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.selectedFlagView.hidden = true
+        })
     }
 
 }
