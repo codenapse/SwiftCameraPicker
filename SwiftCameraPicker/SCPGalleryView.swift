@@ -14,7 +14,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
-    private var mediaFiles: [SCPMediaFile] = []
+    private var mediaAssets: [SCPAsset] = []
     public lazy var inspectionId: String? = nil
     var delegate: SCPCollectionDelegate!
     
@@ -24,24 +24,29 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func initialize() {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        self.collectionView.registerNib(UINib(nibName: "SCPGalleryViewCell", bundle: bundle), forCellWithReuseIdentifier: self.cellReuseIdentifier)
-        if self.mediaFiles.count == 0 {
+        if self.mediaAssets.count == 0 {
             self.initMediaFiles()
         }
+        let bundle = NSBundle(forClass: self.dynamicType)
+        self.collectionView.registerNib(UINib(nibName: "SCPGalleryViewCell", bundle: bundle), forCellWithReuseIdentifier: self.cellReuseIdentifier)
     }
     func initMediaFiles() {
-        self.checkPhotoAuth()
         var assets: [PHAsset] = []
         let options = PHFetchOptions()
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: true)
         ]
-        var tempVideos: [PHAsset] = []
+        var tempVideos: [SCPAsset] = []
         let videos = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
         videos.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
-                tempVideos.append(asset)
+                SCPAsset.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
+                    var scpAsset = SCPAsset(initWithPHAsset: asset, videoFlag: true)
+                    scpAsset.avAsset = avAsset!
+                    scpAsset.inspectionUUID = self.inspectionId!
+                    scpAsset.mediaType = SCPAsset.MediaTypes["video"]!
+                    tempVideos.append(scpAsset)
+                })
             }
         }
         var results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
@@ -51,36 +56,34 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                 
             }
         }
-        SCPMediaFile.imageManager.startCachingImagesForAssets(assets,
+        
+        SCPAsset.imageManager.startCachingImagesForAssets(assets,
                                                               targetSize: CGSize(width: 110.0, height: 147.0),
                                                               contentMode: .AspectFill,
                                                               options: nil
         )
         for asset in assets {
-            self.mediaFiles.append(SCPMediaFile(phAsset: asset, cellSize: CGSize(width: 110.0, height: 147.0)))
+            var scpAsset = SCPAsset(initWithPHAsset: asset)
+            scpAsset.inspectionUUID = self.inspectionId!
+            self.mediaAssets.append(scpAsset)
         }
         for video in tempVideos {
-            let mediaFile = SCPMediaFile(phAsset: video, cellSize: CGSize(width: 110.0, height: 147.0))
-            SCPMediaFile.imageManager.requestAVAssetForVideo(video, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
-                mediaFile.avAsset = avAsset!
-                mediaFile.mediaType = SCPMediaFile.MediaTypes["video"]!
-                self.mediaFiles.append(mediaFile)
-            })
+            self.mediaAssets.append(video)
         }
     }
     //
     // MARK: - UICollectionViewDataSource
     //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        DDLogDebug("Media files count = \(self.mediaFiles.count)")
-        return self.mediaFiles.count
+        DDLogDebug("Media files count = \(self.mediaAssets.count)")
+        return self.mediaAssets.count
     }
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPGalleryViewCell", forIndexPath: indexPath) as! SCPGalleryViewCell
-        let mediaFile = self.mediaFiles[indexPath.row]
-        cell.imageView?.image = mediaFile.image
+        let mediaFile = self.mediaAssets[indexPath.row]
+        cell.imageView?.image = mediaFile.getImageFromPHAsset(CGSize(width: 110.0, height: 147.0))
         cell.mediaFile = mediaFile
         cell.setup()
         return cell
@@ -99,42 +102,29 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         if self.delegate.mediaSelectedLimitReached() == true {
             return
         }
-        let asset = self.mediaFiles[indexPath.row]
+        let asset = self.mediaAssets[indexPath.row]
         if asset.selected == true {
             return
         }
-        if cell.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
-            let path = self.delegate.getVideoFilePath(self.inspectionId!)
-            let exportUrl: NSURL = NSURL.fileURLWithPath(path)
-            var exporter = AVAssetExportSession(asset: cell.mediaFile.avAsset!, presetName: AVAssetExportPresetHighestQuality)
-            exporter?.outputURL = exportUrl
-            exporter?.outputFileType = AVFileTypeMPEG4
-            exporter?.exportAsynchronouslyWithCompletionHandler({
-                var thumb = cell.mediaFile.getThumbnailFromVideo(110)
-                var thumbPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
-                var imgData: NSData = UIImageJPEGRepresentation(thumb!, 0.85)!
-                imgData.writeToFile(thumbPath, atomically: true)
-            })
-            self.delegate.mediaFileRecorded(exportUrl, avAsset: cell.mediaFile.avAsset!)
-        } else {
-            self.delegate.mediaFileSelected(cell.imageView.image!, phAsset: asset.phAsset)
-        }
-        
+        var scpAsset = self.mediaAssets[indexPath.row]
+        self.delegate.mediaFileFromGallery(scpAsset)
         cell.toggle()
     }
     
-    private func checkPhotoAuth() {
-        
+    func checkPhotoAuth() -> Bool {
+        var accessGranted = false
         PHPhotoLibrary.requestAuthorization { (status) -> Void in
             switch status {
             case .Authorized:
                 DDLogDebug("[SCPGalleryView] -> checkPhotoAuth() - user Authorized access to PhotoLibrary")
+                accessGranted = true
             case .Restricted, .Denied:
                 DDLogError("[SCPGalleryView] -> checkPhotoAuth() - user Denied access to PhotoLibrary")
             default:
                 break
             }
         }
+        return accessGranted
     }
 }
 

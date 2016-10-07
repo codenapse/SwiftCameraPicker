@@ -15,7 +15,7 @@ class SCPCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var videoFileIcon: UIImageView!
     @IBOutlet var checkedState: UIImageView!
-    private var mediaFile: SCPMediaFile!
+    private var mediaFile: SCPAsset!
     
     
     var image: UIImage! {
@@ -52,7 +52,7 @@ class SCPCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func setup(media: SCPMediaFile) {
+    func setup(media: SCPAsset) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.setCellStateLayout(media.deleteToggle)
             self.layer.cornerRadius = 8.0
@@ -60,7 +60,7 @@ class SCPCollectionViewCell: UICollectionViewCell {
             self.layer.borderColor = UIColor.fromHex("#dddddd").CGColor
             self.mediaFile = media
             self.image = media.image
-            if self.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"] {
+            if self.mediaFile.mediaType == SCPAsset.MediaTypes["video"] {
                 self.videoFileIcon.hidden = false
             } else {
                 self.videoFileIcon.hidden = true

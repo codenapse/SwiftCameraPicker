@@ -31,12 +31,13 @@
                     <rect key="frame" x="0.0" y="20" width="507" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ory-f0-cMu">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="74" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="Ory-f0-cMu" secondAttribute="height" multiplier="1:1" id="ehx-Wk-rns"/>
+                                <constraint firstAttribute="width" constant="74" id="KMz-hU-4Fq"/>
+                                <constraint firstAttribute="height" constant="50" id="c10-71-euo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="X">
+                            <state key="normal" title="&lt; Back">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -67,6 +68,11 @@
                         <constraint firstAttribute="bottom" secondItem="Ory-f0-cMu" secondAttribute="bottom" id="aBR-5t-696"/>
                         <constraint firstAttribute="height" constant="50" id="gQr-vH-0lW"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="Ory-f0-cMu"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92Z-Tm-RZ9" userLabel="Menu View Container">
                     <rect key="frame" x="0.0" y="70" width="507" height="60"/>

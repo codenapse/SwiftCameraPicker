@@ -15,7 +15,8 @@ import CocoaLumberjack
 protocol SCPCollectionDelegate: class {
     func mediaFilePicked(image: UIImage)
     func mediaFileSelected(image: UIImage, phAsset: PHAsset)
-    func mediaFileRecorded(videoUrl: NSURL?, avAsset: AVAsset?)
+    func mediaFileFromGallery(asset: SCPAsset)
+    func mediaFileRecorded(videoUrl: NSURL)
     func mediaSelectedLimitReached() -> Bool
     func getVideoFilePath(inspectionId: String) -> String
     func toggleHeaderButtons()
@@ -98,7 +99,7 @@ class SCPCameraView: UIView {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
                 self.videoLengthBlock = []
                 for second in 1...self.videoLength {
-                     var block = SCPMediaFile.delay(second) {
+                     var block = SCPAsset.delay(second) {
                         if self.busy == true {
                             DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
                             self.videoLengthCountDownLabel.text = String(self.videoLength - second)
@@ -109,7 +110,7 @@ class SCPCameraView: UIView {
                 
                 // stop recording
                 self.stopVideoBlock = nil
-                self.stopVideoBlock = SCPMediaFile.delay(self.videoLength) {
+                self.stopVideoBlock = SCPAsset.delay(self.videoLength) {
                     if self.busy == true {
                         self.stopAndSaveVideo()
                     }
@@ -137,7 +138,7 @@ class SCPCameraView: UIView {
         if error != nil {
             return
         }
-        self.cameraViewDelegate?.mediaFileRecorded(videoUrl!, avAsset: nil)
+        self.cameraViewDelegate?.mediaFileRecorded(videoUrl!)
         self.videoLengthCountDownLabel.text = String(self.videoLength)
     }
     
@@ -153,18 +154,11 @@ class SCPCameraView: UIView {
         self.cameraViewDelegate?.toggleHeaderButtons()
         self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
             if error == nil {
-                let path = NSURL(fileURLWithPath: (self.cameraViewDelegate?.getVideoFilePath(self.inspectionId!))!)
-                do {
-                    try NSFileManager.defaultManager().copyItemAtURL(videoURL!, toURL: path)
-                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video file saved at: \(path)")
-                    self.captureVideoCompletion(path, error: error)
-                    self.videoToggleSwitch.enabled = true
-                    
-                } catch let err as NSError {
-                    DDLogError("[SwiftCameraPicker][SCPCameraView] -> failed to move video file to path: \(path) - err: \(err)")
-                }
+                self.cameraViewDelegate?.mediaFileRecorded(videoURL!)
             }
         })
+        self.videoLengthCountDownLabel.text = String(self.videoLength)
+        self.videoToggleSwitch.enabled = true
     }
     //
     // MARK:- Private methods

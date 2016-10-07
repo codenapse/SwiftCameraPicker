@@ -23,7 +23,7 @@
                                 <constraint firstAttribute="width" constant="64" id="UQM-gh-BOb"/>
                                 <constraint firstAttribute="height" constant="64" id="djC-f2-MUK"/>
                             </constraints>
-                            <state key="normal" title="take_picture_btn" image="take_picture_btn"/>
+                            <state key="normal" title="take_picture_btn" image="shutter-photo"/>
                             <connections>
                                 <action selector="takePhotoBtnPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="BOh-SR-C07"/>
                             </connections>
@@ -93,7 +93,7 @@
         </view>
     </objects>
     <resources>
-        <image name="take_picture_btn" width="128" height="128"/>
+        <image name="shutter-photo" width="146" height="146"/>
         <image name="type_video" width="32" height="32"/>
     </resources>
 </document>

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CocoaLumberjack
+
 
 class SCPGalleryViewCell: UICollectionViewCell {
     
@@ -14,11 +16,11 @@ class SCPGalleryViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var selectedFlagView: UIImageView!
     @IBOutlet var videoFileIcon: UIImageView!
-    var mediaFile: SCPMediaFile!
+    var mediaFile: SCPAsset!
     
     
     func toggle() {
-      
+//        DDLogDebug("toggle() - \(self.mediaFile.selected)")
         if self.mediaFile.selected == true {
             self.mediaFile.selected = false
         } else {
@@ -28,7 +30,7 @@ class SCPGalleryViewCell: UICollectionViewCell {
     }
     
     func setup() {
-        if self.mediaFile.mediaType == SCPMediaFile.MediaTypes["video"]! {
+        if self.mediaFile.mediaType == SCPAsset.MediaTypes["video"]! {
             self.videoFileIcon.hidden = false
         } else {
             self.videoFileIcon.hidden = true

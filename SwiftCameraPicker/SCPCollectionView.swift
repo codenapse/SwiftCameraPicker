@@ -16,7 +16,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     private var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPCollectionViewCell"
     var mediaSelectedLabelUpdateDelegate: SCPMediaSelectedLabelUpdateDelegate?
-    var mediaFiles: [SCPMediaFile?]!
+    var mediaFiles: [SCPAsset] = []
     var mediaSelectedLimit = 10 // default
     
     static func instance() -> SCPCollectionView {
@@ -26,7 +26,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     
     func initialize() {
-        self.mediaFiles = nil
+//        self.mediaFiles = []
         if let collectionView = self.viewWithTag(100) as? UICollectionView {
             self.collectionView = collectionView
         }
@@ -35,58 +35,12 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     
-    func addMediaFileToCollection(image: UIImage?, phAsset: PHAsset?, path: String? = nil, videoUrl: NSURL? = nil, avAsset: AVAsset? = nil) {
+    func addMediaFileToCollection(image: UIImage?, phAsset: PHAsset?, path: String? = nil, videoUrl: NSURL? = nil, avAsset: AVAsset? = nil, scpAsset: SCPAsset? = nil) {
         if self.getMediaSelectedCount() < self.mediaSelectedLimit {
-            var media: SCPMediaFile?
-            if path != nil {
-                media = SCPMediaFile(mediaPath: path!)
-            } else if phAsset != nil {
-                media = SCPMediaFile(phAsset: phAsset!)
-            } else if avAsset != nil {
-                media = SCPMediaFile(avAsset: avAsset!)
-                media!.mediaPath = videoUrl!.absoluteString
-                media!.mediaType = SCPMediaFile.MediaTypes["video"]!
-                do {
-                    let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
-                    let img = media!.getThumbnailFromVideo(800)
-                    let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
-                    _ = try Bool(imgData.writeToFile(bigThumbPath, options: NSDataWritingOptions.DataWritingAtomic))
-                } catch let err as NSError {
-                    DDLogDebug(err.description)
-                }
-            } else {
-                let asset: AVAsset
-                if videoUrl != nil {
-                    asset = AVAsset(URL: videoUrl!)
-                    media = SCPMediaFile(avAsset: asset)
-                    media!.mediaPath = videoUrl!.absoluteString
-                    media!.mediaType = SCPMediaFile.MediaTypes["video"]!
-                    do {
-                        let thumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
-                        let img = media!.getThumbnailFromVideo()
-                        let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
-                        _ = try Bool(imgData.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic))
-                    } catch let err as NSError {
-                        DDLogDebug(err.description)
-                    }
-                    do {
-                        let bigThumbPath = videoUrl!.path!.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
-                        let img = media!.getThumbnailFromVideo(800)
-                        let imgData: NSData = UIImageJPEGRepresentation(img!, 0.85)!
-                        _ = try Bool(imgData.writeToFile(bigThumbPath, options: NSDataWritingOptions.DataWritingAtomic))
-                    } catch let err as NSError {
-                        DDLogDebug(err.description)
-                    }
-                }
-            }
             
-            let index = 0
-            if self.mediaFiles == nil {
-                self.mediaFiles = []
-            }
-            if media != nil {
-                self.mediaFiles.insert(media, atIndex: index)
-                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+            if scpAsset != nil {
+                self.mediaFiles.insert(scpAsset!, atIndex: 0)
+                let indexPath = NSIndexPath(forItem: 0, inSection: 0)
                 self.collectionView.insertItemsAtIndexPaths([indexPath])
             }
             return
@@ -96,8 +50,8 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     
-    func getMediaFilesFromSession() -> [SCPMediaFile?] {
-        if self.mediaFiles != nil {
+    func getMediaFilesFromSession() -> [SCPAsset] {
+        if self.mediaFiles.count > 0 {
             return self.mediaFiles
         }
         return []
@@ -106,9 +60,9 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func getMediaSelectedCount() -> Int {
         var counter = 0
-        if self.mediaFiles != nil {
+        if self.mediaFiles.isEmpty {
             for item in self.mediaFiles {
-                if item!.deleteToggle == false {
+                if item.deleteToggle == false {
                     counter += 1
                 }
             }
@@ -119,10 +73,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     // MARK: - UICollectionViewDataSource
     //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.mediaFiles != nil {
-            return self.mediaFiles.count
-        }
-        return 0
+        return self.mediaFiles.count
     }
     
     
@@ -130,7 +81,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SCPCollectionViewCell", forIndexPath: indexPath) as! SCPCollectionViewCell
 
-        cell.setup(self.mediaFiles[indexPath.row]!)
+        cell.setup(self.mediaFiles[indexPath.row])
         return cell
         
     }
@@ -148,7 +99,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
 
         if self.getMediaSelectedCount() < self.mediaSelectedLimit {
             cell.toggle()
-        } else if self.mediaFiles[indexPath.row]!.deleteToggle == false {
+        } else if self.mediaFiles[indexPath.row].deleteToggle == false {
             cell.toggle()
         }
         self.mediaSelectedLabelUpdateDelegate!.updateMediaSelectedLabel()
