@@ -218,19 +218,16 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         super.viewDidLoad()
         self.configureTheme()
         self.collectionView.mediaSelectedLabelUpdateDelegate = self
+        self.cameraView.cameraViewDelegate = self
+        self.galleryView.delegate = self
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.cameraModeButton = self.view.viewWithTag(2) as! UIButton
             self.cameraModeButton.layer.cornerRadius = 8
             self.galleryModeButton.layer.cornerRadius = 8
-            
             self.cameraView.initialize()
             self.cameraView.inspectionId = self.inspectionId
-            self.cameraView.cameraViewDelegate = self
-            self.galleryView.delegate = self
             self.galleryView.inspectionId = self.inspectionId
             self.galleryView.checkPhotoAuth()
-            
-            
             self.previewContainerView.addSubview(self.cameraView)
             self.cameraView.bindSubViewToSuperview()
             self.collectionViewContainer = self.view.viewWithTag(10)! as UIView

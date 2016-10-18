@@ -29,7 +29,7 @@ class SCPCameraView: UIView {
     @IBOutlet var cameraPreview: UIView!
     @IBOutlet var takePictureBtn: UIButton!
     @IBOutlet var videoToggleSwitch: UISwitch!
-    weak var cameraViewDelegate: SCPCollectionDelegate? = nil
+    var cameraViewDelegate: SCPCollectionDelegate? = nil
     var cameraManagerStillImage: CameraManager?
     var cameraManagerVideoOnly: CameraManager?
     var busy: Bool = false
@@ -80,10 +80,9 @@ class SCPCameraView: UIView {
     @IBAction func takePhotoBtnPressed(sender: AnyObject) {
         if self.busy == false {
             self.busy = true
-            self.cameraViewDelegate?.toggleHeaderButtons()
+            self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                //self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
                 self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
                     if image != nil {
                         let squared = image//MediaFile.cropToSquare(image!)
