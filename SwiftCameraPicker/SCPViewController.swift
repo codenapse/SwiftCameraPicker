@@ -120,7 +120,7 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     //
     
     public func configWriteMediaToPath(closure: (fileName: String, fileType: Int, inspectionId: String) -> String) {
-        self.writeMediaToPath = closure as! WriteMediaToPathClosure
+        self.writeMediaToPath = closure 
     }
     
     public func setInspectionUuid(inspectionId: String) {
@@ -260,27 +260,24 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     //
     func mediaFilePicked(image: UIImage) {
         DDLogDebug("[SCPViewController] -> .stillImage captured")
-        var asset = SCPAsset(initWithImage: image)
+        let asset = SCPAsset(initWithImage: image)
         asset.inspectionUUID = self.inspectionId!
         asset.generateFileName
         asset.writeFileToPath()
         self.collectionView.addMediaFileToCollection(nil, phAsset: nil, scpAsset: asset)
-        self.updateMediaSelectedLabel()
     }
     
     func mediaFileSelected(image: UIImage, phAsset: PHAsset) {
         DDLogDebug("[SCPViewController] -> mediaFileSelected() \(image.size.width)x\(image.size.height)")
         self.collectionView.addMediaFileToCollection(image, phAsset: phAsset)
-        self.updateMediaSelectedLabel()
     }
     
     func mediaFileRecorded(videoUrl: NSURL) {
-        var asset = SCPAsset(initWithTempVideoPath: videoUrl)
+        let asset = SCPAsset(initWithTempVideoPath: videoUrl)
         asset.inspectionUUID = self.inspectionId!
         asset.generateFileName
         asset.writeFileToPath()
         self.collectionView.addMediaFileToCollection(nil, phAsset: nil, scpAsset: asset)
-        self.updateMediaSelectedLabel()
     }
     
     func mediaFileFromGallery(asset: SCPAsset) {

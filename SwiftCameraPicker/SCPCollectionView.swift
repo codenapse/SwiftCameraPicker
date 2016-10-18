@@ -42,6 +42,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
                 self.mediaFiles.insert(scpAsset!, atIndex: 0)
                 let indexPath = NSIndexPath(forItem: 0, inSection: 0)
                 self.collectionView.insertItemsAtIndexPaths([indexPath])
+                self.mediaSelectedLabelUpdateDelegate?.updateMediaSelectedLabel()
             }
             return
         }
@@ -60,7 +61,7 @@ class SCPCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func getMediaSelectedCount() -> Int {
         var counter = 0
-        if self.mediaFiles.isEmpty {
+        if !self.mediaFiles.isEmpty {
             for item in self.mediaFiles {
                 if item.deleteToggle == false {
                     counter += 1

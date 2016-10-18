@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751DB7631DB63E270063FAD9 /* SCPAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DB7621DB63E270063FAD9 /* SCPAsset.swift */; };
 		759EB5621D672C030097647C /* SwiftCameraPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 759EB5611D672C030097647C /* SwiftCameraPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		759EB5691D672C030097647C /* SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759EB55E1D672C020097647C /* SwiftCameraPicker.framework */; };
 		759EB56E1D672C030097647C /* SwiftCameraPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB56D1D672C030097647C /* SwiftCameraPickerTests.swift */; };
@@ -22,7 +23,6 @@
 		759EB58E1D672CD40097647C /* SCPGalleryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB5821D672CD40097647C /* SCPGalleryView.xib */; };
 		759EB58F1D672CD40097647C /* SCPGalleryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5831D672CD40097647C /* SCPGalleryViewCell.swift */; };
 		759EB5901D672CD40097647C /* SCPGalleryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759EB5841D672CD40097647C /* SCPGalleryViewCell.xib */; };
-		759EB5931D672CF00097647C /* SCPMediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EB5921D672CF00097647C /* SCPMediaFile.swift */; };
 		759EB59C1D672F470097647C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 759EB59B1D672F470097647C /* Images.xcassets */; };
 		7EBB1FA21FD414E79B0D9482 /* Pods_SwiftCameraPickerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E151378DFD33BEA767CBC1E /* Pods_SwiftCameraPickerTests.framework */; };
 		FE330A005F5F23817603490A /* Pods_SwiftCameraPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53180C2CD59D0F6EC6247094 /* Pods_SwiftCameraPicker.framework */; };
@@ -43,6 +43,7 @@
 		45B08CEFC609879BB306D617 /* Pods-SwiftCameraPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.release.xcconfig"; sourceTree = "<group>"; };
 		53180C2CD59D0F6EC6247094 /* Pods_SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59DB4E150FC53197B61E1CE3 /* Pods-SwiftCameraPickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPickerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		751DB7621DB63E270063FAD9 /* SCPAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPAsset.swift; sourceTree = "<group>"; };
 		759EB55E1D672C020097647C /* SwiftCameraPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCameraPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		759EB5611D672C030097647C /* SwiftCameraPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftCameraPicker.h; sourceTree = "<group>"; };
 		759EB5631D672C030097647C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		759EB5821D672CD40097647C /* SCPGalleryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryView.xib; sourceTree = "<group>"; };
 		759EB5831D672CD40097647C /* SCPGalleryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPGalleryViewCell.swift; sourceTree = "<group>"; };
 		759EB5841D672CD40097647C /* SCPGalleryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCPGalleryViewCell.xib; sourceTree = "<group>"; };
-		759EB5921D672CF00097647C /* SCPMediaFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPMediaFile.swift; sourceTree = "<group>"; };
 		759EB59B1D672F470097647C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A4AA369F08435480102BB52 /* Pods-SwiftCameraPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCameraPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker.debug.xcconfig"; sourceTree = "<group>"; };
 		8E151378DFD33BEA767CBC1E /* Pods_SwiftCameraPickerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCameraPickerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +142,7 @@
 		759EB5911D672CE00097647C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				759EB5921D672CF00097647C /* SCPMediaFile.swift */,
+				751DB7621DB63E270063FAD9 /* SCPAsset.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -226,12 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 759EB5721D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPicker" */;
 			buildPhases = (
-				0F1A279532748AA23F611B4A /* 📦 Check Pods Manifest.lock */,
+				0F1A279532748AA23F611B4A /* [CP] Check Pods Manifest.lock */,
 				759EB5591D672C020097647C /* Sources */,
 				759EB55A1D672C020097647C /* Frameworks */,
 				759EB55B1D672C020097647C /* Headers */,
 				759EB55C1D672C020097647C /* Resources */,
-				48895209AAF893D9FAB2C08D /* 📦 Copy Pods Resources */,
+				48895209AAF893D9FAB2C08D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,12 +246,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 759EB5751D672C030097647C /* Build configuration list for PBXNativeTarget "SwiftCameraPickerTests" */;
 			buildPhases = (
-				AEF83FAE8714D1E84CDEC03C /* 📦 Check Pods Manifest.lock */,
+				AEF83FAE8714D1E84CDEC03C /* [CP] Check Pods Manifest.lock */,
 				759EB5641D672C030097647C /* Sources */,
 				759EB5651D672C030097647C /* Frameworks */,
 				759EB5661D672C030097647C /* Resources */,
-				08B2A1A9FC4E527AECEFE4D3 /* 📦 Embed Pods Frameworks */,
-				07A03413B173BA906B663738 /* 📦 Copy Pods Resources */,
+				08B2A1A9FC4E527AECEFE4D3 /* [CP] Embed Pods Frameworks */,
+				07A03413B173BA906B663738 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,9 +275,11 @@
 				TargetAttributes = {
 					759EB55D1D672C020097647C = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					759EB5671D672C030097647C = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -324,14 +326,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07A03413B173BA906B663738 /* 📦 Copy Pods Resources */ = {
+		07A03413B173BA906B663738 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,14 +341,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		08B2A1A9FC4E527AECEFE4D3 /* 📦 Embed Pods Frameworks */ = {
+		08B2A1A9FC4E527AECEFE4D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,29 +356,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPickerTests/Pods-SwiftCameraPickerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0F1A279532748AA23F611B4A /* 📦 Check Pods Manifest.lock */ = {
+		0F1A279532748AA23F611B4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		48895209AAF893D9FAB2C08D /* 📦 Copy Pods Resources */ = {
+		48895209AAF893D9FAB2C08D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,19 +386,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCameraPicker/Pods-SwiftCameraPicker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEF83FAE8714D1E84CDEC03C /* 📦 Check Pods Manifest.lock */ = {
+		AEF83FAE8714D1E84CDEC03C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -408,11 +410,11 @@
 			files = (
 				759EB58F1D672CD40097647C /* SCPGalleryViewCell.swift in Sources */,
 				759EB5851D672CD40097647C /* SCPCameraView.swift in Sources */,
+				751DB7631DB63E270063FAD9 /* SCPAsset.swift in Sources */,
 				759EB58D1D672CD40097647C /* SCPGalleryView.swift in Sources */,
 				759EB5891D672CD40097647C /* SCPCollectionView.swift in Sources */,
 				759EB5871D672CD40097647C /* SCPViewController.swift in Sources */,
 				759EB58B1D672CD40097647C /* SCPCollectionViewCell.swift in Sources */,
-				759EB5931D672CF00097647C /* SCPMediaFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +544,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -560,6 +563,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -571,6 +575,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -582,6 +587,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codenapse.SwiftCameraPickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

@@ -15,7 +15,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
     private var mediaAssets: [SCPAsset] = []
-    public lazy var inspectionId: String? = nil
+    internal lazy var inspectionId: String? = nil
     var delegate: SCPCollectionDelegate!
     
     
@@ -41,7 +41,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         videos.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
                 SCPAsset.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
-                    var scpAsset = SCPAsset(initWithPHAsset: asset, videoFlag: true)
+                    let scpAsset = SCPAsset(initWithPHAsset: asset, videoFlag: true)
                     scpAsset.avAsset = avAsset!
                     scpAsset.inspectionUUID = self.inspectionId!
                     scpAsset.mediaType = SCPAsset.MediaTypes["video"]!
@@ -49,7 +49,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                 })
             }
         }
-        var results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
+        let results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         results.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
                 assets.append(asset)
@@ -63,7 +63,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                                                               options: nil
         )
         for asset in assets {
-            var scpAsset = SCPAsset(initWithPHAsset: asset)
+            let scpAsset = SCPAsset(initWithPHAsset: asset)
             scpAsset.inspectionUUID = self.inspectionId!
             self.mediaAssets.append(scpAsset)
         }
@@ -106,7 +106,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         if asset.selected == true {
             return
         }
-        var scpAsset = self.mediaAssets[indexPath.row]
+        let scpAsset = self.mediaAssets[indexPath.row]
         self.delegate.mediaFileFromGallery(scpAsset)
         cell.toggle()
     }
