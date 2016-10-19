@@ -83,7 +83,7 @@ class SCPCameraView: UIView {
             self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
+                self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
                     if image != nil {
                         let squared = image//MediaFile.cropToSquare(image!)
                         self.capturePictureCompletion(squared, error: error)
@@ -153,7 +153,7 @@ class SCPCameraView: UIView {
         self.busy = false
         self.cameraViewDelegate?.toggleHeaderButtons()
         //self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
-        self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
+        self.cameraManagerVideoOnly!.stopVideoRecording({ (videoURL, error) -> Void in
             if error == nil {
                 self.cameraViewDelegate?.mediaFileRecorded(videoURL!)
             }
