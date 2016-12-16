@@ -72,7 +72,8 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
 /*        for video in tempVideos {
  *            self.mediaAssets.append(video)
- */        }
+ *        }
+ */
     }
     //
     // MARK: - UICollectionViewDataSource
