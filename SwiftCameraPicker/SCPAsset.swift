@@ -33,10 +33,10 @@ public class SCPAsset: NSObject {
     var filePathNoExtension: String? {
         get {
             if self.filePath != nil {
-                var chars = self.filePath!.stringByReplacingOccurrencesOfString("_original".stringByAppendingString(self.fileExtension), withString: "")
+                let chars = self.filePath!.stringByReplacingOccurrencesOfString("_original".stringByAppendingString(self.fileExtension), withString: "")
                 return chars
             } else if self.mediaPath != nil {
-                var chars = self.mediaPath!.stringByReplacingOccurrencesOfString("_original".stringByAppendingString(self.fileExtension), withString: "")
+                let chars = self.mediaPath!.stringByReplacingOccurrencesOfString("_original".stringByAppendingString(self.fileExtension), withString: "")
                 return chars
             } else {
                 return nil
@@ -45,7 +45,7 @@ public class SCPAsset: NSObject {
     }
     var generateFileName: String {
         get {
-            let uuid = NSUUID().UUIDString
+            let uuid = NSUUID().UUIDString.lowercaseString
             self.fileName = uuid
             return uuid
         }
@@ -107,7 +107,7 @@ public class SCPAsset: NSObject {
             let imageData:NSData = UIImageJPEGRepresentation(self.original!, 0.85)!
             imageData.writeToFile(originalPath, atomically: true)
             
-            var thumb = SCPAsset.resizeImage(self.original!, size: 100)
+            let thumb = SCPAsset.resizeImage(self.original!, size: 100)
             let thumbData: NSData = UIImageJPEGRepresentation(thumb, 0.99)!
             thumbData.writeToFile(thumbPath, atomically: true)
             
@@ -119,7 +119,7 @@ public class SCPAsset: NSObject {
         } else {
             DDLogDebug("[SCPAsset][writeFileToPath][video] -> \(path)")
             do {
-                var videoPath = path.stringByAppendingString("_original").stringByAppendingString(self.fileExtension)
+                let videoPath = path.stringByAppendingString("_original").stringByAppendingString(self.fileExtension)
                 let schema = "file://"
                 try NSFileManager.defaultManager().copyItemAtURL(self.videoUrl!, toURL: NSURL(string: (schema.stringByAppendingString(videoPath)))!)
                 DDLogDebug("[SwiftCameraPicker][SCPAsset] -> video file saved at: \(videoPath)")
@@ -132,9 +132,9 @@ public class SCPAsset: NSObject {
                 let thumbData: NSData = UIImageJPEGRepresentation(self.thumb!, 0.99)!
                 thumbData.writeToFile(thumbPath, atomically: true)
                 
-                var previewPath = path.stringByAppendingString("_preview.jpg")
-                var preview = self.getThumbnailFromVideo(700)
-                var previewData: NSData = UIImageJPEGRepresentation(preview!, 0.85)!
+                let previewPath = path.stringByAppendingString("_preview.jpg")
+                let preview = self.getThumbnailFromVideo(700)
+                let previewData: NSData = UIImageJPEGRepresentation(preview!, 0.85)!
                 previewData.writeToFile(previewPath, atomically: true)
             } catch let err as NSError {
                 DDLogError("[SwiftCameraPicker][SCPAsset] -> failed to move video file to path: \(path) - err: \(err)")
@@ -150,23 +150,23 @@ public class SCPAsset: NSObject {
             DDLogDebug("[SCPAsset][exportVideoFromPhotoLib] avAsset nil")
             return
         }
-        var thumb = self.getThumbnailFromVideo(110)
+        let thumb = self.getThumbnailFromVideo(110)
         self.image = thumb
         self.thumb = thumb
         let path = SCPAsset.getOrCreateMediaFilePath(self.fileName!, fileType: self.mediaType, inspectionId: self.inspectionUUID!).stringByAppendingString(self.fileName!).stringByAppendingString("_original").stringByAppendingString(self.fileExtension)
         self.mediaPath = path
         let exportUrl: NSURL = NSURL.fileURLWithPath(path)
-        var exporter = AVAssetExportSession(asset: self.avAsset!, presetName: AVAssetExportPresetHighestQuality)
+        let exporter = AVAssetExportSession(asset: self.avAsset!, presetName: AVAssetExportPresetHighestQuality)
         exporter?.outputURL = exportUrl
         exporter?.outputFileType = AVFileTypeMPEG4
         exporter?.exportAsynchronouslyWithCompletionHandler({
-            var thumbPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
+            let thumbPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_thumb.jpg")
             DDLogDebug("[SCPAsset][exportVideoFromPhotoLib] thumb: \(thumbPath)")
-            var imgData: NSData = UIImageJPEGRepresentation(thumb!, 0.85)!
+            let imgData: NSData = UIImageJPEGRepresentation(thumb!, 0.85)!
             imgData.writeToFile(thumbPath, atomically: true)
-            var previewPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
-            var preview = self.getThumbnailFromVideo(700)
-            var previewData: NSData = UIImageJPEGRepresentation(preview!, 0.85)!
+            let previewPath = path.stringByReplacingOccurrencesOfString("_original.mp4", withString: "_preview.jpg")
+            let preview = self.getThumbnailFromVideo(700)
+            let previewData: NSData = UIImageJPEGRepresentation(preview!, 0.85)!
             previewData.writeToFile(previewPath, atomically: true)
         })
         DDLogDebug("[SCPAsset][exportVideoFromPhotoLib] path: \(path)")
@@ -187,8 +187,8 @@ public class SCPAsset: NSObject {
         
         do {
             let imageRef = try imageGenerator.copyCGImageAtTime(time, actualTime: nil)
-            var img = UIImage(CGImage: imageRef)
-            var image = SCPAsset.resizeImage(img, size: CGFloat(size))
+            let img = UIImage(CGImage: imageRef)
+            let image = SCPAsset.resizeImage(img, size: CGFloat(size))
             return image
         }
         catch let error as NSError
@@ -237,12 +237,12 @@ public class SCPAsset: NSObject {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     
     static func delay(delay:Int, closure:()->()) -> dispatch_block_t {
-        var block: dispatch_block_t = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS) {
+        let block: dispatch_block_t = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS) {
             closure()
         }
         dispatch_after(

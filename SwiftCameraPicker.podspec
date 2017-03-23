@@ -134,7 +134,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency 'CocoaLumberjack/Swift'
-  s.dependency 'CameraManager', '~> 2.2'
+  s.dependency 'CameraManager'
 
   s.source_files = "SwiftCameraPicker/**/*.{swift}"
   s.resources = "SwiftCameraPicker/**/*.{png,jpeg,jpg,xib,xcassets}"

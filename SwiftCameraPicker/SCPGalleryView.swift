@@ -15,7 +15,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @IBOutlet var collectionView: UICollectionView!
     private var cellReuseIdentifier = "SCPGalleryViewCell"
     private var mediaAssets: [SCPAsset] = []
-    public lazy var inspectionId: String? = nil
+    internal lazy var inspectionId: String? = nil
     var delegate: SCPCollectionDelegate!
     
     
@@ -34,22 +34,25 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         var assets: [PHAsset] = []
         let options = PHFetchOptions()
         options.sortDescriptors = [
-            NSSortDescriptor(key: "creationDate", ascending: true)
+            NSSortDescriptor(key: "creationDate", ascending: false)
         ]
-        var tempVideos: [SCPAsset] = []
-        let videos = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
-        videos.enumerateObjectsUsingBlock { (object, _, _) in
-            if let asset = object as? PHAsset {
-                SCPAsset.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
-                    var scpAsset = SCPAsset(initWithPHAsset: asset, videoFlag: true)
-                    scpAsset.avAsset = avAsset!
-                    scpAsset.inspectionUUID = self.inspectionId!
-                    scpAsset.mediaType = SCPAsset.MediaTypes["video"]!
-                    tempVideos.append(scpAsset)
-                })
-            }
-        }
-        var results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
+	options.fetchLimit = 1000
+/*	don't import videos, we can't limit to 10 seconds
+ *        var tempVideos: [SCPAsset] = []
+ *        let videos = PHAsset.fetchAssetsWithMediaType(.Video, options: options)
+ *        videos.enumerateObjectsUsingBlock { (object, _, _) in
+ *            if let asset = object as? PHAsset {
+ *                SCPAsset.imageManager.requestAVAssetForVideo(asset, options: nil, resultHandler: {(avAsset: AVAsset?, audioMix: AVAudioMix?, info: [NSObject : AnyObject]?) -> Void in
+ *                    let scpAsset = SCPAsset(initWithPHAsset: asset, videoFlag: true)
+ *                    scpAsset.avAsset = avAsset!
+ *                    scpAsset.inspectionUUID = self.inspectionId!
+ *                    scpAsset.mediaType = SCPAsset.MediaTypes["video"]!
+ *                    tempVideos.append(scpAsset)
+ *                })
+ *            }
+ *        }
+ */
+        let results = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         results.enumerateObjectsUsingBlock { (object, _, _) in
             if let asset = object as? PHAsset {
                 assets.append(asset)
@@ -63,13 +66,14 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                                                               options: nil
         )
         for asset in assets {
-            var scpAsset = SCPAsset(initWithPHAsset: asset)
+            let scpAsset = SCPAsset(initWithPHAsset: asset)
             scpAsset.inspectionUUID = self.inspectionId!
             self.mediaAssets.append(scpAsset)
         }
-        for video in tempVideos {
-            self.mediaAssets.append(video)
-        }
+/*        for video in tempVideos {
+ *            self.mediaAssets.append(video)
+ *        }
+ */
     }
     //
     // MARK: - UICollectionViewDataSource
@@ -106,7 +110,7 @@ class SCPGalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         if asset.selected == true {
             return
         }
-        var scpAsset = self.mediaAssets[indexPath.row]
+        let scpAsset = self.mediaAssets[indexPath.row]
         self.delegate.mediaFileFromGallery(scpAsset)
         cell.toggle()
     }

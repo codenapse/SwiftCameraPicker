@@ -29,14 +29,14 @@ class SCPCameraView: UIView {
     @IBOutlet var cameraPreview: UIView!
     @IBOutlet var takePictureBtn: UIButton!
     @IBOutlet var videoToggleSwitch: UISwitch!
-    weak var cameraViewDelegate: SCPCollectionDelegate? = nil
+    var cameraViewDelegate: SCPCollectionDelegate? = nil
     var cameraManagerStillImage: CameraManager?
     var cameraManagerVideoOnly: CameraManager?
     var busy: Bool = false
     var videoLength = 10
     var videoLengthBlock: [dispatch_block_t] = []
     var stopVideoBlock: dispatch_block_t?
-    public var inspectionId: String? = nil
+    var inspectionId: String? = nil
     let cameraModes: Dictionary<String, CameraOutputMode> = [
         "photo": .StillImage,
         "video": .VideoOnly
@@ -45,7 +45,7 @@ class SCPCameraView: UIView {
     var tapGesture:UITapGestureRecognizer? = nil
     
     static func instance() -> SCPCameraView {
-        var view = UINib(nibName: "SCPCameraView", bundle: NSBundle(forClass: self.classForCoder())).instantiateWithOwner(self, options: nil)[0] as! SCPCameraView
+        let view = UINib(nibName: "SCPCameraView", bundle: NSBundle(forClass: self.classForCoder())).instantiateWithOwner(self, options: nil)[0] as! SCPCameraView
         view.recordingMode.layer.cornerRadius = 6.0
         return view
     }
@@ -80,10 +80,10 @@ class SCPCameraView: UIView {
     @IBAction func takePhotoBtnPressed(sender: AnyObject) {
         if self.busy == false {
             self.busy = true
-            self.cameraViewDelegate?.toggleHeaderButtons()
+            self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
+                self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
                     if image != nil {
                         let squared = image//MediaFile.cropToSquare(image!)
                         self.capturePictureCompletion(squared, error: error)
@@ -99,7 +99,7 @@ class SCPCameraView: UIView {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
                 self.videoLengthBlock = []
                 for second in 1...self.videoLength {
-                     var block = SCPAsset.delay(second) {
+                     let block = SCPAsset.delay(second) {
                         if self.busy == true {
                             DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
                             self.videoLengthCountDownLabel.text = String(self.videoLength - second)
@@ -152,7 +152,8 @@ class SCPCameraView: UIView {
         self.videoLengthBlock = []
         self.busy = false
         self.cameraViewDelegate?.toggleHeaderButtons()
-        self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
+        //self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
+        self.cameraManagerVideoOnly!.stopVideoRecording({ (videoURL, error) -> Void in
             if error == nil {
                 self.cameraViewDelegate?.mediaFileRecorded(videoURL!)
             }
@@ -171,7 +172,7 @@ class SCPCameraView: UIView {
         }
         self.cameraManagerVideoOnly = nil
         self.cameraMode = self.cameraModes["video"]!
-        var manager = CameraManager()
+        let manager = CameraManager()
         manager.cameraOutputMode = self.cameraModes["video"]!
         manager.writeFilesToPhoneLibrary = false
         self.cameraManagerVideoOnly = manager
@@ -183,7 +184,7 @@ class SCPCameraView: UIView {
         self.cameraManagerVideoOnly = nil
         self.cameraManagerStillImage = nil
         self.cameraMode = self.cameraModes["photo"]!
-        var manager = CameraManager()
+        let manager = CameraManager()
         manager.cameraOutputMode = self.cameraModes["photo"]!
         manager.writeFilesToPhoneLibrary = false
         self.cameraManagerStillImage = manager

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "860E96668C935B10826CA93951257422623E2B3D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "860E96668C935B10826CA93951257422623E2B3D" : 9223372036854775807,
+    "E1D0A3AE6B49B031DF6A25973E5414F28D2A575A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6C0B03C8-2A2E-459B-B1AA-43067F449434",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "860E96668C935B10826CA93951257422623E2B3D" : "swiftcamerapicker\/",
+    "E1D0A3AE6B49B031DF6A25973E5414F28D2A575A" : "CameraManager\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftCameraPicker",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftCameraPicker.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:codenapse\/SwiftCameraPicker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "860E96668C935B10826CA93951257422623E2B3D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:codenapse\/CameraManager.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E1D0A3AE6B49B031DF6A25973E5414F28D2A575A"
+    }
+  ]
+}
