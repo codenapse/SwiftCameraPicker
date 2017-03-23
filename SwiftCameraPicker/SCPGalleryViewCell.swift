@@ -31,21 +31,21 @@ class SCPGalleryViewCell: UICollectionViewCell {
     
     func setup() {
         if self.mediaFile.mediaType == SCPAsset.MediaTypes["video"]! {
-            self.videoFileIcon.hidden = false
+            self.videoFileIcon.isHidden = false
         } else {
-            self.videoFileIcon.hidden = true
+            self.videoFileIcon.isHidden = true
         }
         self.setCellStateLayout(self.mediaFile.selected)
     }
     
-    func setCellStateLayout(selected: Bool) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    func setCellStateLayout(_ selected: Bool) {
+        DispatchQueue.main.async(execute: { () -> Void in
             if selected == true {
                 self.imageView.alpha = 0.5
-                self.selectedFlagView.hidden = false
+                self.selectedFlagView.isHidden = false
             } else {
                 self.imageView.alpha = 1.0
-                self.selectedFlagView.hidden = true
+                self.selectedFlagView.isHidden = true
             }
             
         })
@@ -53,8 +53,8 @@ class SCPGalleryViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.selectedFlagView.hidden = true
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.selectedFlagView.isHidden = true
         })
     }
 
