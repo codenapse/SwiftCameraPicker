@@ -289,7 +289,7 @@ open class SCPAsset: NSObject {
             }
         }
         if subfolder != nil {
-            mediaFolderPath = mediaFolderPath + "/\(subfolder)"
+            mediaFolderPath = mediaFolderPath + "/" + (subfolder)
             var isDir : ObjCBool = true
             if !fileManager.fileExists(atPath: mediaFolderPath, isDirectory: &isDir) {
                 do {
