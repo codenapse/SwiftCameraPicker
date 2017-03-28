@@ -10,6 +10,7 @@
 import UIKit
 import Photos
 import CocoaLumberjack
+import AVFoundation
 
 
 
@@ -60,6 +61,7 @@ open class SCPAsset: NSObject {
     var fileName: String? = nil
     var inspectionUUID: String? = nil
     var videoUrl: URL? = nil
+    var camOrientation: AVCaptureVideoOrientation = .portrait
     var avAsset: AVAsset? = nil
     var phAsset: PHAsset? = nil
     var selected: Bool = false
