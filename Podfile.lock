@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CameraManager:
-    :commit: 77240f9901cf9668d88c104128bd9e4408b6cb6d
+    :commit: a472143e439e0ebc3a25a3bdb2b2936bb8916a34
     :git: https://github.com/nmolkeri/CameraManager.git
 
 SPEC CHECKSUMS:
