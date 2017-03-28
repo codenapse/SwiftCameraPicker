@@ -99,7 +99,7 @@ class SCPCameraView: UIView {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
                 self.videoLengthBlock = []
                 for second in 1...self.videoLength {
-                     let block = SCPAsset.delay(delay: second) {
+                     let block = SCPAsset.delay(delay: Double(second)) {
                         if self.busy == true {
                             DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
                             self.videoLengthCountDownLabel.text = String(self.videoLength - second)
@@ -110,7 +110,7 @@ class SCPCameraView: UIView {
                 
                 // stop recording
                 self.stopVideoBlock = nil
-                self.stopVideoBlock = SCPAsset.delay(delay: self.videoLength) {
+                self.stopVideoBlock = SCPAsset.delay(delay: Double(self.videoLength)) {
                     if self.busy == true {
                         self.stopAndSaveVideo()
                     }

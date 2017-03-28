@@ -250,15 +250,22 @@ open class SCPAsset: NSObject {
 //        return block
 //    }
     
-    static func delay(delay:Int, closure:@escaping ()->()) -> DispatchWorkItem {
-        var block = nil as DispatchWorkItem?
-        let delayTime = DispatchTime.now() + Double(delay)
-        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-            block = DispatchWorkItem{
-                closure()
-            }})
-        return block!
+    static func delay(delay:Double, closure:@escaping ()->()) -> DispatchWorkItem {
+        let delayTime = DispatchTime.now() + delay
+        let dispatchWorkItem = DispatchWorkItem(block: closure);
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: dispatchWorkItem)
+        return dispatchWorkItem
     }
+    
+//    static func delay(delay:Int, closure:@escaping ()->()) -> DispatchWorkItem {
+//        var block: DispatchWorkItem //= nil as DispatchWorkItem?
+//        let delayTime = DispatchTime.now() + Double(delay)
+//        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+//            block = DispatchWorkItem{
+//                closure()
+//            }})
+//        return block
+//    }
     
     static func getOrCreateMediaFilePath(_ fileUuid: String!, fileType: Int, inspectionId: String) -> String! {
         return SCPAsset.getAndCreateMediaFolder(String(fileType) + "/", inspectionId: inspectionId)
