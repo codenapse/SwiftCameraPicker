@@ -5,23 +5,13 @@ PODS:
     - CocoaLumberjack/Default
 
 DEPENDENCIES:
-  - CameraManager (from `https://github.com/nmolkeri/CameraManager.git`, branch `portrait`)
+  - CameraManager (~> 3.1)
   - CocoaLumberjack/Swift
 
-EXTERNAL SOURCES:
-  CameraManager:
-    :branch: portrait
-    :git: https://github.com/nmolkeri/CameraManager.git
-
-CHECKOUT OPTIONS:
-  CameraManager:
-    :commit: a472143e439e0ebc3a25a3bdb2b2936bb8916a34
-    :git: https://github.com/nmolkeri/CameraManager.git
-
 SPEC CHECKSUMS:
-  CameraManager: 7ca5346a227b111412912c6e485cc0e59f4e6bf6
+  CameraManager: e6236452ec87950dde1fd70a8bed938336bb8901
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
 
-PODFILE CHECKSUM: 92f12a3ec3915fcd2354e26892f73ff4b652914b
+PODFILE CHECKSUM: 2065ce17cb2b0e5165efc76af5be514b8371b6a1
 
 COCOAPODS: 1.2.1.beta.1

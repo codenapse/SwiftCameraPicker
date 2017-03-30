@@ -212,6 +212,21 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
 //    override public func shouldAutorotate() -> Bool {
 //        return true
 //    }
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        setVideoOrientation()
+    }
+    
+    private func setVideoOrientation() {
+        let value = UIDevice.current.orientation
+        let orientation = "orientation"
+        
+        switch value {
+        case .portraitUpsideDown:
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: orientation)
+        default: break
+        }
+    }
     
     
     override public func viewDidLoad() {
