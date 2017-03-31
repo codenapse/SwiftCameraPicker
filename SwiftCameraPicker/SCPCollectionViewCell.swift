@@ -15,7 +15,7 @@ class SCPCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var videoFileIcon: UIImageView!
     @IBOutlet var checkedState: UIImageView!
-    private var mediaFile: SCPAsset!
+    fileprivate var mediaFile: SCPAsset!
     
     
     var image: UIImage! {
@@ -31,39 +31,39 @@ class SCPCollectionViewCell: UICollectionViewCell {
         } else {
             self.mediaFile.deleteToggle = true
         }
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             self.setCellStateLayout(self.mediaFile.deleteToggle)
         })
     }
     
     
-    func setCellStateLayout(selected: Bool) {
+    func setCellStateLayout(_ selected: Bool) {
         if selected == true {
-            self.visualEffect.hidden = false
-            self.checkedState.hidden = true
-            self.selected = true
-            super.selected = true
+            self.visualEffect.isHidden = false
+            self.checkedState.isHidden = true
+            self.isSelected = true
+            super.isSelected = true
         } else {
-            self.visualEffect.hidden = true
-            self.checkedState.hidden = false
-            self.selected = false
-            super.selected = false
+            self.visualEffect.isHidden = true
+            self.checkedState.isHidden = false
+            self.isSelected = false
+            super.isSelected = false
         }
     }
     
     
-    func setup(media: SCPAsset) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    func setup(_ media: SCPAsset) {
+        DispatchQueue.main.async(execute: { () -> Void in
             self.setCellStateLayout(media.deleteToggle)
             self.layer.cornerRadius = 8.0
             self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.fromHex("#dddddd").CGColor
+            self.layer.borderColor = UIColor.fromHex("#dddddd").cgColor
             self.mediaFile = media
             self.image = media.image
             if self.mediaFile.mediaType == SCPAsset.MediaTypes["video"] {
-                self.videoFileIcon.hidden = false
+                self.videoFileIcon.isHidden = false
             } else {
-                self.videoFileIcon.hidden = true
+                self.videoFileIcon.isHidden = true
             }
         })
     }

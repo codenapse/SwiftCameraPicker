@@ -1,31 +1,17 @@
 PODS:
-  - CameraManager (2.2.4)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
+  - CameraManager (3.1.1)
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Swift (3.1.0):
     - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (2.3.0):
-    - CocoaLumberjack/Extensions
 
 DEPENDENCIES:
-  - CameraManager (from `git@github.com:codenapse/CameraManager.git`, branch `2.3-support`)
+  - CameraManager (~> 3.1)
   - CocoaLumberjack/Swift
 
-EXTERNAL SOURCES:
-  CameraManager:
-    :branch: 2.3-support
-    :git: git@github.com:codenapse/CameraManager.git
-
-CHECKOUT OPTIONS:
-  CameraManager:
-    :commit: 1533630c0c311fca78adfd6c055ff7504d26da53
-    :git: git@github.com:codenapse/CameraManager.git
-
 SPEC CHECKSUMS:
-  CameraManager: 761f0d3dca325e8dabd46065f0b376798bca66bf
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  CameraManager: e6236452ec87950dde1fd70a8bed938336bb8901
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
 
-PODFILE CHECKSUM: b920c86eb8e2494d237f1ca5b116d127ab73a616
+PODFILE CHECKSUM: 2065ce17cb2b0e5165efc76af5be514b8371b6a1
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.2.1.beta.1
