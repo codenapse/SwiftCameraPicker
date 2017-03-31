@@ -71,7 +71,7 @@ class SCPCameraView: UIView {
             self.recordingMode.isHidden = true
         }
         self.busy = false
-        let delayTime = DispatchTime.now() + Double(Int64(0.7 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        let delayTime = DispatchTime.now() + Double(Int64(1.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.takePictureBtn.isEnabled = true
             self.videoToggleSwitch.isEnabled = true
@@ -80,7 +80,7 @@ class SCPCameraView: UIView {
     @IBAction func takePhotoBtnPressed(_ sender: AnyObject) {
         if self.busy == false {
             self.busy = true
-            self.cameraViewDelegate!.toggleHeaderButtons()
+            //self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
                 self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
@@ -88,11 +88,12 @@ class SCPCameraView: UIView {
                         let squared = image//MediaFile.cropToSquare(image!)
                         self.capturePictureCompletion(squared, error: error)
                         self.busy = false
-                        self.cameraViewDelegate?.toggleHeaderButtons()
+                        //self.cameraViewDelegate?.toggleHeaderButtons()
                     }
                 })
             } else if self.cameraMode == self.cameraModes["video"] {
                 DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
+                self.cameraViewDelegate!.toggleHeaderButtons()
                 self.cameraManagerVideoOnly!.startRecordingVideo()
                 self.videoToggleSwitch.isEnabled = false
                 // update ui labels
