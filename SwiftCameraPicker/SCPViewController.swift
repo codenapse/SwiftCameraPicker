@@ -25,6 +25,8 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     public lazy var delegate: SCPViewControllerCaptureDelegate? = nil
     typealias WriteMediaToPathClosure = (_ fileName: String, _ fileType: Int, _ inspectionId: String) -> String
     var writeMediaToPath: WriteMediaToPathClosure?
+    var imageCount: Int = 0
+
     //
     // header ui part
     @IBOutlet var headerView: UIView!
@@ -126,6 +128,11 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     public func setInspectionUuid(_ inspectionId: String) {
         self.inspectionId = inspectionId
     }
+    public func setInspectionImageCount(_ imageCountVar: Int) {
+        self.imageCount = imageCountVar
+        DDLogInfo("[Inspectful][MCM] capturedMedia image count is\(self.imageCount)")
+    }
+
     
     //
     // MARK:- Private methods
@@ -312,7 +319,11 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     }
     
     func mediaSelectedLimitReached() -> Bool {
-        if self.collectionView.getMediaSelectedCount() < self.collectionView.mediaSelectedLimit {
+        var selectedMedia = self.collectionView.getMediaSelectedCount()
+        var mediaSelectLimit = self.collectionView.mediaSelectedLimit
+        var newSelectedCount  = mediaSelectLimit - imageCount
+        
+        if  newSelectedCount > selectedMedia {
             return false
         }
         return true

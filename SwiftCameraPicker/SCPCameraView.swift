@@ -82,41 +82,53 @@ class SCPCameraView: UIView {
             self.busy = true
             //self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
-                    if image != nil {
-                        let squared = image//MediaFile.cropToSquare(image!)
-                        self.capturePictureCompletion(squared, error: error)
-                        self.busy = false
-                        //self.cameraViewDelegate?.toggleHeaderButtons()
-                    }
-                })
-            } else if self.cameraMode == self.cameraModes["video"] {
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
-                self.cameraViewDelegate!.toggleHeaderButtons()
-                self.cameraManagerVideoOnly!.startRecordingVideo()
-                self.videoToggleSwitch.isEnabled = false
-                // update ui labels
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
-                self.videoLengthBlock = []
-                for second in 1...self.videoLength {
-                     let block = SCPAsset.delay(delay: Double(second)) {
-                        if self.busy == true {
-                            DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
-                            self.videoLengthCountDownLabel.text = String(self.videoLength - second)
+                if self.cameraViewDelegate!.mediaSelectedLimitReached(){
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
+                }
+                else{
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
+                    self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
+                        if image != nil {
+                            let squared = image//MediaFile.cropToSquare(image!)
+                            self.capturePictureCompletion(squared, error: error)
+                            self.busy = false
+                            //self.cameraViewDelegate?.toggleHeaderButtons()
                         }
-                    }
-                    self.videoLengthBlock.append(block)
+                    })
                 }
                 
-                // stop recording
-                self.stopVideoBlock = nil
-                self.stopVideoBlock = SCPAsset.delay(delay: Double(self.videoLength)) {
-                    if self.busy == true {
-                        self.stopAndSaveVideo()
-                    }
+            } else if self.cameraMode == self.cameraModes["video"] {
+                if self.cameraViewDelegate!.mediaSelectedLimitReached(){
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
                 }
-            }
+                else{
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
+                    self.cameraViewDelegate!.toggleHeaderButtons()
+                    self.cameraManagerVideoOnly!.startRecordingVideo()
+                    self.videoToggleSwitch.isEnabled = false
+                    // update ui labels
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
+                    self.videoLengthBlock = []
+                    for second in 1...self.videoLength {
+                        let block = SCPAsset.delay(delay: Double(second)) {
+                            if self.busy == true {
+                                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
+                                self.videoLengthCountDownLabel.text = String(self.videoLength - second)
+                            }
+                        }
+                        self.videoLengthBlock.append(block)
+                    }
+                    
+                    // stop recording
+                    self.stopVideoBlock = nil
+                    self.stopVideoBlock = SCPAsset.delay(delay: Double(self.videoLength)) {
+                        if self.busy == true {
+                            self.stopAndSaveVideo()
+                        }
+                    }
+                    
+                }
+            }// else if
         } else if self.cameraMode == self.cameraModes["video"] {
             self.stopAndSaveVideo()
         }
