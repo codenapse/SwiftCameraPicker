@@ -13,12 +13,12 @@ import CocoaLumberjack
 
 
 protocol SCPCollectionDelegate: class {
-    func mediaFilePicked(image: UIImage)
-    func mediaFileSelected(image: UIImage, phAsset: PHAsset)
-    func mediaFileFromGallery(asset: SCPAsset)
-    func mediaFileRecorded(videoUrl: NSURL)
+    func mediaFilePicked(_ image: UIImage)
+    func mediaFileSelected(_ image: UIImage, phAsset: PHAsset)
+    func mediaFileFromGallery(_ asset: SCPAsset)
+    func mediaFileRecorded(_ videoUrl: URL)
     func mediaSelectedLimitReached() -> Bool
-    func getVideoFilePath(inspectionId: String) -> String
+    func getVideoFilePath(_ inspectionId: String) -> String
     func toggleHeaderButtons()
 }
 
@@ -29,31 +29,31 @@ class SCPCameraView: UIView {
     @IBOutlet var cameraPreview: UIView!
     @IBOutlet var takePictureBtn: UIButton!
     @IBOutlet var videoToggleSwitch: UISwitch!
-    weak var cameraViewDelegate: SCPCollectionDelegate? = nil
+    var cameraViewDelegate: SCPCollectionDelegate? = nil
     var cameraManagerStillImage: CameraManager?
     var cameraManagerVideoOnly: CameraManager?
     var busy: Bool = false
     var videoLength = 10
-    var videoLengthBlock: [dispatch_block_t] = []
-    var stopVideoBlock: dispatch_block_t?
-    public var inspectionId: String? = nil
+    var videoLengthBlock: [DispatchWorkItem] = []
+    var stopVideoBlock: DispatchWorkItem?
+    var inspectionId: String? = nil
     let cameraModes: Dictionary<String, CameraOutputMode> = [
-        "photo": .StillImage,
-        "video": .VideoOnly
+        "photo": .stillImage,
+        "video": .videoOnly
     ]
     var cameraMode: CameraOutputMode? = nil//.StillImage
     var tapGesture:UITapGestureRecognizer? = nil
     
     static func instance() -> SCPCameraView {
-        var view = UINib(nibName: "SCPCameraView", bundle: NSBundle(forClass: self.classForCoder())).instantiateWithOwner(self, options: nil)[0] as! SCPCameraView
+        let view = UINib(nibName: "SCPCameraView", bundle: Bundle(for: self.classForCoder())).instantiate(withOwner: self, options: nil)[0] as! SCPCameraView
         view.recordingMode.layer.cornerRadius = 6.0
         return view
     }
     
     
-    func initialize(mode: String = "photo") {
-        self.takePictureBtn.enabled = false
-        self.videoToggleSwitch.enabled = false
+    func initialize(_ mode: String = "photo") {
+        self.takePictureBtn.isEnabled = false
+        self.videoToggleSwitch.isEnabled = false
         self.busy = true
         if self.cameraModes[mode] != nil {
             if mode == "photo" {
@@ -65,76 +65,89 @@ class SCPCameraView: UIView {
             self.reinitCameraManagerForStillImage()
         }
         if self.cameraMode == self.cameraModes["video"]! {
-            self.recordingMode.hidden = false
+            self.recordingMode.isHidden = false
             self.videoLengthCountDownLabel.text = String(self.videoLength)
         } else {
-            self.recordingMode.hidden = true
+            self.recordingMode.isHidden = true
         }
         self.busy = false
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.7 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.takePictureBtn.enabled = true
-            self.videoToggleSwitch.enabled = true
+        let delayTime = DispatchTime.now() + Double(Int64(1.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            self.takePictureBtn.isEnabled = true
+            self.videoToggleSwitch.isEnabled = true
         }
     }
-    @IBAction func takePhotoBtnPressed(sender: AnyObject) {
+    @IBAction func takePhotoBtnPressed(_ sender: AnyObject) {
         if self.busy == false {
             self.busy = true
-            self.cameraViewDelegate?.toggleHeaderButtons()
+            //self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
-                self.cameraManagerStillImage!.capturePictureWithCompletition({ (image, error) -> Void in
-                    if image != nil {
-                        let squared = image//MediaFile.cropToSquare(image!)
-                        self.capturePictureCompletion(squared, error: error)
-                        self.busy = false
-                        self.cameraViewDelegate?.toggleHeaderButtons()
-                    }
-                })
-            } else if self.cameraMode == self.cameraModes["video"] {
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
-                self.cameraManagerVideoOnly!.startRecordingVideo()
-                self.videoToggleSwitch.enabled = false
-                // update ui labels
-                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
-                self.videoLengthBlock = []
-                for second in 1...self.videoLength {
-                     var block = SCPAsset.delay(second) {
-                        if self.busy == true {
-                            DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
-                            self.videoLengthCountDownLabel.text = String(self.videoLength - second)
+                if self.cameraViewDelegate!.mediaSelectedLimitReached(){
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
+                }
+                else{
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
+                    self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
+                        if image != nil {
+                            let squared = image//MediaFile.cropToSquare(image!)
+                            self.capturePictureCompletion(squared, error: error)
+                            self.busy = false
+                            //self.cameraViewDelegate?.toggleHeaderButtons()
                         }
-                    }
-                    self.videoLengthBlock.append(block)
+                    })
                 }
                 
-                // stop recording
-                self.stopVideoBlock = nil
-                self.stopVideoBlock = SCPAsset.delay(self.videoLength) {
-                    if self.busy == true {
-                        self.stopAndSaveVideo()
-                    }
+            } else if self.cameraMode == self.cameraModes["video"] {
+                if self.cameraViewDelegate!.mediaSelectedLimitReached(){
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
                 }
-            }
+                else{
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
+                    self.cameraViewDelegate!.toggleHeaderButtons()
+                    self.cameraManagerVideoOnly!.startRecordingVideo()
+                    self.videoToggleSwitch.isEnabled = false
+                    // update ui labels
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(0)")
+                    self.videoLengthBlock = []
+                    for second in 1...self.videoLength {
+                        let block = SCPAsset.delay(delay: Double(second)) {
+                            if self.busy == true {
+                                DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> video length: \(second)")
+                                self.videoLengthCountDownLabel.text = String(self.videoLength - second)
+                            }
+                        }
+                        self.videoLengthBlock.append(block)
+                    }
+                    
+                    // stop recording
+                    self.stopVideoBlock = nil
+                    self.stopVideoBlock = SCPAsset.delay(delay: Double(self.videoLength)) {
+                        if self.busy == true {
+                            self.stopAndSaveVideo()
+                        }
+                    }
+                    
+                }
+            }// else if
         } else if self.cameraMode == self.cameraModes["video"] {
             self.stopAndSaveVideo()
         }
     }
     
-    @IBAction func toggleVideoMode(sender: UISwitch) {
-        if sender.on == true {
+    @IBAction func toggleVideoMode(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.initialize("video")
         } else {
             self.initialize("photo")
         }
     }
-    func capturePictureCompletion(image: UIImage?, error: NSError?) {
+    func capturePictureCompletion(_ image: UIImage?, error: NSError?) {
         if image != nil {
             self.cameraViewDelegate?.mediaFilePicked(image!)
         }
     }
     
-    func captureVideoCompletion(videoUrl: NSURL?, error: NSError?) {
+    func captureVideoCompletion(_ videoUrl: URL?, error: NSError?) {
         if error != nil {
             return
         }
@@ -145,25 +158,28 @@ class SCPCameraView: UIView {
     func stopAndSaveVideo() {
         DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> stop recording video")
         for block in self.videoLengthBlock {
-            dispatch_block_cancel(block)
+            block.cancel()
+//            dispatch_block_cancel(block)
         }
-        dispatch_block_cancel(self.stopVideoBlock!)
+        self.stopVideoBlock?.cancel()
+//        dispatch_block_cancel(self.stopVideoBlock as! () -> Void)
         self.stopVideoBlock = nil
         self.videoLengthBlock = []
         self.busy = false
         self.cameraViewDelegate?.toggleHeaderButtons()
-        self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
+        //self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
+        self.cameraManagerVideoOnly!.stopVideoRecording({ (videoURL, error) -> Void in
             if error == nil {
                 self.cameraViewDelegate?.mediaFileRecorded(videoURL!)
             }
         })
         self.videoLengthCountDownLabel.text = String(self.videoLength)
-        self.videoToggleSwitch.enabled = true
+        self.videoToggleSwitch.isEnabled = true
     }
     //
     // MARK:- Private methods
     //
-    private func reinitCameraManagerForVideo() {
+    fileprivate func reinitCameraManagerForVideo() {
         self.cameraManagerStillImage = nil
         if self.tapGesture == nil {
             self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.takePhotoBtnPressed(_:)))
@@ -171,7 +187,7 @@ class SCPCameraView: UIView {
         }
         self.cameraManagerVideoOnly = nil
         self.cameraMode = self.cameraModes["video"]!
-        var manager = CameraManager()
+        let manager = CameraManager()
         manager.cameraOutputMode = self.cameraModes["video"]!
         manager.writeFilesToPhoneLibrary = false
         self.cameraManagerVideoOnly = manager
@@ -179,11 +195,11 @@ class SCPCameraView: UIView {
     }
     
     
-    private func reinitCameraManagerForStillImage() {
+    fileprivate func reinitCameraManagerForStillImage() {
         self.cameraManagerVideoOnly = nil
         self.cameraManagerStillImage = nil
         self.cameraMode = self.cameraModes["photo"]!
-        var manager = CameraManager()
+        let manager = CameraManager()
         manager.cameraOutputMode = self.cameraModes["photo"]!
         manager.writeFilesToPhoneLibrary = false
         self.cameraManagerStillImage = manager
