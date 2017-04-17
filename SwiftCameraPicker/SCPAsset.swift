@@ -98,7 +98,7 @@ open class SCPAsset: NSObject {
         
         if self.mediaType == SCPAsset.MediaTypes["photo"]! {
             if self.original == nil {
-                self.original = self.getImageFromPHAsset()
+                self.original = self.getImageFromPHAsset(CGSize(width: 500.0, height: 700.0))
             }
             let originalPath = (path + "_original") + self.fileExtension
             let thumbPath = (path + "_thumb") + self.fileExtension
