@@ -199,21 +199,20 @@ open class SCPAsset: NSObject {
     }
     
     
-    func getImageFromPHAsset(_ targetSize: CGSize = PHImageManagerMaximumSize) -> UIImage {
+    func getImageFromPHAsset(_ targetSize: CGSize) -> UIImage {
         let options = PHImageRequestOptions()
         options.isSynchronous = true
         var img: UIImage!
         var contentMode: PHImageContentMode
-        if targetSize == PHImageManagerMaximumSize {
-            contentMode = .aspectFit
-        } else {
-            contentMode = .aspectFill
+        contentMode = .aspectFit
+        autoreleasepool {
+            SCPAsset.imageManager.requestImage(for: self.phAsset!,
+                                               targetSize: targetSize,
+                                               contentMode: contentMode,
+                                               options: options) { (result, _) in if result != nil { img = result! }
+            }
         }
-        SCPAsset.imageManager.requestImage(for: self.phAsset!,
-                                                       targetSize: targetSize,
-                                                       contentMode: contentMode,
-                                                       options: options) { (result, _) in if result != nil { img = result! }
-        }
+        
         return img!
     }
     //
@@ -241,31 +240,12 @@ open class SCPAsset: NSObject {
     }
     
     
-//    static func delay(_ delay:Int, closure:@escaping ()->()) -> ()->() {
-//        let block: ()->() = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS) {
-//            closure()
-//        }
-//        DispatchQueue.main.asyncAfter(
-//            deadline: DispatchTime.now() + Double(Int64(Double(delay) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: block)
-//        return block
-//    }
-    
     static func delay(delay:Double, closure:@escaping ()->()) -> DispatchWorkItem {
         let delayTime = DispatchTime.now() + delay
         let dispatchWorkItem = DispatchWorkItem(block: closure);
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute: dispatchWorkItem)
         return dispatchWorkItem
     }
-    
-//    static func delay(delay:Int, closure:@escaping ()->()) -> DispatchWorkItem {
-//        var block: DispatchWorkItem //= nil as DispatchWorkItem?
-//        let delayTime = DispatchTime.now() + Double(delay)
-//        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-//            block = DispatchWorkItem{
-//                closure()
-//            }})
-//        return block
-//    }
     
     static func getOrCreateMediaFilePath(_ fileUuid: String!, fileType: Int, inspectionId: String) -> String! {
         return SCPAsset.getAndCreateMediaFolder(String(fileType) + "/", inspectionId: inspectionId)
