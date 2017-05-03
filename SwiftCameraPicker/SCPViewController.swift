@@ -108,11 +108,6 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
         self.delegate!.capturedMediaFilesFromSession(self.mediaFilesFromSession)
         
         self.dismiss(animated: false, completion: nil)
-//        if self.collectionView.mediaFiles != nil {
-//            for file in self.collectionView.mediaFiles {
-//                file?.cleanup()
-//            }
-//        }
         self.collectionView.mediaFiles = []
         self.mediaFilesFromSession = []
         self.delegate = nil

@@ -41,7 +41,7 @@ class SCPCameraView: UIView {
         "photo": .stillImage,
         "video": .videoOnly
     ]
-    var cameraMode: CameraOutputMode? = nil//.StillImage
+    var cameraMode: CameraOutputMode? = nil
     var tapGesture:UITapGestureRecognizer? = nil
     
     static func instance() -> SCPCameraView {
@@ -80,7 +80,6 @@ class SCPCameraView: UIView {
     @IBAction func takePhotoBtnPressed(_ sender: AnyObject) {
         if self.busy == false {
             self.busy = true
-            //self.cameraViewDelegate!.toggleHeaderButtons()
             if self.cameraMode == self.cameraModes["photo"] {
                 if self.cameraViewDelegate!.mediaSelectedLimitReached(){
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
@@ -89,17 +88,16 @@ class SCPCameraView: UIView {
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
                     self.cameraManagerStillImage!.capturePictureWithCompletion({ (image, error) -> Void in
                         if image != nil {
-                            let squared = image//MediaFile.cropToSquare(image!)
+                            let squared = image
                             self.capturePictureCompletion(squared, error: error)
                             self.busy = false
-                            //self.cameraViewDelegate?.toggleHeaderButtons()
                         }
                     })
                 }
                 
             } else if self.cameraMode == self.cameraModes["video"] {
                 if self.cameraViewDelegate!.mediaSelectedLimitReached(){
-                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> media selected limit reached")
                 }
                 else{
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
@@ -159,15 +157,12 @@ class SCPCameraView: UIView {
         DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> stop recording video")
         for block in self.videoLengthBlock {
             block.cancel()
-//            dispatch_block_cancel(block)
         }
         self.stopVideoBlock?.cancel()
-//        dispatch_block_cancel(self.stopVideoBlock as! () -> Void)
         self.stopVideoBlock = nil
         self.videoLengthBlock = []
         self.busy = false
         self.cameraViewDelegate?.toggleHeaderButtons()
-        //self.cameraManagerVideoOnly!.stopRecordingVideo({ (videoURL, error) -> Void in
         self.cameraManagerVideoOnly!.stopVideoRecording({ (videoURL, error) -> Void in
             if error == nil {
                 self.cameraViewDelegate?.mediaFileRecorded(videoURL!)
