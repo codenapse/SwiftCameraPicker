@@ -82,6 +82,9 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     
     
     @IBAction func headerDoneButtonPressed(_ sender: AnyObject) {
+        if cameraView.busy{
+            return
+        }
         let mediaFiles = self.collectionView.getMediaFilesFromSession()
         var videoFiles: [String] = []
         for media in mediaFiles {
