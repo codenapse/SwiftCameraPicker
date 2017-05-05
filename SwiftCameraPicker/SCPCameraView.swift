@@ -82,7 +82,8 @@ class SCPCameraView: UIView {
             self.busy = true
             if self.cameraMode == self.cameraModes["photo"] {
                 if self.cameraViewDelegate!.mediaSelectedLimitReached(){
-                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image#4%^&&**(!!!@@@####")
+                    DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> media selected limit reached")
+                    self.busy = false
                 }
                 else{
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> capture still image")
@@ -98,6 +99,7 @@ class SCPCameraView: UIView {
             } else if self.cameraMode == self.cameraModes["video"] {
                 if self.cameraViewDelegate!.mediaSelectedLimitReached(){
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> media selected limit reached")
+                    self.busy = false
                 }
                 else{
                     DDLogDebug("[SwiftCameraPicker][SCPCameraView] -> start recording video")
