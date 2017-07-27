@@ -225,13 +225,7 @@ public final class SCPViewController: UIViewController, SCPCollectionDelegate , 
     private func setVideoOrientation() {
         let value = UIDevice.current.orientation
         let orientation = "orientation"
-        
-        switch value {
-        case .portraitUpsideDown:
-            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: orientation)
-        default: break
         }
-    }
     
     
     override public func viewDidLoad() {
