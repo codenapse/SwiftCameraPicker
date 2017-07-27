@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,18 +12,17 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="85" height="110"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XPd-04-5G4">
-                        <rect key="frame" x="0.0" y="0.0" width="85" height="110"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="110" id="Dl5-Cb-OjL"/>
                             <constraint firstAttribute="width" constant="85" id="E9i-c8-dca"/>
                         </constraints>
                     </imageView>
                     <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AL-DR-vBa">
-                        <rect key="frame" x="0.0" y="0.0" width="85" height="110"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1nD-ba-9o8">
-                            <rect key="frame" x="0.0" y="0.0" width="85" height="110"/>
+                            <frame key="frameInset"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <constraints>
@@ -32,21 +32,18 @@
                         <blurEffect style="light"/>
                     </visualEffectView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="8I8-jh-Dyw">
-                        <rect key="frame" x="6" y="6" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="Pm7-yn-gmt"/>
                             <constraint firstAttribute="width" constant="25" id="jgi-AQ-d4p"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_file_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8HS-1B-RjM">
-                        <rect key="frame" x="59" y="86" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Dpo-4l-93E"/>
                             <constraint firstAttribute="width" constant="20" id="JT9-6d-bD9"/>
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="XPd-04-5G4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="1r2-Em-6XS"/>
